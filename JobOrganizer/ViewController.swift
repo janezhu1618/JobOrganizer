@@ -11,32 +11,17 @@ import Firebase
 //import FirebaseDatabase
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var signInSelector: UISegmentedControl!
+    
+    @IBOutlet weak var signInLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
+    
+    var isSignIn: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        let ref = Database.database().reference()
-//       // ref.child("someID/name").setValue("ace")
-//        //changing value of a key to something else
-//
-//        //generate random key
-//        ref.childByAutoId().setValue(["name" : "Tom", "age" : 18, "location" : "los angeles, ca"])
-//
-//        //retrieving
-//        ref.child("someid").observeSingleEvent(of: .value) { (snapshot) in
-////            let username = snapshot.value as? [String : Any]
-////        }
-//
-//        //updating data
-//    ref.child("someID/name").setValue("Lux")
-//        ref.child("LY3hYY5Hu3B0rzUNxhE/age").setValue(12)
-//
-//        //updating an array of dictionaries
-//        let updates = ["someID/name" : "Garen", "LY3hYY5Hu3B0rzUNxhE/name" : "nunu"]
-//        ref.updateChildValues(updates)
-//
-//        //deleting data
-//        ref.child("LY3hYY5Hu3B0rzUNxhE").removeValue()
         
     }
 
@@ -44,5 +29,45 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-}
+    @IBAction func signInSelectorChanged(_ sender: UISegmentedControl) {
+        //Flip the boolean
+        isSignIn = !isSignIn
+        //check the bool and set the labels
+        if isSignIn {
+            signInLabel.text = "Sign In"
+            signInButton.setTitle("Sign In", for: .normal)
+        } else {
+            signInLabel.text = "Register"
+            signInButton.setTitle("Register", for: .normal)
+        }
+    }
+    
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            //check if signin or register
+            if isSignIn {
+                //sign in user
+                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                    //check that user isn't nil
+                    if let user = user {
+                        //user is found
+                        self.performSegue(withIdentifier: "goToHome", sender: self)
+                    } else {
+                        //error
+                    }
+                }
+            } else {
+                //register user
+                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                    if let user = user {
+                        //user is found, go to home screen
+                        self.performSegue(withIdentifier: "goToHome", sender: self)
+                    } else {
+                        //error, check error and show message
+                    }
+                }
+            }
+        }
 
+    }
+}
