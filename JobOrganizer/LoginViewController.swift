@@ -12,12 +12,11 @@ import Firebase
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var signInSelector: UISegmentedControl!
-    
     @IBOutlet weak var signInLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-    
+
     var isSignIn: Bool = true
     
     override func viewDidLoad() {
@@ -42,30 +41,31 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
-            //check if signin or register
+            guard email.hasSuffix(".com") || email.hasSuffix(".org") || email.hasSuffix(".net"), email.contains("@"), password.count >= 6 else { showAlert(title: "Invalid Format", message: "Make sure you enter an email and the password is at least 6 characters.")
+                return
+            }
             if isSignIn {
-                //sign in user
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                    //check that user isn't nil
-                    if let user = user {
-                        //user is found
+                    if let _ = user {
                         self.performSegue(withIdentifier: "goToHome", sender: self)
-                    } else {
-                        //error
-                        print("wrong pw")
+                    } else if let error = error {
+                        self.showAlert(title: "Invalid User", message: error.localizedDescription)
                     }
                 }
             } else {
-                //register user
                 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                    if let user = user {
-                        //user is found, go to home screen
+                    if let _ = user {
                         self.performSegue(withIdentifier: "goToHome", sender: self)
-                    } else {
-                        //error, check error and show message
-                        print("unable to register")
+                    } else if let error = error {
+                        self.showAlert(title: "Registration Failed", message: error.localizedDescription)
                     }
                 }
             }
