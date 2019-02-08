@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 //import FirebaseDatabase
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     @IBOutlet weak var signInSelector: UISegmentedControl!
     
     @IBOutlet weak var signInLabel: UILabel!
@@ -35,10 +35,10 @@ class ViewController: UIViewController {
         //check the bool and set the labels
         if isSignIn {
             signInLabel.text = "Sign In"
-            signInButton.setTitle("Sign In", for: .normal)
+            signInButton.setTitle(" Sign In ", for: .normal)
         } else {
             signInLabel.text = "Register"
-            signInButton.setTitle("Register", for: .normal)
+            signInButton.setTitle(" Register ", for: .normal)
         }
     }
     
@@ -54,6 +54,7 @@ class ViewController: UIViewController {
                         self.performSegue(withIdentifier: "goToHome", sender: self)
                     } else {
                         //error
+                        print("wrong pw")
                     }
                 }
             } else {
@@ -64,10 +65,16 @@ class ViewController: UIViewController {
                         self.performSegue(withIdentifier: "goToHome", sender: self)
                     } else {
                         //error, check error and show message
+                        print("unable to register")
                     }
                 }
             }
         }
 
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
     }
 }
