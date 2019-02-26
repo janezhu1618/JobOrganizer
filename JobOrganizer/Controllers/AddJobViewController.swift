@@ -8,9 +8,10 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class AddJobViewController: UIViewController {
-    
+    //TODO: add cancel option
     @IBOutlet weak var applicationStatusPickerView: UIPickerView!
     @IBOutlet weak var companyNameTextField: UITextField!
     @IBOutlet weak var positionNameTextField: UITextField!
@@ -45,6 +46,7 @@ class AddJobViewController: UIViewController {
                 showAlert(title: "Error", message: "Fields cannot be empty")
                 return
         }
+        SVProgressHUD.show()
             let date = Date()
             let isoDateFormatter = ISO8601DateFormatter()
             isoDateFormatter.formatOptions = [.withFullDate,
@@ -67,14 +69,16 @@ class AddJobViewController: UIViewController {
                              JobDictionaryKeys.userID : currentUser]
         jobsDatabase.childByAutoId().setValue(jobDictionary) { (error, reference) in
             if error != nil {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showError(withStatus: "Job NOT added")
                 print(error!) //TODO: change this to some sort of feedback for user
             } else {
-                
-                print("job successfully saved") //SVProgressHUD
-                
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showSuccess(withStatus: "Job added.")
+                self.dismiss(animated: true, completion: nil)
             }
         }
-        dismiss(animated: true, completion: nil)
+        
     }
     
         private func addJob() {

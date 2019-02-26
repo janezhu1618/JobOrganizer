@@ -23,6 +23,7 @@ class JobListViewController: UIViewController {
         jobTableView.delegate = self
         jobSearchBar.delegate = self
         retrieveJobs()
+        jobTableView.separatorStyle = .none
     }
     
 
@@ -55,10 +56,14 @@ class JobListViewController: UIViewController {
 extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = jobTableView.dequeueReusableCell(withIdentifier: "JobCell", for: indexPath)
+        let job = jobsArray[indexPath.row]
+        cell.textLabel?.text = job.company
+        cell.detailTextLabel?.text = job.applicationPhase
+        cell.imageView?.image = UIImage(named: "jobImage")
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return jobsArray.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row) selected")
