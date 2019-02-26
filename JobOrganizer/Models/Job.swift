@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ApplicationPhase {
+enum ApplicationPhase: String {
     case interested = "Interested"
     case applicationSent = "Applcation Sent"
     case phoneInterview = "Phone Interview"
@@ -19,18 +19,30 @@ enum ApplicationPhase {
 }
 
 struct Job {
-    var company: String
-    var position: String
-    var jobPostingURL: String?
-    var notes: [String]
-    var applicationPhase: ApplicationPhase
-//    var applicationPhase: String
-    var dateCreated: String
-    var lastUpdated: String
-    var contactPersonName: String?
-    var contactPersonNumber: String?
-    var contactPersonEmail: String?
-
+    var company: String = ""
+    var position: String = ""
+    var jobPostingURL: String = ""
+    var notes: String = ""
+    var applicationPhase = ""
+    //    var applicationPhase: String
+    var dateCreated: String = ""
+    var lastUpdated: String = ""
+    var contactPersonName: String = ""
+    var contactPersonNumber: String = ""
+    var contactPersonEmail: String = ""
+    var userID: String = ""
+//    var company: String
+//    var position: String
+//    var jobPostingURL: String?
+//    var notes: [String]
+//    var applicationPhase: ApplicationPhase
+////    var applicationPhase: String
+//    var dateCreated: String
+//    var lastUpdated: String
+//    var contactPersonName: String?
+//    var contactPersonNumber: String?
+//    var contactPersonEmail: String?
+//    let userID: String
     //TODO: figure out a better way to get date
     public var dateFormattedString: String {
         let isoDateFormatter = ISO8601DateFormatter()
@@ -52,13 +64,5 @@ struct Job {
         return formattedDate
     }
     
-//    let date = Date()
-//    let isoDateFormatter = ISO8601DateFormatter()
-//    isoDateFormatter.formatOptions = [.withFullDate,
-//    .withFullTime,
-//    .withInternetDateTime,
-//    .withTimeZone,
-//    .withDashSeparatorInDate]
-//    let timeStamp = isoDateFormatter.string(from: date)
 
 }

@@ -48,6 +48,7 @@ class WelcomeViewController: UIViewController {
         case .signIn:
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil {
+                    SVProgressHUD.dismiss()
                     self.showAlert(title: "Error", message: error!.localizedDescription)
                 } else {
                     SVProgressHUD.dismiss()
@@ -57,6 +58,7 @@ class WelcomeViewController: UIViewController {
         case .register:
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                 if error != nil {
+                    SVProgressHUD.dismiss()
                     self.showAlert(title: "Error", message: error!.localizedDescription)
                 } else {
                     SVProgressHUD.dismiss()

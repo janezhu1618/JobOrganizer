@@ -17,6 +17,8 @@
 		A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A05D2224A8190073A638 /* ViewController+Alert.swift */; };
 		A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A0612224A9D10073A638 /* JobListViewController.swift */; };
 		A530A0682224AE160073A638 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A0672224AE160073A638 /* Job.swift */; };
+		A5550A9A2225C42900D4FB14 /* JobDictionaryKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550A992225C42900D4FB14 /* JobDictionaryKeys.swift */; };
+		A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		A530A05D2224A8190073A638 /* ViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
 		A530A0612224A9D10073A638 /* JobListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListViewController.swift; sourceTree = "<group>"; };
 		A530A0672224AE160073A638 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		A5550A992225C42900D4FB14 /* JobDictionaryKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDictionaryKeys.swift; sourceTree = "<group>"; };
+		A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,8 +103,10 @@
 		A530A05F2224A8530073A638 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */,
 				A530A04B22249B040073A638 /* WelcomeViewController.swift */,
 				A530A0612224A9D10073A638 /* JobListViewController.swift */,
+				A530A05D2224A8190073A638 /* ViewController+Alert.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -108,7 +114,6 @@
 		A530A0602224A8680073A638 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A530A05D2224A8190073A638 /* ViewController+Alert.swift */,
 				A530A04922249B040073A638 /* AppDelegate.swift */,
 				A530A05022249B050073A638 /* Assets.xcassets */,
 				A530A05222249B050073A638 /* LaunchScreen.storyboard */,
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				A530A0672224AE160073A638 /* Job.swift */,
+				A5550A992225C42900D4FB14 /* JobDictionaryKeys.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,7 +260,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A530A0682224AE160073A638 /* Job.swift in Sources */,
+				A5550A9A2225C42900D4FB14 /* JobDictionaryKeys.swift in Sources */,
 				A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */,
+				A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */,
 				A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */,
 				A530A04C22249B040073A638 /* WelcomeViewController.swift in Sources */,
 				A530A04A22249B040073A638 /* AppDelegate.swift in Sources */,
