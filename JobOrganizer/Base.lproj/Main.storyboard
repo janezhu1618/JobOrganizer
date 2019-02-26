@@ -133,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6uf-Mn-VuG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2870" y="289"/>
+            <point key="canvasLocation" x="3880" y="358"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Wlp-sh-ogC">
@@ -146,7 +146,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="vBv-s5-deI" kind="relationship" relationship="viewControllers" id="OA4-Mj-3Et"/>
+                        <segue destination="xfS-r9-iog" kind="relationship" relationship="viewControllers" id="OA4-Mj-3Et"/>
                         <segue destination="Ve9-HA-m0L" kind="relationship" relationship="viewControllers" id="jeP-sN-aKv"/>
                     </connections>
                 </tabBarController>
@@ -163,12 +163,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Bm0-Nj-CiB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <color key="barTintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JNW-2w-yrs">
-                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JobCell" textLabel="BU9-U2-3aO" detailTextLabel="B8H-uR-DNW" style="IBUITableViewCellStyleSubtitle" id="aIs-fU-RHt">
@@ -210,7 +210,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xrM-WB-5lm"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Jobs" image="job" id="loV-GM-L7F"/>
                     <navigationItem key="navigationItem" title="Job List" id="azM-ES-YI4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7St-w6-wTd">
                             <connections>
@@ -225,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQc-L3-hlG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3709" y="-413"/>
+            <point key="canvasLocation" x="4618.840579710145" y="-413.16964285714283"/>
         </scene>
         <!--New Job-->
         <scene sceneID="GnF-c9-h23">
@@ -269,7 +268,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGb-7l-TIA">
-                                                <rect key="frame" x="0.0" y="186" width="392" height="216"/>
+                                                <rect key="frame" x="0.0" y="186.5" width="392" height="216"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Posting URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-gA-bkc">
@@ -292,11 +291,8 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbh-JI-JAp">
-                                        <rect key="frame" x="303" y="580" width="100" height="36"/>
+                                        <rect key="frame" x="160" y="511" width="94" height="36"/>
                                         <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ZlL-aX-Wxa"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
                                         <state key="normal" title="Continue">
                                             <color key="titleColor" red="0.25609213079999998" green="0.25609213079999998" blue="0.25609213079999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -308,12 +304,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="wbh-JI-JAp" secondAttribute="bottom" constant="11" id="5CK-BN-GuH"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wbh-JI-JAp" secondAttribute="trailing" constant="20" symbolic="YES" id="7Ok-vq-z4b"/>
                                     <constraint firstAttribute="trailing" secondItem="peG-xL-7XX" secondAttribute="trailing" constant="11" id="AMB-sg-et1"/>
+                                    <constraint firstItem="wbh-JI-JAp" firstAttribute="top" secondItem="peG-xL-7XX" secondAttribute="bottom" constant="22" id="R45-PD-vk9"/>
                                     <constraint firstItem="peG-xL-7XX" firstAttribute="top" secondItem="pcH-Pb-ffk" secondAttribute="top" constant="11" id="arj-Uc-ATG"/>
                                     <constraint firstItem="peG-xL-7XX" firstAttribute="leading" secondItem="pcH-Pb-ffk" secondAttribute="leading" constant="11" id="ckT-Ud-O5s"/>
-                                    <constraint firstItem="wbh-JI-JAp" firstAttribute="leading" secondItem="pcH-Pb-ffk" secondAttribute="leading" constant="303" id="tCv-F1-81w"/>
+                                    <constraint firstItem="wbh-JI-JAp" firstAttribute="centerX" secondItem="pcH-Pb-ffk" secondAttribute="centerX" id="jy2-cm-3ff"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's start with some basic info..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlQ-vL-NXO">
@@ -344,7 +339,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GqN-gD-rLv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4566.666666666667" y="-413.16964285714283"/>
+            <point key="canvasLocation" x="5476.811594202899" y="-413.16964285714283"/>
+        </scene>
+        <!--Jobs-->
+        <scene sceneID="oPz-vo-2tP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xfS-r9-iog" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Jobs" image="job" id="loV-GM-L7F"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xby-FW-Ybm">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vBv-s5-deI" kind="relationship" relationship="rootViewController" id="DIv-3S-r3I"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g9E-Bg-M42" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3708.6956521739135" y="-413.16964285714283"/>
         </scene>
     </scenes>
     <resources>

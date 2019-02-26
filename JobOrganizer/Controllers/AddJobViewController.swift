@@ -12,16 +12,20 @@ import Firebase
 class AddJobViewController: UIViewController {
     
     @IBOutlet weak var applicationStatusPickerView: UIPickerView!
-    private var tapGesture: UITapGestureRecognizer!
-    private let jobsDatabase = Database.database().reference().child("Jobs")
     @IBOutlet weak var companyNameTextField: UITextField!
     @IBOutlet weak var positionNameTextField: UITextField!
     @IBOutlet weak var continueButton: UIButton!
+    
+    private var tapGesture: UITapGestureRecognizer!
+    private let jobsDatabase = Database.database().reference().child("Jobs")
+    private let pickerData: [String] = [ ApplicationPhase.interested.rawValue, ApplicationPhase.applicationSent.rawValue, ApplicationPhase.phoneInterview.rawValue, ApplicationPhase.inPersonInterview.rawValue, ApplicationPhase.whiteboarding.rawValue, ApplicationPhase.jobOffer.rawValue, ApplicationPhase.jobOffer.rawValue]
+    private var applicationStatus = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGesture()
         applicationStatusPickerView.delegate = self
+        applicationStatusPickerView.dataSource = self
     }
     
     private func addTapGesture() {
@@ -52,7 +56,7 @@ class AddJobViewController: UIViewController {
         let currentUser = Auth.auth().currentUser?.uid
         let jobDictionary = [JobDictionaryKeys.company : companyName,
                              JobDictionaryKeys.position : position,
-                             JobDictionaryKeys.applicationPhase : "",
+                             JobDictionaryKeys.applicationPhase : applicationStatus,
                              JobDictionaryKeys.jobPostingURL : "",
                              JobDictionaryKeys.notes : "",
                              JobDictionaryKeys.dateCreated : timeStamp,
@@ -74,20 +78,22 @@ class AddJobViewController: UIViewController {
     }
     
         private func addJob() {
-//            let jobDictionary = [JobDictionaryKeys.company : companyNameTextField.text]
-//            jobsDatabase.childByAutoId().setValue(jobDictionary) { (error, reference) in
-//                if error != nil {
-//                    print(error!) //TODO: change this to some sort of feedback for user
-//                } else {
-//
-//                    print("job successfully saved") //SVProgressHUD
-//
-//                }
-//            }
+
         }
     
 }
 
-extension AddJobViewController: UIPickerViewDelegate {
-    
+extension AddJobViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        applicationStatus = pickerData[row]
+    }
 }
