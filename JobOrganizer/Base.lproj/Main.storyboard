@@ -169,6 +169,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JNW-2w-yrs">
                                 <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JobCell" id="aIs-fU-RHt">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aIs-fU-RHt" id="WRL-5v-5OT">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -184,8 +194,16 @@
                         <viewLayoutGuide key="safeArea" id="xrM-WB-5lm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Job List" id="azM-ES-YI4">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7St-w6-wTd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7St-w6-wTd">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="vBv-s5-deI" id="6lF-Nf-309"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="jobSearchBar" destination="Bm0-Nj-CiB" id="5ec-1c-lmx"/>
+                        <outlet property="jobTableView" destination="JNW-2w-yrs" id="l79-HS-flu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQc-L3-hlG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
