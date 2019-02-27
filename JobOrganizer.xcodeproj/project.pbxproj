@@ -26,6 +26,9 @@
 		A5550AEB2227024F00D4FB14 /* MessageBoardDetailoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEA2227024F00D4FB14 /* MessageBoardDetailoViewController.swift */; };
 		A5550AED2227028000D4FB14 /* MessageBoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */; };
 		A5550AEF222705FB00D4FB14 /* MessageBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEE222705FB00D4FB14 /* MessageBoard.swift */; };
+		A5550AF122271C0C00D4FB14 /* JobOrganizerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF022271C0C00D4FB14 /* JobOrganizerUser.swift */; };
+		A5550AF32227225400D4FB14 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF22227225400D4FB14 /* DatabaseManager.swift */; };
+		A5550AF6222722FF00D4FB14 /* DatabaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		A5550AEA2227024F00D4FB14 /* MessageBoardDetailoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardDetailoViewController.swift; sourceTree = "<group>"; };
 		A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardListViewController.swift; sourceTree = "<group>"; };
 		A5550AEE222705FB00D4FB14 /* MessageBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoard.swift; sourceTree = "<group>"; };
+		A5550AF022271C0C00D4FB14 /* JobOrganizerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOrganizerUser.swift; sourceTree = "<group>"; };
+		A5550AF22227225400D4FB14 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseKeys.swift; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				A530A04D22249B040073A638 /* Main.storyboard */,
+				A5550AF42227225D00D4FB14 /* Firebase Utilities */,
 				A530A0692224AE1B0073A638 /* Models */,
 				A5550AC02226D7E400D4FB14 /* Views */,
 				A530A05F2224A8530073A638 /* Controllers */,
@@ -143,6 +150,7 @@
 		A530A0692224AE1B0073A638 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A5550AF022271C0C00D4FB14 /* JobOrganizerUser.swift */,
 				A5550AEE222705FB00D4FB14 /* MessageBoard.swift */,
 				A5550AE52226F7A700D4FB14 /* Message.swift */,
 				A530A0672224AE160073A638 /* Job.swift */,
@@ -165,6 +173,15 @@
 				A530A05D2224A8190073A638 /* ViewController+Alert.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A5550AF42227225D00D4FB14 /* Firebase Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A5550AF22227225400D4FB14 /* DatabaseManager.swift */,
+				A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */,
+			);
+			path = "Firebase Utilities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,9 +286,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -279,9 +300,13 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -299,16 +324,19 @@
 			files = (
 				A530A0682224AE160073A638 /* Job.swift in Sources */,
 				A5550A9A2225C42900D4FB14 /* JobDictionaryKeys.swift in Sources */,
+				A5550AF32227225400D4FB14 /* DatabaseManager.swift in Sources */,
 				A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */,
 				A5550AED2227028000D4FB14 /* MessageBoardListViewController.swift in Sources */,
 				A5550AEB2227024F00D4FB14 /* MessageBoardDetailoViewController.swift in Sources */,
 				A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */,
+				A5550AF122271C0C00D4FB14 /* JobOrganizerUser.swift in Sources */,
 				A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */,
 				A5550AE62226F7A800D4FB14 /* Message.swift in Sources */,
 				A530A04C22249B040073A638 /* WelcomeViewController.swift in Sources */,
 				A5550AEF222705FB00D4FB14 /* MessageBoard.swift in Sources */,
 				A5550A9E222604AB00D4FB14 /* ProfileTableViewController.swift in Sources */,
 				A530A04A22249B040073A638 /* AppDelegate.swift in Sources */,
+				A5550AF6222722FF00D4FB14 /* DatabaseKeys.swift in Sources */,
 				A5550AC32226D7FD00D4FB14 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

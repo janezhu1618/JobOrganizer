@@ -295,10 +295,10 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbh-JI-JAp">
-                                        <rect key="frame" x="160" y="511" width="94" height="36"/>
+                                        <rect key="frame" x="183.5" y="511" width="47" height="36"/>
                                         <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
-                                        <state key="normal" title="Continue">
+                                        <state key="normal" title="Save">
                                             <color key="titleColor" red="0.25609213079999998" green="0.25609213079999998" blue="0.25609213079999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <connections>
@@ -320,6 +320,16 @@
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="23"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akb-IF-MjT">
+                                <rect key="frame" x="373" y="51.5" width="30" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissButton:" destination="7Ro-DC-Ifp" eventType="touchUpInside" id="Tci-ig-N9i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -328,6 +338,8 @@
                             <constraint firstItem="pcH-Pb-ffk" firstAttribute="leading" secondItem="Qiv-A8-UYd" secondAttribute="leading" id="PJo-oi-DAK"/>
                             <constraint firstItem="pcH-Pb-ffk" firstAttribute="centerX" secondItem="Qiv-A8-UYd" secondAttribute="centerX" id="Rxd-vs-dZU"/>
                             <constraint firstItem="pcH-Pb-ffk" firstAttribute="height" secondItem="Q9C-4C-5a0" secondAttribute="height" multiplier="0.7" id="VqD-KY-WiQ"/>
+                            <constraint firstItem="tlQ-vL-NXO" firstAttribute="top" secondItem="akb-IF-MjT" secondAttribute="bottom" constant="11" id="dYa-GS-4LR"/>
+                            <constraint firstItem="Qiv-A8-UYd" firstAttribute="trailing" secondItem="akb-IF-MjT" secondAttribute="trailing" constant="11" id="hTK-1s-Ihu"/>
                             <constraint firstItem="Qiv-A8-UYd" firstAttribute="trailing" secondItem="tlQ-vL-NXO" secondAttribute="trailing" constant="11" id="hVM-eT-dvu"/>
                             <constraint firstItem="pcH-Pb-ffk" firstAttribute="top" secondItem="tlQ-vL-NXO" secondAttribute="bottom" constant="11" id="kdN-l7-fcs"/>
                             <constraint firstItem="pcH-Pb-ffk" firstAttribute="centerY" secondItem="Qiv-A8-UYd" secondAttribute="centerY" id="koC-0l-90x"/>
@@ -549,7 +561,7 @@
         <scene sceneID="0jS-aH-qsj">
             <objects>
                 <tableViewController title="Profile" id="7PY-EJ-bFC" customClass="ProfileTableViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="a8O-21-UIc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="a8O-21-UIc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

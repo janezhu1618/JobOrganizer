@@ -8,13 +8,14 @@
 
 import UIKit
 import Firebase
-//TODO: only display jobs by user
+import FirebaseFirestore
+
 class JobListViewController: UIViewController {
 
     @IBOutlet weak var jobSearchBar: UISearchBar!
     @IBOutlet weak var jobTableView: UITableView!
     @IBOutlet var emptyStateView: UIView!
-    
+    private var listener: ListenerRegistration!
     private var jobsArray = [Job]()
     private let jobsDatabase = Database.database().reference().child("Jobs")
     
@@ -42,24 +43,40 @@ class JobListViewController: UIViewController {
     }
     
     private func retrieveJobs() {
-        jobsDatabase.observe(.childAdded) { (snapshot) in
-            let snapshotValue = snapshot.value as! Dictionary<String,String>
-            let job = Job.init(company: snapshotValue[JobDictionaryKeys.company]!,
-                               position: snapshotValue[JobDictionaryKeys.position]!,
-                               jobPostingURL: snapshotValue[JobDictionaryKeys.jobPostingURL]!,
-                               notes: snapshotValue[JobDictionaryKeys.notes]!,
-                               applicationPhase: snapshotValue[JobDictionaryKeys.applicationPhase]!,
-                               dateCreated: snapshotValue[JobDictionaryKeys.dateCreated]!,
-                               lastUpdated: snapshotValue[JobDictionaryKeys.lastUpdated]!,
-                               contactPersonName: snapshotValue[JobDictionaryKeys.contactPersonName]!,
-                               contactPersonNumber: snapshotValue[JobDictionaryKeys.contactPersonNumber]!,
-                               contactPersonEmail: snapshotValue[JobDictionaryKeys.contactPersonEmail]!,
-                               userID: snapshotValue[JobDictionaryKeys.userID]!)
-            self.jobsArray.append(job)
-            self.jobsArray.sort{ $0.date > $1.date }
-            self.checkForEmptyState()
-            self.jobTableView.reloadData()
+        jobsArray.removeAll()
+        listener = DatabaseManager.firebaseDB.collection(DatabaseKeys.JobsCollectionKey).addSnapshotListener(includeMetadataChanges: true) { (snapshot, error) in
+            if let error = error {
+                self.showAlert(title: "Network Error", message: error.localizedDescription)
+            } else if let snapshot = snapshot {
+                var jobs = [Job]()
+                for document in snapshot.documents {
+                    let jobToAdd = Job(dict: document.data() as! [String : String])
+                    jobs.append(jobToAdd)
+                }
+                self.jobsArray.sort{ $0.date > $1.date }
+                self.jobsArray = jobs
+                self.checkForEmptyState()
+                self.jobTableView.reloadData()
+            }
         }
+//        jobsDatabase.observe(.childAdded) { (snapshot) in
+//            let snapshotValue = snapshot.value as! Dictionary<String,String>
+//            let job = Job.init(company: snapshotValue[JobDictionaryKeys.company]!,
+//                               position: snapshotValue[JobDictionaryKeys.position]!,
+//                               jobPostingURL: snapshotValue[JobDictionaryKeys.jobPostingURL]!,
+//                               notes: snapshotValue[JobDictionaryKeys.notes]!,
+//                               applicationPhase: snapshotValue[JobDictionaryKeys.applicationPhase]!,
+//                               dateCreated: snapshotValue[JobDictionaryKeys.dateCreated]!,
+//                               lastUpdated: snapshotValue[JobDictionaryKeys.lastUpdated]!,
+//                               contactPersonName: snapshotValue[JobDictionaryKeys.contactPersonName]!,
+//                               contactPersonNumber: snapshotValue[JobDictionaryKeys.contactPersonNumber]!,
+//                               contactPersonEmail: snapshotValue[JobDictionaryKeys.contactPersonEmail]!,
+//                               userID: snapshotValue[JobDictionaryKeys.userID]!)
+//            self.jobsArray.append(job)
+//            self.jobsArray.sort{ $0.date > $1.date }
+//            self.checkForEmptyState()
+//            self.jobTableView.reloadData()
+
     }
     
 }

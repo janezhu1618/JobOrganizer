@@ -47,9 +47,9 @@ class WelcomeViewController: UIViewController {
         switch signInMethod {
         case .signIn:
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-                if error != nil {
+                if let error = error {
                     SVProgressHUD.dismiss()
-                    self.showAlert(title: "Error", message: error!.localizedDescription)
+                    self.showAlert(title: "Error", message: error.localizedDescription)
                 } else {
                     SVProgressHUD.dismiss()
                     self.performSegue(withIdentifier: "goToMainTab", sender: self)
@@ -57,12 +57,17 @@ class WelcomeViewController: UIViewController {
             }
         case .register:
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                if error != nil {
+                if let error = error {
                     SVProgressHUD.dismiss()
-                    self.showAlert(title: "Error", message: error!.localizedDescription)
-                } else {
+                    self.showAlert(title: "Error", message: error.localizedDescription)
+                } else if let result = result {
+//                    let userDBFile = Database.database().reference().child("JobOrganizerUsers").child(result.user.uid)
+//                    let userData = ["userID" : result.user.email ?? "",
+//                                    "imageURL" : result.user.photoURL ?? "" ]
+//                    userDBFile.childByAutoId().setValue(T##value: Any?##Any?, withCompletionBlock: T##(Error?, DatabaseReference) -> Void)
                     SVProgressHUD.dismiss()
                     self.performSegue(withIdentifier: "goToMainTab", sender: self)
+                    
                 }
             }
         }
