@@ -14,13 +14,24 @@ class ProfileTableViewController: UITableViewController {
     @IBOutlet weak var profileUserStatistics: UILabel!
     @IBOutlet weak var profileUserEmail: UILabel!
     @IBOutlet weak var profileImageButton: UIButton!
+    private let currentUser = Auth.auth().currentUser
     private var imagePickerViewController: UIImagePickerController!
     private var isImageFromCamera: Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerViewController = UIImagePickerController()
         imagePickerViewController.delegate = self
+        profileUserEmail.text = currentUser?.email
+        setupProfileImageButton()
+        //let photoURL = currentUser
+    }
+    
+    fileprivate func setupProfileImageButton() {
+        profileImageButton.layer.cornerRadius = profileImageButton.bounds.width / 2.0
+        profileImageButton.layer.borderColor = UIColor.lightGray.cgColor
+        profileImageButton.layer.borderWidth = 0.5
+        profileImageButton.clipsToBounds = true
     }
     
     @IBAction func profileImageTapped(_ sender: UIButton) {
@@ -64,6 +75,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageButton.setImage(image, for: .normal)
+         //   let imagesReference =
             //TODO: upload to firebase
             if isImageFromCamera {
                 UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
