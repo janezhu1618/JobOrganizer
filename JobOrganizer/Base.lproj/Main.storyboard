@@ -632,6 +632,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5G-Iy-7Cm">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                                     <state key="normal" title="Log Out"/>
+                                                    <connections>
+                                                        <action selector="logOutPressed:" destination="7PY-EJ-bFC" eventType="touchUpInside" id="LkK-i9-2d9"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -652,7 +655,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" id="iYF-o4-PfV"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="goToWelcomeScreen" id="Tdc-g1-Cc4"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignInPage" id="Tdc-g1-Cc4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgC-Iv-U9a" userLabel="First Responder" sceneMemberID="firstResponder"/>

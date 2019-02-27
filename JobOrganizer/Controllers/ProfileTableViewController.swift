@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileTableViewController: UITableViewController {
 
@@ -20,6 +21,14 @@ class ProfileTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    @IBAction func logOutPressed(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "goToSignInPage", sender: self)
+        } catch {
+            print("there was a problem signing out: \(error)")
+        }
+    }
     // MARK: - Table view data source
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
