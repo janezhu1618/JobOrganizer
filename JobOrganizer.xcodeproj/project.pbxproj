@@ -117,6 +117,7 @@
 		A530A0602224A8680073A638 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A5550A992225C42900D4FB14 /* JobDictionaryKeys.swift */,
 				A530A04922249B040073A638 /* AppDelegate.swift */,
 				A530A05022249B050073A638 /* Assets.xcassets */,
 				A530A05222249B050073A638 /* LaunchScreen.storyboard */,
@@ -128,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				A530A0672224AE160073A638 /* Job.swift */,
-				A5550A992225C42900D4FB14 /* JobDictionaryKeys.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+//TODO: only display jobs by user
 class JobListViewController: UIViewController {
 
     @IBOutlet weak var jobSearchBar: UISearchBar!
@@ -56,6 +56,7 @@ class JobListViewController: UIViewController {
                                contactPersonEmail: snapshotValue[JobDictionaryKeys.contactPersonEmail]!,
                                userID: snapshotValue[JobDictionaryKeys.userID]!)
             self.jobsArray.append(job)
+            self.jobsArray.sort{ $0.date > $1.date }
             self.checkForEmptyState()
             self.jobTableView.reloadData()
         }
@@ -81,5 +82,11 @@ extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension JobListViewController: UISearchBarDelegate {
-    //
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let searchText = searchBar.text else { return }
+        jobsArray = jobsArray.filter{ $0.company.lowercased().contains(searchText.lowercased()) }
+        checkForEmptyState()
+        jobTableView.reloadData()
+    }
 }
