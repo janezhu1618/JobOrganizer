@@ -10,17 +10,37 @@ import UIKit
 import Firebase
 
 class ProfileTableViewController: UITableViewController {
+    
+    @IBOutlet weak var profileUserStatistics: UILabel!
+    @IBOutlet weak var profileUserEmail: UILabel!
+    @IBOutlet weak var profileImageButton: UIButton!
+    private var imagePickerViewController: UIImagePickerController!
+    private var isImageFromCamera: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        imagePickerViewController = UIImagePickerController()
+        imagePickerViewController.delegate = self
     }
-
+    
+    @IBAction func profileImageTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Profile Image", message: "What would like like to do?", preferredStyle: .actionSheet)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+                self.imagePickerViewController.sourceType = .camera
+                self.isImageFromCamera = true
+                self.showImagePickerViewController()
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+            self.imagePickerViewController.sourceType = .photoLibrary
+            self.isImageFromCamera = false
+            self.showImagePickerViewController()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func logOutPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
@@ -29,71 +49,36 @@ class ProfileTableViewController: UITableViewController {
             print("there was a problem signing out: \(error)")
         }
     }
-    // MARK: - Table view data source
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    private func showImagePickerViewController() {
+        present(imagePickerViewController, animated: true, completion: nil)
     }
-    */
+    //help source with saving photo from camera https://stackoverflow.com/questions/40854886/swift-take-a-photo-and-save-to-photo-library
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+}
+
+extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImageButton.setImage(image, for: .normal)
+            //TODO: upload to firebase
+            if isImageFromCamera {
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
+        } else {
+            print("original image is nil")
+        }
+        dismiss(animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            showAlert(title: "Save error", message: error.localizedDescription)
+        } else {
+            showAlert(title: "Saved!", message: "Your image has been saved to your photos.")
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

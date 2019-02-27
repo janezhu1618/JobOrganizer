@@ -488,7 +488,7 @@
                                     <constraint firstItem="V8T-24-0qi" firstAttribute="top" secondItem="N6H-CR-3LF" secondAttribute="top" constant="10" id="zNy-dm-y2i"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bf0-r7-RDM" userLabel="Message Table View">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bf0-r7-RDM" userLabel="Message Table View">
                                 <rect key="frame" x="0.0" y="88" width="414" height="675"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -496,7 +496,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xNn-P0-3mL" id="LBm-dI-fpo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -569,6 +569,9 @@
                                                         <constraint firstAttribute="width" secondItem="zPf-DZ-jgR" secondAttribute="height" multiplier="1:1" id="RD0-N4-JHd"/>
                                                     </constraints>
                                                     <state key="normal" image="placeholderProfile"/>
+                                                    <connections>
+                                                        <action selector="profileImageTapped:" destination="7PY-EJ-bFC" eventType="touchUpInside" id="3xI-nc-1tq"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -655,6 +658,9 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" id="iYF-o4-PfV"/>
                     <connections>
+                        <outlet property="profileImageButton" destination="zPf-DZ-jgR" id="fvu-vG-mcY"/>
+                        <outlet property="profileUserEmail" destination="Uxe-aZ-ijS" id="ttg-gy-bCk"/>
+                        <outlet property="profileUserStatistics" destination="1d8-yU-c9n" id="Nb4-KP-eDr"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignInPage" id="Tdc-g1-Cc4"/>
                     </connections>
                 </tableViewController>
