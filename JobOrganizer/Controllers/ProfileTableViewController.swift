@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class ProfileTableViewController: UITableViewController {
     
@@ -72,11 +73,55 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    fileprivate func uploadImageToStorage(_ data: Data) {
+        guard let currentUser = currentUser else {
+            print("no current user")
+            return
+        }
+        let imageReference = Storage.storage().reference().child("images").child("\(currentUser.uid)).jpg")
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        let uploadTask = imageReference.putData(data, metadata: metadata) { (metadata, error) in
+            guard let metadata = metadata else {
+                print("error uploading data")
+                return
+            }
+            let _ = metadata.size
+            imageReference.downloadURL(completion: { (url, error) in
+                if error != nil {
+                    print("downloadURL error: \(error!.localizedDescription)")
+                } else {
+                    print("downloadURL : \(url!)")
+                    //set image
+                }
+            })
+        }
+        uploadTask.observe(.failure) { (storageTaskSnapshot) in
+            print("failure...")
+        }
+        uploadTask.observe(.pause) { (storageTaskSnapshot) in
+            print("pause...")
+        }
+        uploadTask.observe(.progress) { (storageTaskSnapshot) in
+            print("progress...")
+        }
+        uploadTask.observe(.resume) { (storageTaskSnapshot) in
+            print("resume...")
+        }
+        uploadTask.observe(.success) { (storageTaskSnapshot) in
+            print("success...")
+        }
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageButton.setImage(image, for: .normal)
-         //   let imagesReference =
-            //TODO: upload to firebase
+            guard let data = image.jpegData(compressionQuality: 1) else { print("unable to convert image to image data")
+                return
+            }
+            uploadImageToStorage(data)
             if isImageFromCamera {
                 UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
