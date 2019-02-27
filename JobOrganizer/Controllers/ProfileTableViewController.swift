@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import Kingfisher
 
 class ProfileTableViewController: UITableViewController {
     
+    @IBOutlet weak var profileImageActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var profileUserStatistics: UILabel!
     @IBOutlet weak var profileUserEmail: UILabel!
     @IBOutlet weak var profileImageButton: UIButton!
@@ -25,12 +27,14 @@ class ProfileTableViewController: UITableViewController {
         imagePickerViewController.delegate = self
         profileUserEmail.text = currentUser?.email
         setupProfileImageButton()
-        
+        profileImageActivityIndicator.hidesWhenStopped = true
         if let currentUser = currentUser {
             if let photoURL = currentUser.photoURL {
-                print(photoURL)
-                
-            } //if no photoURL exists, do what?
+                profileImageActivityIndicator.startAnimating()
+                profileImageButton.kf.setImage(with: photoURL, for: .normal)
+                profileImageActivityIndicator.stopAnimating()
+            }
+            
         }
     }
     

@@ -585,7 +585,14 @@
                                                         <action selector="profileImageTapped:" destination="7PY-EJ-bFC" eventType="touchUpInside" id="3xI-nc-1tq"/>
                                                     </connections>
                                                 </button>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lhQ-0T-gQ7">
+                                                    <rect key="frame" x="197" y="65" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lhQ-0T-gQ7" firstAttribute="centerX" secondItem="zPf-DZ-jgR" secondAttribute="centerX" id="Vcr-ew-Kwi"/>
+                                                <constraint firstItem="lhQ-0T-gQ7" firstAttribute="centerY" secondItem="zPf-DZ-jgR" secondAttribute="centerY" id="m0w-r1-SY5"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
                                             <constraint firstItem="zPf-DZ-jgR" firstAttribute="height" secondItem="O04-uF-Qbh" secondAttribute="height" id="1T5-fN-ECn"/>
@@ -670,6 +677,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" id="iYF-o4-PfV"/>
                     <connections>
+                        <outlet property="profileImageActivityIndicator" destination="lhQ-0T-gQ7" id="WBJ-Hw-OQr"/>
                         <outlet property="profileImageButton" destination="zPf-DZ-jgR" id="fvu-vG-mcY"/>
                         <outlet property="profileUserEmail" destination="Uxe-aZ-ijS" id="ttg-gy-bCk"/>
                         <outlet property="profileUserStatistics" destination="1d8-yU-c9n" id="Nb4-KP-eDr"/>

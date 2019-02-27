@@ -78,7 +78,7 @@ class WelcomeViewController: UIViewController {
                             }
                         })
                     self.performSegue(withIdentifier: "goToMainTab", sender: self)
-                    
+                    SVProgressHUD.dismiss()
                 }
             }
         }
