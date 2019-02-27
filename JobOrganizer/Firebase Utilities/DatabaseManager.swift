@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseFirestore
 
 final class DatabaseManager {
@@ -43,6 +44,27 @@ final class DatabaseManager {
                         print("error updating field: \(error)")
                     } else {
                         print("field updated")
+                    }
+                })
+            }
+        }
+    }
+    static func updateUser(currentUser: User, photoURL: URL?) {
+        let request = currentUser.createProfileChangeRequest()
+        request.photoURL = photoURL
+        request.commitChanges { (error) in
+            if let error = error {
+                print("error: \(error)")
+            } else {
+                guard let photoURL = photoURL else {
+                    print("no photoURL")
+                    return
+                }
+                DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).updateData(["imageURL" : photoURL.absoluteString], completion: { (error) in
+                    if let error = error {
+                        print("updating photo url error: \(error.localizedDescription)")
+                    } else {
+                        print("successfully")
                     }
                 })
             }

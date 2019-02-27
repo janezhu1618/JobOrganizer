@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 import SVProgressHUD
 
 class WelcomeViewController: UIViewController {
@@ -56,16 +57,26 @@ class WelcomeViewController: UIViewController {
                 }
             }
         case .register:
-            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
                 if let error = error {
                     SVProgressHUD.dismiss()
                     self.showAlert(title: "Error", message: error.localizedDescription)
-                } else if let result = result {
-//                    let userDBFile = Database.database().reference().child("JobOrganizerUsers").child(result.user.uid)
-//                    let userData = ["userID" : result.user.email ?? "",
-//                                    "imageURL" : result.user.photoURL ?? "" ]
-//                    userDBFile.childByAutoId().setValue(T##value: Any?##Any?, withCompletionBlock: T##(Error?, DatabaseReference) -> Void)
-                    SVProgressHUD.dismiss()
+                } else if let authDataResult = authDataResult {
+                    guard let username = authDataResult.user.email else {
+                        print("no email entered")
+                        return
+                    }
+                    let userData: [String : Any] = ["userId"      : authDataResult.user.uid,
+                                    "email"       : authDataResult.user.email ?? "",
+                                    "displayName" : authDataResult.user.displayName ?? "",
+                                    "imageURL"    : authDataResult.user.photoURL ?? "",
+                                    "username"    : username
+                        ]
+                    DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(authDataResult.user.uid).setData(userData, completion: { (error) in
+                            if let error = error {
+                                print("error creating user profile \(error.localizedDescription)")
+                            }
+                        })
                     self.performSegue(withIdentifier: "goToMainTab", sender: self)
                     
                 }

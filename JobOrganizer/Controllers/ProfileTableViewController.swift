@@ -25,7 +25,13 @@ class ProfileTableViewController: UITableViewController {
         imagePickerViewController.delegate = self
         profileUserEmail.text = currentUser?.email
         setupProfileImageButton()
-        //let photoURL = currentUser
+        
+        if let currentUser = currentUser {
+            if let photoURL = currentUser.photoURL {
+                print(photoURL)
+                
+            } //if no photoURL exists, do what?
+        }
     }
     
     fileprivate func setupProfileImageButton() {
@@ -94,7 +100,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
                     print("downloadURL error: \(error!.localizedDescription)")
                 } else {
                     print("downloadURL : \(url!)")
-                    //set image
+                    DatabaseManager.updateUser(currentUser: currentUser, photoURL: url)
                 }
             })
         }
