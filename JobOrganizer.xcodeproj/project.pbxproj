@@ -22,6 +22,10 @@
 		A5550A9E222604AB00D4FB14 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */; };
 		A5550AC32226D7FD00D4FB14 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AC12226D7FD00D4FB14 /* MessageCell.swift */; };
 		A5550AC42226D7FD00D4FB14 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5550AC22226D7FD00D4FB14 /* MessageCell.xib */; };
+		A5550AE62226F7A800D4FB14 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AE52226F7A700D4FB14 /* Message.swift */; };
+		A5550AEB2227024F00D4FB14 /* MessageBoardDetailoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEA2227024F00D4FB14 /* MessageBoardDetailoViewController.swift */; };
+		A5550AED2227028000D4FB14 /* MessageBoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */; };
+		A5550AEF222705FB00D4FB14 /* MessageBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEE222705FB00D4FB14 /* MessageBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 		A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		A5550AC12226D7FD00D4FB14 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		A5550AC22226D7FD00D4FB14 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A5550AE52226F7A700D4FB14 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A5550AEA2227024F00D4FB14 /* MessageBoardDetailoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardDetailoViewController.swift; sourceTree = "<group>"; };
+		A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardListViewController.swift; sourceTree = "<group>"; };
+		A5550AEE222705FB00D4FB14 /* MessageBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoard.swift; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +109,7 @@
 				A5550AC02226D7E400D4FB14 /* Views */,
 				A530A05F2224A8530073A638 /* Controllers */,
 				A530A0602224A8680073A638 /* Supporting Files */,
+				A5550AE72226F7F100D4FB14 /* Extensions */,
 				A530A05B22249B3B0073A638 /* GoogleService-Info.plist */,
 				A530A05522249B050073A638 /* Info.plist */,
 			);
@@ -110,11 +119,12 @@
 		A530A05F2224A8530073A638 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
+				A5550AEA2227024F00D4FB14 /* MessageBoardDetailoViewController.swift */,
 				A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */,
 				A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */,
 				A530A04B22249B040073A638 /* WelcomeViewController.swift */,
 				A530A0612224A9D10073A638 /* JobListViewController.swift */,
-				A530A05D2224A8190073A638 /* ViewController+Alert.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -133,6 +143,8 @@
 		A530A0692224AE1B0073A638 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A5550AEE222705FB00D4FB14 /* MessageBoard.swift */,
+				A5550AE52226F7A700D4FB14 /* Message.swift */,
 				A530A0672224AE160073A638 /* Job.swift */,
 			);
 			path = Models;
@@ -145,6 +157,14 @@
 				A5550AC22226D7FD00D4FB14 /* MessageCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A5550AE72226F7F100D4FB14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A530A05D2224A8190073A638 /* ViewController+Alert.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,9 +300,13 @@
 				A530A0682224AE160073A638 /* Job.swift in Sources */,
 				A5550A9A2225C42900D4FB14 /* JobDictionaryKeys.swift in Sources */,
 				A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */,
+				A5550AED2227028000D4FB14 /* MessageBoardListViewController.swift in Sources */,
+				A5550AEB2227024F00D4FB14 /* MessageBoardDetailoViewController.swift in Sources */,
 				A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */,
 				A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */,
+				A5550AE62226F7A800D4FB14 /* Message.swift in Sources */,
 				A530A04C22249B040073A638 /* WelcomeViewController.swift in Sources */,
+				A5550AEF222705FB00D4FB14 /* MessageBoard.swift in Sources */,
 				A5550A9E222604AB00D4FB14 /* ProfileTableViewController.swift in Sources */,
 				A530A04A22249B040073A638 /* AppDelegate.swift in Sources */,
 				A5550AC32226D7FD00D4FB14 /* MessageCell.swift in Sources */,
