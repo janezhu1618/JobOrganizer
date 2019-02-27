@@ -13,6 +13,7 @@ class JobListViewController: UIViewController {
 
     @IBOutlet weak var jobSearchBar: UISearchBar!
     @IBOutlet weak var jobTableView: UITableView!
+    @IBOutlet var emptyStateView: UIView!
     
     private var jobsArray = [Job]()
     private let jobsDatabase = Database.database().reference().child("Jobs")
@@ -23,13 +24,21 @@ class JobListViewController: UIViewController {
         jobTableView.delegate = self
         jobSearchBar.delegate = self
         retrieveJobs()
-        jobTableView.separatorStyle = .none
     }
     
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         print("add button pressed")
         
+    }
+    
+    private func checkForEmptyState() {
+        jobTableView.backgroundView = jobsArray.isEmpty ? emptyStateView : nil
+//        if jobsArray.isEmpty {
+//            jobTableView.backgroundView = emptyStateView
+//        } else {
+//            jobTableView.backgroundView = nil
+//        }
     }
     
     private func retrieveJobs() {
@@ -47,6 +56,7 @@ class JobListViewController: UIViewController {
                                contactPersonEmail: snapshotValue[JobDictionaryKeys.contactPersonEmail]!,
                                userID: snapshotValue[JobDictionaryKeys.userID]!)
             self.jobsArray.append(job)
+            self.checkForEmptyState()
             self.jobTableView.reloadData()
         }
     }
