@@ -10,7 +10,7 @@ import Foundation
 
 struct Message {
     var messageBody: String
-    var imageURL: String?
+    var imageURL: String
     var sender: String
 }
 

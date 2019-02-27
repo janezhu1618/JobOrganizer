@@ -21,7 +21,7 @@ class MessageBoardDetailoViewController: UIViewController {
         return Database.database().reference().child("Messages").child(messageBoard.name)
     }
     private var messageArray = [Message]()
-    private let currentUser = Auth.auth().currentUser!
+    private let currentUserEmail = Auth.auth().currentUser?.email
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class MessageBoardDetailoViewController: UIViewController {
         messageTextField.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
-        //messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
+        messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
         configureTableView()
         retrieveMessages()
     }
@@ -40,7 +40,27 @@ class MessageBoardDetailoViewController: UIViewController {
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
-        
+        guard let messageBodyText = messageTextField.text else {
+            showAlert(title: "Message Empty", message: "Message body text cannot be empty")
+            return
+        }
+        messageTextField.endEditing(true)
+        postButton.isEnabled = false
+        messageTextField.isEnabled = false
+        SVProgressHUD.show()
+        let messageDictionary = [MessageDictionaryKeys.sender : currentUserEmail, MessageDictionaryKeys.messageBody : messageBodyText, MessageDictionaryKeys.imageURL : ""]
+        messageDatabase.childByAutoId().setValue(messageDictionary) { (error, reference) in
+            if error != nil {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showError(withStatus: error!.localizedDescription)
+            } else {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showSuccess(withStatus: "Message posted")
+                self.postButton.isEnabled = true
+                self.messageTextField.isEnabled = true
+                self.messageTextField.text = ""
+            }
+        }
     }
     
     private func retrieveMessages() {
@@ -71,7 +91,7 @@ extension MessageBoardDetailoViewController: UITableViewDelegate, UITableViewDat
         cell.messageSender.text = message.sender
         cell.messageBody.text = message.messageBody
         cell.messageUserProfilePicture.image = UIImage(named: "placeholderProfile")
-        if cell.messageSender.text == currentUser.email! {
+        if cell.messageSender.text == currentUserEmail {
             cell.messageBackground.backgroundColor = .lightGray
         } else {
             cell.messageBackground.backgroundColor = .yellow
