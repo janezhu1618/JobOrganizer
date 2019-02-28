@@ -12,4 +12,5 @@ struct DatabaseKeys {
     static let JobsCollectionKey = "Jobs"
     static let UsersCollectionKey = "AppUsers"
     static let MessagesCollectionKey = "Messages"
+    static let dbReferenceDocumentID = "dbReferenceDocumentId"
 }

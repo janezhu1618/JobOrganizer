@@ -47,7 +47,7 @@ class JobListViewController: UIViewController {
                     let jobToAdd = Job(dict: document.data() as! [String : String])
                     jobs.append(jobToAdd)
                 }
-                self.jobsArray.sort{ $0.date > $1.date }
+                jobs.sort{ $0.date > $1.date }
                 self.jobsArray = jobs
                 self.checkForEmptyState()
                 self.jobTableView.reloadData()

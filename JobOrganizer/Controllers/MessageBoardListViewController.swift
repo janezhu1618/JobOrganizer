@@ -26,6 +26,7 @@ class MessageBoardListViewController: UIViewController {
     
     private func checkForEmptyState() {
         messageBoardListTableView.backgroundView = messageBoardListArray.isEmpty ? emptyStateView : nil
+        messageBoardListTableView.separatorStyle = messageBoardListArray.isEmpty ? .none : .singleLine
     }
     
     private func retrieveMessageBoards() {
@@ -39,6 +40,7 @@ class MessageBoardListViewController: UIViewController {
                     let messageBoardToAdd = MessageBoard(dict: messageBoard.data() as! [String : String])
                     messageBoards.append(messageBoardToAdd)
                 }
+                messageBoards.sort{ $0.lastUpdated > $1.lastUpdated }
                 self.messageBoardListArray = messageBoards
                 self.checkForEmptyState()
                 self.messageBoardListTableView.reloadData()
@@ -48,7 +50,7 @@ class MessageBoardListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? MessageBoardDetailoViewController, let indexPath = messageBoardListTableView.indexPathForSelectedRow else { print("error in segueing to message board")
+        guard let destination = segue.destination as? MessageBoardDetailViewController, let indexPath = messageBoardListTableView.indexPathForSelectedRow else { print("error in segueing to message board")
             return }
         destination.messageBoard = messageBoardListArray[indexPath.row]
     }
@@ -57,22 +59,36 @@ class MessageBoardListViewController: UIViewController {
         let alert = UIAlertController(title: "Add a new message board", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Message Board Title"
+            self.setupKeyboardToolbar(textField: textField)
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Description"
+            self.setupKeyboardToolbar(textField: textField)
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (action) in
             guard let titleText = alert.textFields!.first!.text,
                 let descriptionText = alert.textFields!.last!.text,
                 let currentUser = Auth.auth().currentUser else { return }
-            //TODO: handle keyboard
             let messageBoardToAdd = MessageBoard(name: titleText, description: descriptionText, creatorID: currentUser.uid, lastUpdated: self.getTimestamp(), dbReferenceDocumentId: "")
             DatabaseManager.addMessageBoard(messageBoard: messageBoardToAdd)
         }))
         present(alert, animated: true, completion: nil)
     }
     
+    fileprivate func setupKeyboardToolbar(textField: UITextField) {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done
+            , target: self, action: #selector(doneButtonAction))
+        toolbar.setItems([flexSpace, doneBtn], animated: false)
+        toolbar.sizeToFit()
+        textField.inputAccessoryView = toolbar
+    }
+    
+    @objc private func doneButtonAction(textfield: UITextField) {
+        textfield.resignFirstResponder()
+    }
 }
 
 extension MessageBoardListViewController: UITableViewDataSource {
@@ -87,10 +103,5 @@ extension MessageBoardListViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = messageBoard.description
         return cell
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let destination = MessageBoardDetailoViewController()
-//        destination.messageBoard = messageBoardListArray[indexPath.row]
-//        performSegue(withIdentifier: "goToMessageBoard", sender: self)
-//    }
     
 }

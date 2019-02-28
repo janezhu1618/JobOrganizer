@@ -11,8 +11,7 @@ import Firebase
 import FirebaseFirestore
 import SVProgressHUD
 
-class MessageBoardDetailoViewController: UIViewController {
-    //TODO: handle empty state
+class MessageBoardDetailViewController: UIViewController {
     
     @IBOutlet var emptyStateView: UIView!
     @IBOutlet weak var messageTextField: UITextField!
@@ -24,7 +23,7 @@ class MessageBoardDetailoViewController: UIViewController {
         return Database.database().reference().child("Messages").child(messageBoard.title)
     }
     private var messageArray = [Message]()
-    private let currentUserEmail = Auth.auth().currentUser?.email
+    private let currentUser = Auth.auth().currentUser
     private var listener: ListenerRegistration!
     
     override func viewDidLoad() {
@@ -54,6 +53,7 @@ class MessageBoardDetailoViewController: UIViewController {
                     let messageToAdd = Message(dict: message.data() as! [String : String])
                     messages.append(messageToAdd)
                 }
+                messages.sort{ $0.timeStamp < $1.timeStamp }
                 self.messageArray = messages
                 self.configureTableView()
                 self.checkForEmptyState()
@@ -75,7 +75,7 @@ class MessageBoardDetailoViewController: UIViewController {
         postButton.isEnabled = false
         messageTextField.isEnabled = false
         
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
         guard let currentUser = Auth.auth().currentUser else {
             print("no current user logged in")
             return }
@@ -83,43 +83,16 @@ class MessageBoardDetailoViewController: UIViewController {
                               imageURL: "",
                               senderID: currentUser.uid,
                               senderEmail: currentUser.email!,
+                              timeStamp: getTimestamp(),
                               dbReferenceDocumentId: "")
         DatabaseManager.postMessage(message: message, messageBoard: messageBoard)
-        //SVProgressHUD.showSuccess(withStatus: "Message posted")
         postButton.isEnabled = true
         messageTextField.isEnabled = true
         messageTextField.text = ""
-//        let messageDictionary = [MessageDictionaryKeys.senderID : currentUserEmail, MessageDictionaryKeys.messageBody : messageBodyText, MessageDictionaryKeys.imageURL : ""]
-//        messageDatabase.childByAutoId().setValue(messageDictionary) { (error, reference) in
-//            if error != nil {
-//                SVProgressHUD.dismiss()
-//                SVProgressHUD.showError(withStatus: error!.localizedDescription)
-//            } else {
-//                SVProgressHUD.dismiss()
-//                SVProgressHUD.showSuccess(withStatus: "Message posted")
-//                self.postButton.isEnabled = true
-//                self.messageTextField.isEnabled = true
-//                self.messageTextField.text = ""
-//            }
-//        }
     }
-    
-//    private func retrieveMessages() {
-//        messageDatabase.observe(.childAdded) { (snapshot) in
-//            let snapshotValue = snapshot.value as! Dictionary<String, String>
-//            let message = Message.init(messageBody: snapshotValue[MessageDictionaryKeys.messageBody]!,
-//                                       imageURL: snapshotValue[MessageDictionaryKeys.imageURL]!,
-//                                       senderID: snapshotValue[MessageDictionaryKeys.sender
-//                ]!)
-//            self.messageArray.append(message)
-//            self.configureTableView()
-//            self.messageTableView.reloadData()
-//        }
-//    }
-    
 }
 
-extension MessageBoardDetailoViewController: UITableViewDelegate, UITableViewDataSource {
+extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageArray.count
     }
@@ -129,17 +102,17 @@ extension MessageBoardDetailoViewController: UITableViewDelegate, UITableViewDat
             fatalError("Message Cell cannot be dequeued")
         }
         let message = messageArray[indexPath.row]
-        cell.messageSender.text = message.senderID
+        cell.messageSender.text = message.senderEmail
         cell.messageBody.text = message.messageBody
         if let currentUser = Auth.auth().currentUser {
             if let photoURL = currentUser.photoURL {
                 cell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
             }
-        }
-        if cell.messageSender.text == currentUserEmail {
-            cell.messageBackground.backgroundColor = .yellow
-        } else {
-            cell.messageBackground.backgroundColor = .lightGray
+            if cell.messageSender.text == currentUser.email! {
+                cell.messageBackground.backgroundColor = .yellow
+            } else {
+                cell.messageBackground.backgroundColor = .lightGray
+            }
         }
         return cell
     }
@@ -148,12 +121,13 @@ extension MessageBoardDetailoViewController: UITableViewDelegate, UITableViewDat
         messageTableView.rowHeight = UITableView.automaticDimension
         messageTableView.estimatedRowHeight = 120
     }
+    
 }
 
-extension MessageBoardDetailoViewController: UITextFieldDelegate {
+extension MessageBoardDetailViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5) {
-            self.composeViewHeight.constant = 308
+            self.composeViewHeight.constant = 300
             self.view.layoutIfNeeded()
         }
     }

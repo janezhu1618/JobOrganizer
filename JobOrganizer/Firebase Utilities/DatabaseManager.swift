@@ -16,11 +16,15 @@ final class DatabaseManager {
     
     static let firebaseDB: Firestore = {
         let db = Firestore.firestore()
-        let settings = db.settings
+//        let settings = db.settings
 //        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
+//        db.settings = settings
         return db
     }()
+    
+    static func getCurrentUser() -> User? {
+        return Auth.auth().currentUser
+    }
     
     static func addMessageBoard(messageBoard: MessageBoard) {
         var ref: DocumentReference? = nil
@@ -46,21 +50,27 @@ final class DatabaseManager {
     
     static func postMessage(message: Message, messageBoard: MessageBoard) {
         var ref: DocumentReference? = nil
-        let message: [String : String] = [MessageDictionaryKeys.messageBody : message.messageBody,
+        let messageToPost: [String : String] = [MessageDictionaryKeys.messageBody : message.messageBody,
                                         MessageDictionaryKeys.senderEmail : message.senderEmail,
                                         MessageDictionaryKeys.senderID : message.senderID,
-                                        MessageDictionaryKeys.imageURL : message.imageURL]
-        ref = firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).collection(DatabaseKeys.MessagesCollectionKey).addDocument(data: message) { (error) in
+                                        MessageDictionaryKeys.timeStamp : message.timeStamp, MessageDictionaryKeys.imageURL : message.imageURL]
+        ref = firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).collection(DatabaseKeys.MessagesCollectionKey).addDocument(data: messageToPost) { (error) in
             if let error = error {
                 SVProgressHUD.showError(withStatus: error.localizedDescription)
             } else {
-//                print("message created at ref: \(ref?.documentID ?? "no document ID")")
                 SVProgressHUD.showSuccess(withStatus: "Message Posted")
-                DatabaseManager.firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).collection(DatabaseKeys.MessagesCollectionKey).document(ref!.documentID).updateData(["dbReferenceDocumentId" : ref!.documentID ], completion: { (error) in
+                DatabaseManager.firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).collection(DatabaseKeys.MessagesCollectionKey).document(ref!.documentID).updateData([DatabaseKeys.dbReferenceDocumentID : ref!.documentID], completion: { (error) in
                     if let error = error {
-                        print("error updating field: \(error)")
+                        print("error updating docID: \(error)")
                     } else {
-                        print("field updated")
+                        print("\(messageBoard.title) docID updated")
+                    }
+                    })
+                DatabaseManager.firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).updateData([MessageBoardKeys.lastUpdated : message.timeStamp], completion: { (error) in
+                    if let error = error {
+                        print("error updating messageboard timestamp: \(error)")
+                    } else {
+                        print("messageboard \(messageBoard.title) timestamp updated")
                     }
                 })
             }
@@ -84,7 +94,6 @@ final class DatabaseManager {
             if let error = error {
                 SVProgressHUD.showError(withStatus: error.localizedDescription)
             } else {
-//                print("job created at ref: \(ref?.documentID ?? "no document ID")")
                SVProgressHUD.showSuccess(withStatus: "Job Added")
                 DatabaseManager.firebaseDB.collection(DatabaseKeys.JobsCollectionKey).document(ref!.documentID).updateData(["dbReferenceDocumentId" : ref!.documentID ], completion: { (error) in
                     if let error = error {
