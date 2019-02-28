@@ -48,13 +48,13 @@ class MessageBoardListViewController: UIViewController {
         })
         
     }
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let destination = segue.destination as? MessageBoardDetailViewController, let indexPath = messageBoardListTableView.indexPathForSelectedRow else {
-//            print("error in segueing to message board")
-//            return }
-//        destination.messageBoard = messageBoardListArray[indexPath.row]
-//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? MessageBoardDetailViewController, let indexPath = messageBoardListTableView.indexPathForSelectedRow else {
+            print("error in segueing to message board")
+            return }
+        destination.messageBoard = messageBoardListArray[indexPath.row]
+    }
     
     fileprivate func setupKeyboardToolbar(textField: UITextField) {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))

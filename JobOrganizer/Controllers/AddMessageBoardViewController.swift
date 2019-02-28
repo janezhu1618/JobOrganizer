@@ -11,12 +11,13 @@ import UIKit
 class AddMessageBoardViewController: UIViewController {
 
     @IBOutlet weak var messageBoardTitleTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         messageBoardTitleTextField.delegate = self
-        descriptionTextField.delegate = self
+        descriptionTextView.delegate = self
+        setupKeyboardToolbar()
     }
     
 
@@ -36,11 +37,32 @@ class AddMessageBoardViewController: UIViewController {
         DatabaseManager.addMessageBoard(messageBoard: messageBoardToAdd)
         dismiss(animated: true, completion: nil)
     }
+    
+    fileprivate func setupKeyboardToolbar() {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done
+            , target: self, action: #selector(doneButtonAction))
+        toolbar.setItems([flexSpace, doneBtn], animated: false)
+        toolbar.sizeToFit()
+        messageBoardTitleTextField.inputAccessoryView = toolbar
+        descriptionTextView.inputAccessoryView = toolbar
+    }
+    
+    @objc private func doneButtonAction() {
+        view.endEditing(true)
+    }
 
 }
 
 extension AddMessageBoardViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
+    }
+}
+
+extension AddMessageBoardViewController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textView.resignFirstResponder()
     }
 }
