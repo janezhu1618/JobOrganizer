@@ -122,7 +122,7 @@
         <!--TabBarViewController-->
         <scene sceneID="Wlp-sh-ogC">
             <objects>
-                <tabBarController storyboardIdentifier="JobOrganizerTabController" title="TabBarViewController" id="dBo-T8-OW6" customClass="JobOrganizerTabController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="JobOrganizerTabController" title="TabBarViewController" id="dBo-T8-OW6" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="e5n-qI-XHh"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="18r-nO-RNg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>

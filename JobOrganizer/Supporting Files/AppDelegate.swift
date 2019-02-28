@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let _ = usersession.getCurrentUser() {
-            let tabViewController = storyboard.instantiateViewController(withIdentifier: "JobOrganizerTabController") as! JobOrganizerTabController
+            let tabViewController = storyboard.instantiateViewController(withIdentifier: "JobOrganizerTabController") as! UITabBarController
             window?.rootViewController = tabViewController
         } else {
             let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
