@@ -71,7 +71,7 @@ extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
         return jobsArray.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row) selected")
+//        print("\(indexPath.row) selected")
     }
 }
 

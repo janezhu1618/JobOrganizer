@@ -12,6 +12,7 @@ class AddMessageBoardViewController: UIViewController {
 
     @IBOutlet weak var messageBoardTitleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         messageBoardTitleTextField.delegate = self
@@ -24,7 +25,16 @@ class AddMessageBoardViewController: UIViewController {
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
-        
+        guard let title = messageBoardTitleTextField.text,
+            let description = messageBoardTitleTextField.text,
+        let currentUser = DatabaseManager.getCurrentUser() else {
+                showAlert(title: "Missing Info", message: "Message board title and description cannot be empty.")
+                
+                return
+        }
+        let messageBoardToAdd = MessageBoard(name: title, description: description, creatorID: currentUser.uid, lastUpdated: self.getTimestamp(), dbReferenceDocumentId: "")
+        DatabaseManager.addMessageBoard(messageBoard: messageBoardToAdd)
+        dismiss(animated: true, completion: nil)
     }
 
 }

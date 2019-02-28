@@ -15,7 +15,7 @@ class MessageBoardListViewController: UIViewController {
     @IBOutlet var emptyStateView: UIView!
     
     private var listener: ListenerRegistration!
-    private var messageBoardListArray: [MessageBoard] = [/*MessageBoard.init(name: "Interview Tips", description: "What to do before, during, and after an interview.", creatorID: "", lastUpdated: "", dbReferenceDocumentId: "")*/]
+    private var messageBoardListArray: [MessageBoard] = []
     
     
     override func viewDidLoad() {
@@ -48,33 +48,13 @@ class MessageBoardListViewController: UIViewController {
         })
         
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? MessageBoardDetailViewController, let indexPath = messageBoardListTableView.indexPathForSelectedRow else { print("error in segueing to message board")
-            return }
-        destination.messageBoard = messageBoardListArray[indexPath.row]
-    }
-    
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Add a new message board", message: "", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "Message Board Title"
-            self.setupKeyboardToolbar(textField: textField)
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Description"
-            self.setupKeyboardToolbar(textField: textField)
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (action) in
-            guard let titleText = alert.textFields!.first!.text,
-                let descriptionText = alert.textFields!.last!.text,
-                let currentUser = Auth.auth().currentUser else { return }
-            let messageBoardToAdd = MessageBoard(name: titleText, description: descriptionText, creatorID: currentUser.uid, lastUpdated: self.getTimestamp(), dbReferenceDocumentId: "")
-            DatabaseManager.addMessageBoard(messageBoard: messageBoardToAdd)
-        }))
-        present(alert, animated: true, completion: nil)
-    }
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let destination = segue.destination as? MessageBoardDetailViewController, let indexPath = messageBoardListTableView.indexPathForSelectedRow else {
+//            print("error in segueing to message board")
+//            return }
+//        destination.messageBoard = messageBoardListArray[indexPath.row]
+//    }
     
     fileprivate func setupKeyboardToolbar(textField: UITextField) {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
@@ -103,5 +83,4 @@ extension MessageBoardListViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = messageBoard.description
         return cell
     }
-    
 }
