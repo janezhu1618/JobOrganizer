@@ -22,10 +22,6 @@ final class DatabaseManager {
         return db
     }()
     
-    static func getCurrentUser() -> User? {
-        return Auth.auth().currentUser
-    }
-    
     static func addMessageBoard(messageBoard: MessageBoard) {
         var ref: DocumentReference? = nil
         let messageBoard: [String : String] = [MessageBoardKeys.title : messageBoard.title,

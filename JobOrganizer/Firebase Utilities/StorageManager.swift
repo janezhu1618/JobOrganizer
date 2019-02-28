@@ -43,7 +43,8 @@ final class StorageManager {
     }
     
     static func uploadProfileImage(_ data: Data) {
-        guard let currentUser = DatabaseManager.getCurrentUser() else {
+        let usersession = (UIApplication.shared.delegate as! AppDelegate).usersession
+        guard let currentUser = usersession!.getCurrentUser() else {
             print("no current user")
             return
         }

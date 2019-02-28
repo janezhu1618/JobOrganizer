@@ -15,6 +15,7 @@ class JobListViewController: UIViewController {
     @IBOutlet weak var jobSearchBar: UISearchBar!
     @IBOutlet weak var jobTableView: UITableView!
     @IBOutlet var emptyStateView: UIView!
+    
     private var listener: ListenerRegistration!
     private var jobsArray = [Job]()
     
@@ -47,7 +48,7 @@ class JobListViewController: UIViewController {
                     let jobToAdd = Job(dict: document.data() as! [String : String])
                     jobs.append(jobToAdd)
                 }
-                jobs.sort{ $0.date > $1.date }
+                jobs.sort{ $0.lastUpdated > $1.lastUpdated }
                 self.jobsArray = jobs
                 self.checkForEmptyState()
                 self.jobTableView.reloadData()

@@ -62,14 +62,5 @@ struct Job {
         self.dbReferenceDocumentId = dict["dbReferenceDocumentId"] ?? "no dbReference"
     }
     
-    public var date: Date {
-        let isoDateFormatter = ISO8601DateFormatter()
-        var formattedDate = Date()
-        if let date = isoDateFormatter.date(from: lastUpdated) {
-            formattedDate = date
-        }
-        return formattedDate
-    }
-    
 
 }

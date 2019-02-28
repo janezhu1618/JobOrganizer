@@ -17,7 +17,9 @@ class ProfileTableViewController: UITableViewController {
     @IBOutlet weak var profileUserStatistics: UILabel!
     @IBOutlet weak var profileUserEmail: UILabel!
     @IBOutlet weak var profileImageButton: UIButton!
-    private let currentUser = Auth.auth().currentUser
+    
+    private var usersession: UserSession!
+   // private let currentUser = DatabaseManager.getCurrentUser()
     private var imagePickerViewController: UIImagePickerController!
     private var isImageFromCamera: Bool = false
     
@@ -25,10 +27,11 @@ class ProfileTableViewController: UITableViewController {
         super.viewDidLoad()
         imagePickerViewController = UIImagePickerController()
         imagePickerViewController.delegate = self
-        profileUserEmail.text = currentUser?.email
         setupProfileImageButton()
         profileImageActivityIndicator.hidesWhenStopped = true
-        if let currentUser = currentUser {
+        usersession = (UIApplication.shared.delegate as! AppDelegate).usersession
+        if let currentUser = usersession.getCurrentUser() {
+            profileUserEmail.text = currentUser.email
             if let photoURL = currentUser.photoURL {
                 profileImageActivityIndicator.startAnimating()
                 profileImageButton.kf.setImage(with: photoURL, for: .normal)

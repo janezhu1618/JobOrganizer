@@ -19,11 +19,7 @@ class MessageBoardDetailViewController: UIViewController {
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var composeViewHeight: NSLayoutConstraint!
     public var messageBoard: MessageBoard!
-    private var messageDatabase: DatabaseReference {
-        return Database.database().reference().child("Messages").child(messageBoard.title)
-    }
     private var messageArray = [Message]()
-    private let currentUser = Auth.auth().currentUser
     private var listener: ListenerRegistration!
     
     override func viewDidLoad() {

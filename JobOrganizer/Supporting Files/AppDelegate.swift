@@ -12,12 +12,25 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var usersession: UserSession!
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        usersession = UserSession()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let _ = usersession.getCurrentUser() {
+            let tabViewController = storyboard.instantiateViewController(withIdentifier: "JobOrganizerTabController") as! JobOrganizerTabController
+            window?.rootViewController = tabViewController
+        } else {
+            let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+            window?.rootViewController = welcomeVC
+        }
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

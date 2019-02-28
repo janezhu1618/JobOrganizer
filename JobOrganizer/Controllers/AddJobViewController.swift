@@ -15,9 +15,14 @@ class AddJobViewController: UIViewController {
     @IBOutlet weak var companyNameTextField: UITextField!
     @IBOutlet weak var positionNameTextField: UITextField!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var basicQuestionsView: UIView!
+    @IBOutlet var detailQuestionsView: UIView!
+    @IBOutlet weak var contactPersonName: UITextField!
+    @IBOutlet weak var contactPersonEmail: UITextField!
+    @IBOutlet weak var notes: UITextView!
+    @IBOutlet weak var contactPersonPhone: UITextField!
     
     private var tapGesture: UITapGestureRecognizer!
-    private let jobsDatabase = Database.database().reference().child("Jobs")
     private let pickerData: [String] = [ ApplicationPhase.interested.rawValue, ApplicationPhase.applicationSent.rawValue, ApplicationPhase.phoneInterview.rawValue, ApplicationPhase.inPersonInterview.rawValue, ApplicationPhase.whiteboarding.rawValue, ApplicationPhase.jobOffer.rawValue, ApplicationPhase.itsComplicated.rawValue]
     private var applicationStatus = ApplicationPhase.interested.rawValue
     
@@ -40,33 +45,41 @@ class AddJobViewController: UIViewController {
 
     
     @IBAction func continueButtonPressed(_ sender: UIButton) {
+        if applicationStatus == ApplicationPhase.phoneInterview.rawValue {
+            basicQuestionsView.removeFromSuperview()
+           // view.insertSubview(detailQuestionsView, aboveSubview: basicQuestionsView)
+            //view.remove(basicQuestionsView)
+          view.addSubview(detailQuestionsView)
+            detailQuestionsView.translatesAutoresizingMaskIntoConstraints = false
+            detailQuestionsView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            detailQuestionsView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        }
         addJob()
     }
     
-        private func addJob() {
-            guard let companyName = companyNameTextField.text, let position = positionNameTextField.text
-                else {
-                    showAlert(title: "Error", message: "Fields cannot be empty")
-                    return
-            }
-            guard let currentUser = Auth.auth().currentUser else {
-                print("no current user logged in")
-                return }
-            let job = Job(company: companyName,
-                          position: position,
-                          jobPostingURL: "",
-                          notes: "",
-                          applicationPhase: applicationStatus,
-                          dateCreated: getTimestamp(),
-                          lastUpdated: getTimestamp(),
-                          contactPersonName: "",
-                          contactPersonNumber: "",
-                          contactPersonEmail: "",
-                          userID: currentUser.uid,
-                          dbReferenceDocumentId: "")
+    private func addJob() {
+        guard let companyName = companyNameTextField.text, let position = positionNameTextField.text
+            else {
+                showAlert(title: "Error", message: "Fields cannot be empty")
+                return
+        }
+        guard let currentUser = Auth.auth().currentUser else {
+            print("no current user logged in")
+            return }
+        let job = Job(company: companyName,
+                        position: position,
+                        jobPostingURL: "",
+                        notes: "",
+                        applicationPhase: applicationStatus,
+                        dateCreated: getTimestamp(),
+                        lastUpdated: getTimestamp(),
+                        contactPersonName: contactPersonName.text!,
+                        contactPersonNumber: contactPersonPhone.text!,
+                        contactPersonEmail: contactPersonEmail.text!,
+                        userID: currentUser.uid,
+                        dbReferenceDocumentId: "")
         DatabaseManager.postJob(job: job)
-        //SVProgressHUD.showSuccess(withStatus: "Job added.")
-        dismiss(animated: true, completion: nil)
+       // dismiss(animated: true, completion: nil)
         }
     
     @IBAction func dismissButton(_ sender: UIButton) {
