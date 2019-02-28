@@ -11,12 +11,31 @@ import Foundation
 struct Message {
     var messageBody: String
     var imageURL: String
-    var sender: String
+    var senderID: String
+    var senderEmail: String
+    var dbReferenceDocumentId: String
+    
+    init(messageBody: String, imageURL: String, senderID: String, senderEmail: String, dbReferenceDocumentId: String) {
+        self.messageBody = messageBody
+        self.imageURL = imageURL
+        self.senderID = senderID
+        self.senderEmail = senderEmail
+        self.dbReferenceDocumentId = dbReferenceDocumentId
+    }
+    
+    init(dict: [String: String]) {
+        self.messageBody = dict[MessageDictionaryKeys.messageBody] ?? "no message body"
+        self.imageURL = dict[MessageDictionaryKeys.imageURL] ?? "no iamgeURL"
+        self.senderID = dict[MessageDictionaryKeys.senderID] ?? "no sender ID"
+        self.senderEmail = dict[MessageDictionaryKeys.senderEmail] ?? "no email"
+        self.dbReferenceDocumentId = dict["dbReferenceDocumentId"] ?? "no dbRefrence"
+    }
 }
 
 
 struct MessageDictionaryKeys {
-    static let sender = "Sender"
+    static let senderID = "Sender ID"
+    static let senderEmail = "Sender Email"
     static let messageBody = "Message Body"
     static let imageURL = "Image URL"
 }

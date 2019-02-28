@@ -29,6 +29,7 @@
 		A5550AF122271C0C00D4FB14 /* JobOrganizerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF022271C0C00D4FB14 /* JobOrganizerUser.swift */; };
 		A5550AF32227225400D4FB14 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF22227225400D4FB14 /* DatabaseManager.swift */; };
 		A5550AF6222722FF00D4FB14 /* DatabaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */; };
+		A5550AFA2227532A00D4FB14 /* AddMessageBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		A5550AF022271C0C00D4FB14 /* JobOrganizerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOrganizerUser.swift; sourceTree = "<group>"; };
 		A5550AF22227225400D4FB14 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseKeys.swift; sourceTree = "<group>"; };
+		A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageBoardViewController.swift; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +128,7 @@
 		A530A05F2224A8530073A638 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */,
 				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
 				A5550AEA2227024F00D4FB14 /* MessageBoardDetailoViewController.swift */,
 				A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */,
@@ -332,6 +335,7 @@
 				A5550AEB2227024F00D4FB14 /* MessageBoardDetailoViewController.swift in Sources */,
 				A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */,
 				A5550AF122271C0C00D4FB14 /* JobOrganizerUser.swift in Sources */,
+				A5550AFA2227532A00D4FB14 /* AddMessageBoardViewController.swift in Sources */,
 				A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */,
 				A5550AE62226F7A800D4FB14 /* Message.swift in Sources */,
 				A530A04C22249B040073A638 /* WelcomeViewController.swift in Sources */,

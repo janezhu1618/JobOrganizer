@@ -18,7 +18,10 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var messageUserProfilePicture: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        messageUserProfilePicture.layer.cornerRadius = messageUserProfilePicture.bounds.width / 2.0
+        messageUserProfilePicture.layer.borderColor = UIColor.lightGray.cgColor
+        messageUserProfilePicture.layer.borderWidth = 0.5
+        messageUserProfilePicture.clipsToBounds = true
     }
     
 }

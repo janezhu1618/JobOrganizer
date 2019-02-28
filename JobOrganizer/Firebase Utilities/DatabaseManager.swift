@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
+import SVProgressHUD
 
 final class DatabaseManager {
     private init () { }
@@ -21,7 +22,52 @@ final class DatabaseManager {
         return db
     }()
     
-    static func postJobToDatabase(job: Job) {
+    static func addMessageBoard(messageBoard: MessageBoard) {
+        var ref: DocumentReference? = nil
+        let messageBoard: [String : String] = [MessageBoardKeys.title : messageBoard.title,
+                                               MessageBoardKeys.description : messageBoard.description,
+                                               MessageBoardKeys.lastUpdated : messageBoard.lastUpdated,
+                                               MessageBoardKeys.creatorID : messageBoard.creatorID]
+        ref = firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).addDocument(data: messageBoard, completion: { (error) in
+            if let error = error {
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
+            } else {
+                SVProgressHUD.showSuccess(withStatus: "Message Board Created")
+                DatabaseManager.firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(ref!.documentID).updateData(["dbReferenceDocumentId" : ref!.documentID ], completion: { (error) in
+                    if let error = error {
+                        print("error updating field: \(error)")
+                    } else {
+                        print("field updated")
+                    }
+                })
+            }
+        })
+    }
+    
+    static func postMessage(message: Message, messageBoard: MessageBoard) {
+        var ref: DocumentReference? = nil
+        let message: [String : String] = [MessageDictionaryKeys.messageBody : message.messageBody,
+                                        MessageDictionaryKeys.senderEmail : message.senderEmail,
+                                        MessageDictionaryKeys.senderID : message.senderID,
+                                        MessageDictionaryKeys.imageURL : message.imageURL]
+        ref = firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).collection(DatabaseKeys.MessagesCollectionKey).addDocument(data: message) { (error) in
+            if let error = error {
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
+            } else {
+//                print("message created at ref: \(ref?.documentID ?? "no document ID")")
+                SVProgressHUD.showSuccess(withStatus: "Message Posted")
+                DatabaseManager.firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).collection(DatabaseKeys.MessagesCollectionKey).document(ref!.documentID).updateData(["dbReferenceDocumentId" : ref!.documentID ], completion: { (error) in
+                    if let error = error {
+                        print("error updating field: \(error)")
+                    } else {
+                        print("field updated")
+                    }
+                })
+            }
+        }
+    }
+    
+    static func postJob(job: Job) {
         var ref: DocumentReference? = nil
         let dataToPost: [String:String] = [JobDictionaryKeys.company : job.company,
                                            JobDictionaryKeys.position : job.position,
@@ -36,10 +82,11 @@ final class DatabaseManager {
                                          JobDictionaryKeys.userID : job.userID]
         ref = firebaseDB.collection(DatabaseKeys.JobsCollectionKey).addDocument(data: dataToPost) { (error) in
             if let error = error {
-                print(error)
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
             } else {
-                print("job created at ref: \(ref?.documentID ?? "no document ID")")
-                DatabaseManager.firebaseDB.collection(DatabaseKeys.JobsCollectionKey).document(ref!.documentID).updateData(["dbReference" : ref!.documentID ], completion: { (error) in
+//                print("job created at ref: \(ref?.documentID ?? "no document ID")")
+               SVProgressHUD.showSuccess(withStatus: "Job Added")
+                DatabaseManager.firebaseDB.collection(DatabaseKeys.JobsCollectionKey).document(ref!.documentID).updateData(["dbReferenceDocumentId" : ref!.documentID ], completion: { (error) in
                     if let error = error {
                         print("error updating field: \(error)")
                     } else {
@@ -49,6 +96,8 @@ final class DatabaseManager {
             }
         }
     }
+    
+    
     static func updateUser(currentUser: User, photoURL: URL?) {
         let request = currentUser.createProfileChangeRequest()
         request.photoURL = photoURL

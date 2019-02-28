@@ -360,13 +360,84 @@
         <!--Add Message Board-->
         <scene sceneID="cV4-UN-blk">
             <objects>
-                <viewController title="Add Message Board" id="8sp-6a-h1F" sceneMemberID="viewController">
+                <viewController title="Add Message Board" id="8sp-6a-h1F" customClass="AddMessageBoardViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZCP-EL-75b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ehz-iN-Q08">
+                                <rect key="frame" x="0.0" y="289.5" width="414" height="327"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Board Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbr-8N-l7E">
+                                        <rect key="frame" x="118" y="0.0" width="178" height="25.5"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPK-vM-j2K">
+                                        <rect key="frame" x="11" y="50.5" width="392" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VW4-l8-1Xb">
+                                        <rect key="frame" x="154.5" y="105.5" width="105" height="25.5"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Wa-7u-bv0">
+                                        <rect key="frame" x="11" y="156" width="392" height="110"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="110" id="8rm-sg-ydd"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6b-jb-Dhe">
+                                        <rect key="frame" x="185.5" y="291" width="43" height="36"/>
+                                        <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleColor" red="0.25609213079999998" green="0.25609213079999998" blue="0.25609213079999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addButtonPressed:" destination="8sp-6a-h1F" eventType="touchUpInside" id="DPP-RE-UsK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="0Wa-7u-bv0" firstAttribute="leading" secondItem="Ehz-iN-Q08" secondAttribute="leading" constant="11" id="2rw-uT-RIV"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Wa-7u-bv0" secondAttribute="trailing" constant="11" id="XC4-1R-B6w"/>
+                                    <constraint firstItem="NPK-vM-j2K" firstAttribute="leading" secondItem="Ehz-iN-Q08" secondAttribute="leading" constant="11" id="jbH-9t-aLI"/>
+                                    <constraint firstAttribute="trailing" secondItem="NPK-vM-j2K" secondAttribute="trailing" constant="11" id="jbO-fJ-SUi"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBV-ZF-Tco">
+                                <rect key="frame" x="0.0" y="44" width="414" height="245.5"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="dismissButton:" destination="8sp-6a-h1F" eventType="touchUpInside" id="RIA-jd-OpX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ehz-iN-Q08" firstAttribute="centerX" secondItem="t6g-cC-4yV" secondAttribute="centerX" id="B4K-PO-MDI"/>
+                            <constraint firstItem="t6g-cC-4yV" firstAttribute="top" secondItem="lBV-ZF-Tco" secondAttribute="bottom" constant="-245.5" id="UHN-Ly-h7G"/>
+                            <constraint firstItem="lBV-ZF-Tco" firstAttribute="top" secondItem="t6g-cC-4yV" secondAttribute="top" id="dvU-NE-wK7"/>
+                            <constraint firstItem="Ehz-iN-Q08" firstAttribute="centerY" secondItem="t6g-cC-4yV" secondAttribute="centerY" id="iXB-iP-c7E"/>
+                            <constraint firstItem="lBV-ZF-Tco" firstAttribute="leading" secondItem="t6g-cC-4yV" secondAttribute="leading" id="jwj-AV-tQ8"/>
+                            <constraint firstItem="Ehz-iN-Q08" firstAttribute="height" secondItem="t6g-cC-4yV" secondAttribute="height" multiplier="0.4" id="kLO-AM-cKR"/>
+                            <constraint firstItem="t6g-cC-4yV" firstAttribute="trailing" secondItem="lBV-ZF-Tco" secondAttribute="trailing" id="vdb-36-WNN"/>
+                            <constraint firstItem="Ehz-iN-Q08" firstAttribute="width" secondItem="t6g-cC-4yV" secondAttribute="width" id="zrO-pq-pWO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="t6g-cC-4yV"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="0Wa-7u-bv0" id="0YF-Jr-BZR"/>
+                        <outlet property="messageBoardTitleTextField" destination="NPK-vM-j2K" id="hAn-4v-KhQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mmr-Km-sEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -445,22 +516,41 @@
                     <navigationItem key="navigationItem" title="Message Board" id="atH-jD-FsS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZU6-Id-YDh">
                             <connections>
-                                <segue destination="8sp-6a-h1F" kind="presentation" id="uYR-c3-j3N"/>
+                                <action selector="addButtonPressed:" destination="8o9-8x-6AD" id="6xn-WG-HyE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyStateView" destination="nhl-SI-3QV" id="FIb-Ju-YwR"/>
                         <outlet property="messageBoardListTableView" destination="N4X-Xk-b1S" id="fHa-kN-pct"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zm6-G6-WAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="nhl-SI-3QV" userLabel="Empty State View">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No message board yet... 😢" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq3-Zg-e2i">
+                            <rect key="frame" x="13" y="59" width="214" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="aq3-Zg-e2i" firstAttribute="centerX" secondItem="yPU-66-sbk" secondAttribute="centerX" id="IXu-IZ-0lM"/>
+                        <constraint firstItem="aq3-Zg-e2i" firstAttribute="centerY" secondItem="yPU-66-sbk" secondAttribute="centerY" id="zuL-uN-WNb"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="yPU-66-sbk"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="4619" y="254"/>
         </scene>
-        <!--Message Board-->
+        <!--Message Detail Board-->
         <scene sceneID="k2g-AT-0Ut">
             <objects>
-                <viewController title="Message Board" id="Nhk-dR-gwS" customClass="MessageBoardDetailoViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Message Board" id="Nhk-dR-gwS" userLabel="Message Detail Board" customClass="MessageBoardDetailoViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kKb-yk-nDQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -529,14 +619,33 @@
                     </view>
                     <connections>
                         <outlet property="composeViewHeight" destination="wzb-xE-in5" id="dSI-Eh-OMy"/>
+                        <outlet property="emptyStateView" destination="Kfe-C9-az4" id="kjh-dO-BJz"/>
                         <outlet property="messageTableView" destination="bf0-r7-RDM" id="aFt-H5-2ws"/>
                         <outlet property="messageTextField" destination="Cic-MR-7OU" id="bjm-QE-a9g"/>
                         <outlet property="postButton" destination="V8T-24-0qi" id="kXM-Yg-NzE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5X0-Br-VAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Kfe-C9-az4" userLabel="Empty State View">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No message... 😢" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABA-vy-52f">
+                            <rect key="frame" x="51.5" y="59" width="137" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ABA-vy-52f" firstAttribute="centerX" secondItem="6mG-Xz-qLb" secondAttribute="centerX" id="5m2-cI-zOw"/>
+                        <constraint firstItem="ABA-vy-52f" firstAttribute="centerY" secondItem="6mG-Xz-qLb" secondAttribute="centerY" id="nDG-mU-RPe"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="6mG-Xz-qLb"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="5787" y="1000"/>
+            <point key="canvasLocation" x="4591" y="1000"/>
         </scene>
         <!--Message Board-->
         <scene sceneID="YiP-yA-mGd">

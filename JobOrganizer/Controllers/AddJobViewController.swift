@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import SVProgressHUD
 
 class AddJobViewController: UIViewController {
     
@@ -50,15 +49,6 @@ class AddJobViewController: UIViewController {
                     showAlert(title: "Error", message: "Fields cannot be empty")
                     return
             }
-            SVProgressHUD.show()
-            let date = Date()
-            let isoDateFormatter = ISO8601DateFormatter()
-            isoDateFormatter.formatOptions = [.withFullDate,
-                                              .withFullTime,
-                                              .withInternetDateTime,
-                                              .withTimeZone,
-                                              .withDashSeparatorInDate]
-            let timeStamp = isoDateFormatter.string(from: date)
             guard let currentUser = Auth.auth().currentUser else {
                 print("no current user logged in")
                 return }
@@ -67,15 +57,15 @@ class AddJobViewController: UIViewController {
                           jobPostingURL: "",
                           notes: "",
                           applicationPhase: applicationStatus,
-                          dateCreated: timeStamp,
-                          lastUpdated: timeStamp,
+                          dateCreated: getTimestamp(),
+                          lastUpdated: getTimestamp(),
                           contactPersonName: "",
                           contactPersonNumber: "",
                           contactPersonEmail: "",
                           userID: currentUser.uid,
                           dbReferenceDocumentId: "")
-        DatabaseManager.postJobToDatabase(job: job)
-        SVProgressHUD.showSuccess(withStatus: "Job added.")
+        DatabaseManager.postJob(job: job)
+        //SVProgressHUD.showSuccess(withStatus: "Job added.")
         dismiss(animated: true, completion: nil)
         }
     

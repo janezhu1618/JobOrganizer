@@ -9,6 +9,7 @@
 import Foundation
 
 struct DatabaseKeys {
-    static let JobsCollectionKey = "jobs"
-    static let UsersCollectionKey = "appUsers"
+    static let JobsCollectionKey = "Jobs"
+    static let UsersCollectionKey = "AppUsers"
+    static let MessagesCollectionKey = "Messages"
 }

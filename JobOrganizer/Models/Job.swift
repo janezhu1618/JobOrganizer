@@ -59,7 +59,7 @@ struct Job {
         self.contactPersonNumber = dict[JobDictionaryKeys.contactPersonNumber] ?? "no contact person number"
         self.contactPersonEmail = dict[JobDictionaryKeys.contactPersonEmail] ?? "no contact person email"
         self.userID = dict[JobDictionaryKeys.userID] ?? "no user ID"
-        self.dbReferenceDocumentId = dict["dBReference"] ?? "no dbReference"
+        self.dbReferenceDocumentId = dict["dbReferenceDocumentId"] ?? "no dbReference"
     }
     
     public var date: Date {

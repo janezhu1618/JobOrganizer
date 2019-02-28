@@ -17,7 +17,6 @@ class JobListViewController: UIViewController {
     @IBOutlet var emptyStateView: UIView!
     private var listener: ListenerRegistration!
     private var jobsArray = [Job]()
-    private let jobsDatabase = Database.database().reference().child("Jobs")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +34,6 @@ class JobListViewController: UIViewController {
     
     private func checkForEmptyState() {
         jobTableView.backgroundView = jobsArray.isEmpty ? emptyStateView : nil
-//        if jobsArray.isEmpty {
-//            jobTableView.backgroundView = emptyStateView
-//        } else {
-//            jobTableView.backgroundView = nil
-//        }
     }
     
     private func retrieveJobs() {
@@ -59,23 +53,6 @@ class JobListViewController: UIViewController {
                 self.jobTableView.reloadData()
             }
         }
-//        jobsDatabase.observe(.childAdded) { (snapshot) in
-//            let snapshotValue = snapshot.value as! Dictionary<String,String>
-//            let job = Job.init(company: snapshotValue[JobDictionaryKeys.company]!,
-//                               position: snapshotValue[JobDictionaryKeys.position]!,
-//                               jobPostingURL: snapshotValue[JobDictionaryKeys.jobPostingURL]!,
-//                               notes: snapshotValue[JobDictionaryKeys.notes]!,
-//                               applicationPhase: snapshotValue[JobDictionaryKeys.applicationPhase]!,
-//                               dateCreated: snapshotValue[JobDictionaryKeys.dateCreated]!,
-//                               lastUpdated: snapshotValue[JobDictionaryKeys.lastUpdated]!,
-//                               contactPersonName: snapshotValue[JobDictionaryKeys.contactPersonName]!,
-//                               contactPersonNumber: snapshotValue[JobDictionaryKeys.contactPersonNumber]!,
-//                               contactPersonEmail: snapshotValue[JobDictionaryKeys.contactPersonEmail]!,
-//                               userID: snapshotValue[JobDictionaryKeys.userID]!)
-//            self.jobsArray.append(job)
-//            self.jobsArray.sort{ $0.date > $1.date }
-//            self.checkForEmptyState()
-//            self.jobTableView.reloadData()
 
     }
     

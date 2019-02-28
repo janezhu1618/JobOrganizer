@@ -90,7 +90,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
             print("no current user")
             return
         }
-        let imageReference = Storage.storage().reference().child("images").child("\(currentUser.uid)).jpg")
+        let imageReference = Storage.storage().reference().child("images").child("\(currentUser.uid).jpg")
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         let uploadTask = imageReference.putData(data, metadata: metadata) { (metadata, error) in
