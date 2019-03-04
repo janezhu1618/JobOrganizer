@@ -34,6 +34,7 @@
 		A5FF1D9E222840BF00CF1DDD /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */; };
 		A5FF1DA02228815A00CF1DDD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9F2228815A00CF1DDD /* UserSession.swift */; };
 		A5FF1DA82229C1CB00CF1DDD /* JobTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */; };
+		A5FF1DAC222DA37A00CF1DDD /* ViewController+Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		A5FF1D9F2228815A00CF1DDD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewController.swift; sourceTree = "<group>"; };
+		A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Dates.swift"; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 		A5550AE72226F7F100D4FB14 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */,
 				A530A05D2224A8190073A638 /* ViewController+Alert.swift */,
 			);
 			path = Extensions;
@@ -355,6 +358,7 @@
 				A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */,
 				A5550AE62226F7A800D4FB14 /* Message.swift in Sources */,
 				A530A04C22249B040073A638 /* WelcomeViewController.swift in Sources */,
+				A5FF1DAC222DA37A00CF1DDD /* ViewController+Dates.swift in Sources */,
 				A5550AEF222705FB00D4FB14 /* MessageBoard.swift in Sources */,
 				A5550A9E222604AB00D4FB14 /* ProfileTableViewController.swift in Sources */,
 				A530A04A22249B040073A638 /* AppDelegate.swift in Sources */,

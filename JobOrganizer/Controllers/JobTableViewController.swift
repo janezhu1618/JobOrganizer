@@ -152,20 +152,19 @@ class JobTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return "Created: \(getReadableDate(fromTimestamp: job.dateCreated))"
     }
+    
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Confirm Delete", message: "Are you sure you want to delete?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Confirm", style: .destructive, handler: { (action) in
-            self.delete(job: self.job)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        showDeleteActionSheet { (action) in
+            self.deleteJob(job: self.job)
+        }
     }
     
-    private func delete(job: Job) {
+    private func deleteJob(job: Job) {
         guard let currentUser = usersession.getCurrentUser() else {
             print("no logged user")
             return }
         DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).collection(DatabaseKeys.JobsCollectionKey).document(job.dbReferenceDocumentId).delete()
+        SVProgressHUD.showSuccess(withStatus: "Job deleted")
         navigationController?.popToRootViewController(animated: true)
     }
 }

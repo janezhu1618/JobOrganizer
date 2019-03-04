@@ -89,22 +89,12 @@ extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let jobToDelete = self.jobsArray[indexPath.row]
-//        guard checkForAuthorizationToDelete(job: jobToDelete) else { print("not authorized to delete")
-//            return
-//        }
-        let alert = UIAlertController(title: "Confirm Delete", message: "Are you sure you want to delete?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Confirm", style: .destructive, handler: { (action) in
-            self.delete(job: jobToDelete)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        showDeleteActionSheet { (action) in
+            self.deleteJob(job: jobToDelete)
+        }
     }
     
-//    private func checkForAuthorizationToDelete(job: Job) -> Bool {
-//        return job.userID == usersession.getCurrentUser()!.uid
-//    }
-    
-    private func delete(job: Job) {
+    private func deleteJob(job: Job) {
         guard let currentUser = self.usersession.getCurrentUser() else {
             print("no logged user")
             return }
