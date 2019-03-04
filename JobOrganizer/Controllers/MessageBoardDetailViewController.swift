@@ -24,6 +24,7 @@ class MessageBoardDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = messageBoard.title
         messageTableView.delegate = self
         messageTableView.dataSource = self
         messageTextField.delegate = self

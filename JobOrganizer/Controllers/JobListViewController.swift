@@ -18,12 +18,14 @@ class JobListViewController: UIViewController {
     
     private var listener: ListenerRegistration!
     private var jobsArray = [Job]()
+    private var usersession: UserSession!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         jobTableView.dataSource = self
         jobTableView.delegate = self
         jobSearchBar.delegate = self
+        usersession = (UIApplication.shared.delegate as! AppDelegate).usersession
         retrieveJobs()
     }
     
@@ -39,9 +41,13 @@ class JobListViewController: UIViewController {
     
     private func retrieveJobs() {
         jobsArray.removeAll()
-        listener = DatabaseManager.firebaseDB.collection(DatabaseKeys.JobsCollectionKey).addSnapshotListener(includeMetadataChanges: true) { (snapshot, error) in
+        guard let currentUser = usersession.getCurrentUser() else {
+            print("no logged user")
+            return }
+        listener = DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).collection(DatabaseKeys.JobsCollectionKey).addSnapshotListener(includeMetadataChanges: true) { (snapshot, error) in
             if let error = error {
-                self.showAlert(title: "Network Error", message: error.localizedDescription)
+                print(error.localizedDescription)
+                //self.showAlert(title: "Network Error", message: error.localizedDescription)
             } else if let snapshot = snapshot {
                 var jobs = [Job]()
                 for document in snapshot.documents {
@@ -56,7 +62,11 @@ class JobListViewController: UIViewController {
         }
 
     }
-    
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let destination = segue.destination as? JobTableViewController, let indexPath = jobTableView.indexPathForSelectedRow else { return }
+//        destination.job = jobsArray[indexPath.row]
+//    }
 }
 
 extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -72,7 +82,34 @@ extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
         return jobsArray.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("\(indexPath.row) selected")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destination = storyboard.instantiateViewController(withIdentifier: "JobTableViewController") as! JobTableViewController
+        destination.job = jobsArray[indexPath.row]
+        navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let jobToDelete = self.jobsArray[indexPath.row]
+        guard checkForAuthorizationToDelete(job: jobToDelete) else { print("not authorized to delete")
+            return
+        }
+        let alert = UIAlertController(title: "Confirm Delete", message: "Are you sure you want to delete?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Confirm", style: .destructive, handler: { (action) in
+            self.delete(job: jobToDelete)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func checkForAuthorizationToDelete(job: Job) -> Bool {
+        return job.userID == usersession.getCurrentUser()!.uid
+    }
+    
+    private func delete(job: Job) {
+        guard let currentUser = self.usersession.getCurrentUser() else {
+            print("no logged user")
+            return }
+        DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).collection(DatabaseKeys.JobsCollectionKey).document(job.dbReferenceDocumentId).delete()
     }
 }
 

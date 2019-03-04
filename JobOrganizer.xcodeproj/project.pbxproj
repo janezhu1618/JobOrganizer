@@ -33,6 +33,7 @@
 		A5FF1D9C22283EC300CF1DDD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9B22283EC300CF1DDD /* StorageManager.swift */; };
 		A5FF1D9E222840BF00CF1DDD /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */; };
 		A5FF1DA02228815A00CF1DDD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9F2228815A00CF1DDD /* UserSession.swift */; };
+		A5FF1DA82229C1CB00CF1DDD /* JobTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		A5FF1D9B22283EC300CF1DDD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		A5FF1D9F2228815A00CF1DDD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewController.swift; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,13 +136,14 @@
 		A530A05F2224A8530073A638 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */,
-				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
-				A5550AEA2227024F00D4FB14 /* MessageBoardDetailViewController.swift */,
-				A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */,
-				A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */,
-				A530A04B22249B040073A638 /* WelcomeViewController.swift */,
 				A530A0612224A9D10073A638 /* JobListViewController.swift */,
+				A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */,
+				A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */,
+				A5550AEA2227024F00D4FB14 /* MessageBoardDetailViewController.swift */,
+				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
+				A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */,
+				A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */,
+				A530A04B22249B040073A638 /* WelcomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				A5550AEB2227024F00D4FB14 /* MessageBoardDetailViewController.swift in Sources */,
 				A5FF1D9E222840BF00CF1DDD /* StorageKeys.swift in Sources */,
 				A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */,
+				A5FF1DA82229C1CB00CF1DDD /* JobTableViewController.swift in Sources */,
 				A5550AF122271C0C00D4FB14 /* JobOrganizerUser.swift in Sources */,
 				A5550AFA2227532A00D4FB14 /* AddMessageBoardViewController.swift in Sources */,
 				A5FF1DA02228815A00CF1DDD /* UserSession.swift in Sources */,

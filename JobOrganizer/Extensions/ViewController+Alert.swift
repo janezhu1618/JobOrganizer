@@ -15,6 +15,17 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    public func showDestructionAlert(title: String?, message: String?,
+                                     style: UIAlertController.Style,
+                                     handler: ((UIAlertAction) -> Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        let okAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let customAction = UIAlertAction(title: "Confirm", style: .destructive, handler: handler)
+        alertController.addAction(okAction)
+        alertController.addAction(customAction)
+        present(alertController, animated: true)
+    }
+    
     public func getTimestamp() -> String {
         let date = Date()
         let isoDateFormatter = ISO8601DateFormatter()

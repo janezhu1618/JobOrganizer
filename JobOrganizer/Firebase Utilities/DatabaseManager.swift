@@ -13,6 +13,7 @@ import SVProgressHUD
 
 final class DatabaseManager {
     private init () { }
+    static let usersession = (UIApplication.shared.delegate as! AppDelegate).usersession
     
     static let firebaseDB: Firestore = {
         let db = Firestore.firestore()
@@ -73,7 +74,20 @@ final class DatabaseManager {
         }
     }
     
+    static func updateJob(newInfo: String, jobKey: String, jobID: String) {
+        guard let currentUser = usersession?.getCurrentUser() else { return }
+
+        firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).collection(DatabaseKeys.JobsCollectionKey).document(jobID).updateData([jobKey: newInfo], completion: { (error) in
+            if let error = error {
+                print("error updating jobInfo for \(jobKey): \(error)")
+            } else {
+                print("field updated for \(jobKey)")
+            }
+        })
+    }
+    
     static func postJob(job: Job) {
+        guard let currentUser = usersession?.getCurrentUser() else { return }
         var ref: DocumentReference? = nil
         let dataToPost: [String:String] = [JobDictionaryKeys.company : job.company,
                                            JobDictionaryKeys.position : job.position,
@@ -86,12 +100,12 @@ final class DatabaseManager {
                                          JobDictionaryKeys.contactPersonNumber : job.contactPersonNumber,
                                          JobDictionaryKeys.contactPersonEmail : job.contactPersonEmail,
                                          JobDictionaryKeys.userID : job.userID]
-        ref = firebaseDB.collection(DatabaseKeys.JobsCollectionKey).addDocument(data: dataToPost) { (error) in
+         ref = firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).collection(DatabaseKeys.JobsCollectionKey).addDocument(data: dataToPost) { (error) in
             if let error = error {
                 SVProgressHUD.showError(withStatus: error.localizedDescription)
             } else {
                SVProgressHUD.showSuccess(withStatus: "Job Added")
-                DatabaseManager.firebaseDB.collection(DatabaseKeys.JobsCollectionKey).document(ref!.documentID).updateData(["dbReferenceDocumentId" : ref!.documentID ], completion: { (error) in
+                firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).collection(DatabaseKeys.JobsCollectionKey).document(ref!.documentID).updateData(["dbReferenceDocumentId" : ref!.documentID ], completion: { (error) in
                     if let error = error {
                         print("error updating field: \(error)")
                     } else {
