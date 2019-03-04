@@ -46,4 +46,15 @@ extension UIViewController {
         }
         return formattedDate.description
     }
+    
+    public func getReadableDate(fromTimestamp timestamp: String) -> String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        var formattedDate = timestamp
+        if let date = isoDateFormatter.date(from: timestamp) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, h:mm a"
+            formattedDate = dateFormatter.string(from: date)
+        }
+        return formattedDate
+    }
 }

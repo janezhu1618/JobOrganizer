@@ -27,8 +27,7 @@ class JobTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  title = job.lastUpdated
-       // navigationItem.rightBarButtonItem!.title
+      //  title = getReadableDate(fromTimestamp: job.last)
         setupJobData()
         disableAllFields()
         setupKeyboardToolbar()
@@ -80,7 +79,7 @@ class JobTableViewController: UITableViewController {
 
     @IBAction func editOrSaveButtonPressed(_ sender: UIBarButtonItem) {
         if navigationItem.rightBarButtonItem!.title == "Edit" {
-            print("bar button pressed")
+            title = "Edit Mode"
            enableAllFields()
             navigationItem.rightBarButtonItem! = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveInformation))
         }
@@ -122,6 +121,7 @@ class JobTableViewController: UITableViewController {
         DatabaseManager.updateJob(newInfo: getTimestamp(), jobKey: JobDictionaryKeys.lastUpdated, jobID: job.dbReferenceDocumentId)
         SVProgressHUD.showSuccess(withStatus: "Information Updated")
         navigationItem.rightBarButtonItem?.title = "Edit"
+        title = "Saved \(getReadableDate(fromTimestamp: job.lastUpdated))"
     }
 
 

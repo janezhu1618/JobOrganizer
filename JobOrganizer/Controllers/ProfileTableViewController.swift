@@ -19,7 +19,6 @@ class ProfileTableViewController: UITableViewController {
     @IBOutlet weak var profileImageButton: UIButton!
     
     private var usersession: UserSession!
-   // private let currentUser = DatabaseManager.getCurrentUser()
     private var imagePickerViewController: UIImagePickerController!
     private var isImageFromCamera: Bool = false
     
