@@ -51,7 +51,6 @@ class MessageBoardListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? MessageBoardDetailViewController, let indexPath = messageBoardListTableView.indexPathForSelectedRow else {
-            print("error in segueing to message board")
             return }
         destination.messageBoard = messageBoardListArray[indexPath.row]
     }

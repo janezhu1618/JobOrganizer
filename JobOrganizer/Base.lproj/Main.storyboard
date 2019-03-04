@@ -764,7 +764,7 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="descriptionTextField" destination="0OM-Vm-LJf" id="HUP-N3-oXk"/>
+                        <outlet property="descriptionTextView" destination="0OM-Vm-LJf" id="yvv-57-dWt"/>
                         <outlet property="messageBoardTitleTextField" destination="NPK-vM-j2K" id="hAn-4v-KhQ"/>
                     </connections>
                 </viewController>
