@@ -20,6 +20,7 @@ class JobTableViewController: UITableViewController {
     @IBOutlet weak var contactNumberTextField: UITextField!
     @IBOutlet weak var contactNameTextField: UITextField!
     
+    private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     private let pickerData: [String] = ApplicationPhase.applicationPhasePickerData
     private var pickerSelection = ""
     private var newPickerSelection = false
@@ -27,7 +28,6 @@ class JobTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  title = getReadableDate(fromTimestamp: job.last)
         setupJobData()
         disableAllFields()
         setupKeyboardToolbar()
@@ -121,7 +121,7 @@ class JobTableViewController: UITableViewController {
         DatabaseManager.updateJob(newInfo: getTimestamp(), jobKey: JobDictionaryKeys.lastUpdated, jobID: job.dbReferenceDocumentId)
         SVProgressHUD.showSuccess(withStatus: "Information Updated")
         navigationItem.rightBarButtonItem?.title = "Edit"
-        title = "Saved \(getReadableDate(fromTimestamp: job.lastUpdated))"
+        title = "Job Details"
     }
 
 
@@ -143,6 +143,30 @@ class JobTableViewController: UITableViewController {
     
     @objc private func doneButtonAction() {
         view.endEditing(true)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Last Updated: \(getReadableDate(fromTimestamp: job.lastUpdated))"
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "Created: \(getReadableDate(fromTimestamp: job.dateCreated))"
+    }
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Confirm Delete", message: "Are you sure you want to delete?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Confirm", style: .destructive, handler: { (action) in
+            self.delete(job: self.job)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func delete(job: Job) {
+        guard let currentUser = usersession.getCurrentUser() else {
+            print("no logged user")
+            return }
+        DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).collection(DatabaseKeys.JobsCollectionKey).document(job.dbReferenceDocumentId).delete()
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 

@@ -18,14 +18,13 @@ class JobListViewController: UIViewController {
     
     private var listener: ListenerRegistration!
     private var jobsArray = [Job]()
-    private var usersession: UserSession!
+    private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     
     override func viewDidLoad() {
         super.viewDidLoad()
         jobTableView.dataSource = self
         jobTableView.delegate = self
         jobSearchBar.delegate = self
-        usersession = (UIApplication.shared.delegate as! AppDelegate).usersession
         retrieveJobs()
     }
     
@@ -90,9 +89,9 @@ extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let jobToDelete = self.jobsArray[indexPath.row]
-        guard checkForAuthorizationToDelete(job: jobToDelete) else { print("not authorized to delete")
-            return
-        }
+//        guard checkForAuthorizationToDelete(job: jobToDelete) else { print("not authorized to delete")
+//            return
+//        }
         let alert = UIAlertController(title: "Confirm Delete", message: "Are you sure you want to delete?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Confirm", style: .destructive, handler: { (action) in
             self.delete(job: jobToDelete)
@@ -101,9 +100,9 @@ extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
         present(alert, animated: true, completion: nil)
     }
     
-    private func checkForAuthorizationToDelete(job: Job) -> Bool {
-        return job.userID == usersession.getCurrentUser()!.uid
-    }
+//    private func checkForAuthorizationToDelete(job: Job) -> Bool {
+//        return job.userID == usersession.getCurrentUser()!.uid
+//    }
     
     private func delete(job: Job) {
         guard let currentUser = self.usersession.getCurrentUser() else {
