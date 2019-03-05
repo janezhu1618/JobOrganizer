@@ -11,13 +11,13 @@ import SVProgressHUD
 
 class JobTableViewController: UITableViewController {
 
-    @IBOutlet weak var jobPostingURLTextField: UITextField!
+    @IBOutlet weak var jobPostingURLTextView: UITextView!
     @IBOutlet weak var applicationStatusPickerView: UIPickerView!
     @IBOutlet weak var positionTextField: UITextField!
     @IBOutlet weak var companyTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
-    @IBOutlet weak var contactEmailTextField: UITextField!
-    @IBOutlet weak var contactNumberTextField: UITextField!
+    @IBOutlet weak var contactEmailTextView: UITextView!
+    @IBOutlet weak var contactNumberTextView: UITextView!
     @IBOutlet weak var contactNameTextField: UITextField!
     
     private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
@@ -29,17 +29,17 @@ class JobTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupJobData()
-        disableAllFields()
+        enableAllFields(false)
         setupKeyboardToolbar()
     }
     
     private func setupJobData() {
         companyTextField.text = job.company
         positionTextField.text = job.position
-        jobPostingURLTextField.text = job.jobPostingURL
-        contactNumberTextField.text = job.contactPersonNumber
         contactNameTextField.text = job.contactPersonName
-        contactEmailTextField.text = job.contactPersonEmail
+        jobPostingURLTextView.text = job.jobPostingURL
+        contactNumberTextView.text = job.contactPersonNumber
+        contactEmailTextView.text = job.contactPersonEmail
         notesTextView.text = job.notes
         applicationStatusPickerView.dataSource = self
         applicationStatusPickerView.delegate = self
@@ -55,27 +55,16 @@ class JobTableViewController: UITableViewController {
         }
         return returnNum
     }
-    private func disableAllFields() {
-        [companyTextField,
-        positionTextField,
-        jobPostingURLTextField,
-        contactNumberTextField,
-        contactNameTextField,
-        contactEmailTextField].forEach{ $0.isEnabled = false }
-        notesTextView.isEditable = false
-        applicationStatusPickerView.isUserInteractionEnabled = false
-    }
-    private func enableAllFields() {
+    private func enableAllFields(_ trueOrFalse: Bool) {
         [companyTextField,
          positionTextField,
-         jobPostingURLTextField,
-         contactNumberTextField,
-         contactNameTextField,
-         contactEmailTextField].forEach{ $0.isEnabled = true }
-        notesTextView.isEditable = true
-        applicationStatusPickerView.isUserInteractionEnabled = true
+         contactNameTextField].forEach{ $0.isEnabled = trueOrFalse }
+        [notesTextView,
+         contactEmailTextView,
+         jobPostingURLTextView,
+         contactNumberTextView].forEach{ $0.isEditable = trueOrFalse }
+        applicationStatusPickerView.isUserInteractionEnabled = trueOrFalse
     }
-    
 
     @IBAction func editOrSaveButtonPressed(_ sender: UIBarButtonItem) {
         if navigationItem.rightBarButtonItem!.title == "Edit" {
@@ -85,12 +74,12 @@ class JobTableViewController: UITableViewController {
     
     @objc private func editMode() {
         title = "Edit Mode"
-        enableAllFields()
-        navigationItem.rightBarButtonItem! = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveMode))
+        enableAllFields(true)
+        navigationItem.rightBarButtonItem! = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveJobDetails))
     }
     
-    @objc private func saveMode() {
-        SVProgressHUD.show()
+    @objc private func saveJobDetails() {
+        enableAllFields(false)
         if companyTextField.text != job.company {
             guard let companyText = companyTextField.text else {
                 print("company name cannot be blank")
@@ -107,23 +96,23 @@ class JobTableViewController: UITableViewController {
             DatabaseManager.updateJob(newInfo: pickerSelection, jobKey: JobDictionaryKeys.applicationPhase, jobID: job.dbReferenceDocumentId)
             newPickerSelection = false
         }
-        if jobPostingURLTextField.text != job.jobPostingURL {
-            DatabaseManager.updateJob(newInfo: jobPostingURLTextField.text ?? "", jobKey: JobDictionaryKeys.jobPostingURL, jobID: job.dbReferenceDocumentId)
+        if jobPostingURLTextView.text != job.jobPostingURL {
+            DatabaseManager.updateJob(newInfo: jobPostingURLTextView.text ?? "", jobKey: JobDictionaryKeys.jobPostingURL, jobID: job.dbReferenceDocumentId)
         }
         if contactNameTextField.text != job.contactPersonName {
             DatabaseManager.updateJob(newInfo: contactNameTextField.text ?? "", jobKey: JobDictionaryKeys.contactPersonName, jobID: job.dbReferenceDocumentId)
         }
-        if contactNumberTextField.text != job.contactPersonNumber {
-            DatabaseManager.updateJob(newInfo: contactNumberTextField.text ?? "", jobKey: JobDictionaryKeys.contactPersonNumber, jobID: job.dbReferenceDocumentId)
+        if contactNumberTextView.text != job.contactPersonNumber {
+            DatabaseManager.updateJob(newInfo: contactNumberTextView.text ?? "", jobKey: JobDictionaryKeys.contactPersonNumber, jobID: job.dbReferenceDocumentId)
         }
-        if contactEmailTextField.text != job.contactPersonEmail {
-            DatabaseManager.updateJob(newInfo: contactEmailTextField.text ?? "", jobKey: JobDictionaryKeys.contactPersonEmail, jobID: job.dbReferenceDocumentId)
+        if contactEmailTextView.text != job.contactPersonEmail {
+            DatabaseManager.updateJob(newInfo: contactEmailTextView.text ?? "", jobKey: JobDictionaryKeys.contactPersonEmail, jobID: job.dbReferenceDocumentId)
         }
         if notesTextView.text != job.notes {
             DatabaseManager.updateJob(newInfo: notesTextView.text ?? "", jobKey: JobDictionaryKeys.notes, jobID: job.dbReferenceDocumentId)
         }
         DatabaseManager.updateJob(newInfo: getTimestamp(), jobKey: JobDictionaryKeys.lastUpdated, jobID: job.dbReferenceDocumentId)
-        SVProgressHUD.dismiss()
+        SVProgressHUD.showSuccess(withStatus: "Job Updated")
         navigationItem.rightBarButtonItem! = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editMode))
         title = "Job Details"
     }
@@ -138,11 +127,11 @@ class JobTableViewController: UITableViewController {
         toolbar.sizeToFit()
         [companyTextField,
          positionTextField,
-         jobPostingURLTextField,
-         contactNumberTextField,
-         contactNameTextField,
-         contactEmailTextField].forEach{ $0.inputAccessoryView = toolbar }
-        notesTextView.inputAccessoryView = toolbar
+         contactNameTextField].forEach{ $0.inputAccessoryView = toolbar }
+        [notesTextView,
+         contactNumberTextView,
+         jobPostingURLTextView,
+         contactEmailTextView].forEach{ $0.inputAccessoryView = toolbar }
     }
     
     @objc private func doneButtonAction() {
@@ -155,6 +144,10 @@ class JobTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return "Created: \(getReadableDate(fromTimestamp: job.dateCreated))"
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        saveJobDetails()
     }
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {

@@ -57,7 +57,7 @@ struct Job {
         self.applicationPhase = dict[JobDictionaryKeys.applicationPhase] ?? "unknown phase"
         self.dateCreated = dict[JobDictionaryKeys.dateCreated] ?? "unkonwn creation date"
         self.lastUpdated = dict[JobDictionaryKeys.lastUpdated] ?? "unknown last updated date"
-        self.contactPersonName = dict[JobDictionaryKeys.contactPersonEmail] ?? "no contact person"
+        self.contactPersonName = dict[JobDictionaryKeys.contactPersonName] ?? "no contact person"
         self.contactPersonNumber = dict[JobDictionaryKeys.contactPersonNumber] ?? "no contact person number"
         self.contactPersonEmail = dict[JobDictionaryKeys.contactPersonEmail] ?? "no contact person email"
         self.userID = dict[JobDictionaryKeys.userID] ?? "no user ID"

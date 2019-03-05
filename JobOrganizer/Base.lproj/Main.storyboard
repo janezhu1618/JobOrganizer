@@ -351,29 +351,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Posting URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FC0-6b-uS0">
-                                                    <rect key="frame" x="11" y="11" width="392" height="24.5"/>
+                                                    <rect key="frame" x="11" y="11" width="392" height="23"/>
                                                     <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="job posting URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="te9-hB-8WY">
-                                                    <rect key="frame" x="11" y="43.5" width="392" height="50"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="google.com/careers" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="25g-q2-Aw8">
+                                                    <rect key="frame" x="11" y="42" width="392" height="51.5"/>
                                                     <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="qp1-TN-2cb"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="URL" textContentType="url"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="FC0-6b-uS0" firstAttribute="leading" secondItem="A4a-QM-kKf" secondAttribute="leading" constant="11" id="4aL-aD-GnG"/>
-                                                <constraint firstItem="te9-hB-8WY" firstAttribute="leading" secondItem="A4a-QM-kKf" secondAttribute="leading" constant="11" id="Cu4-qA-8rB"/>
-                                                <constraint firstItem="te9-hB-8WY" firstAttribute="top" secondItem="FC0-6b-uS0" secondAttribute="bottom" constant="8" id="eIj-Xf-eej"/>
-                                                <constraint firstAttribute="trailing" secondItem="te9-hB-8WY" secondAttribute="trailing" constant="11" id="eKT-lZ-3ki"/>
+                                                <constraint firstAttribute="trailing" secondItem="25g-q2-Aw8" secondAttribute="trailing" constant="11" id="PT3-Ko-JRx"/>
+                                                <constraint firstAttribute="bottom" secondItem="25g-q2-Aw8" secondAttribute="bottom" constant="11" id="TiO-QH-cvQ"/>
+                                                <constraint firstItem="25g-q2-Aw8" firstAttribute="top" secondItem="FC0-6b-uS0" secondAttribute="bottom" constant="8" id="WVO-OI-3oX"/>
+                                                <constraint firstItem="25g-q2-Aw8" firstAttribute="leading" secondItem="A4a-QM-kKf" secondAttribute="leading" constant="11" id="Z1W-ym-mCG"/>
                                                 <constraint firstItem="FC0-6b-uS0" firstAttribute="top" secondItem="A4a-QM-kKf" secondAttribute="top" constant="11" id="gIt-fG-n2w"/>
-                                                <constraint firstAttribute="bottom" secondItem="te9-hB-8WY" secondAttribute="bottom" constant="11" id="hVd-2D-y7A"/>
                                                 <constraint firstAttribute="trailing" secondItem="FC0-6b-uS0" secondAttribute="trailing" constant="11" id="qkn-Uk-9yN"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -399,7 +396,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -421,29 +418,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Person Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIl-OY-BaR">
-                                                    <rect key="frame" x="11" y="11" width="392" height="24.5"/>
+                                                    <rect key="frame" x="11" y="11" width="392" height="23"/>
                                                     <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="contact person name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Wla-qK-UdN">
-                                                    <rect key="frame" x="11" y="43.5" width="392" height="50"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="9188999099" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cMg-uf-BHZ">
+                                                    <rect key="frame" x="11" y="42" width="392" height="51.5"/>
                                                     <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="7MG-Rm-KM3"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
-                                                </textField>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="phonePad" textContentType="tel"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Wla-qK-UdN" secondAttribute="bottom" constant="11" id="5Vc-e0-rfA"/>
-                                                <constraint firstItem="Wla-qK-UdN" firstAttribute="leading" secondItem="34h-0c-Ch5" secondAttribute="leading" constant="11" id="S8n-DE-nZw"/>
-                                                <constraint firstItem="Wla-qK-UdN" firstAttribute="top" secondItem="GIl-OY-BaR" secondAttribute="bottom" constant="8" id="dnv-jx-Rl7"/>
+                                                <constraint firstAttribute="bottom" secondItem="cMg-uf-BHZ" secondAttribute="bottom" constant="11" id="3tZ-TZ-eO3"/>
+                                                <constraint firstAttribute="trailing" secondItem="cMg-uf-BHZ" secondAttribute="trailing" constant="11" id="UwK-BF-nwI"/>
                                                 <constraint firstAttribute="trailing" secondItem="GIl-OY-BaR" secondAttribute="trailing" constant="11" id="gi3-Kc-ai2"/>
                                                 <constraint firstItem="GIl-OY-BaR" firstAttribute="leading" secondItem="34h-0c-Ch5" secondAttribute="leading" constant="11" id="ntG-4r-U8Q"/>
-                                                <constraint firstAttribute="trailing" secondItem="Wla-qK-UdN" secondAttribute="trailing" constant="11" id="oi0-Js-8hX"/>
+                                                <constraint firstItem="cMg-uf-BHZ" firstAttribute="leading" secondItem="34h-0c-Ch5" secondAttribute="leading" constant="11" id="u2J-BJ-6nm"/>
+                                                <constraint firstItem="cMg-uf-BHZ" firstAttribute="top" secondItem="GIl-OY-BaR" secondAttribute="bottom" constant="8" id="v0q-Wb-IuX"/>
                                                 <constraint firstItem="GIl-OY-BaR" firstAttribute="top" secondItem="34h-0c-Ch5" secondAttribute="top" constant="11" id="wbJ-3s-TLk"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -456,29 +450,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Person Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laa-w1-GOR">
-                                                    <rect key="frame" x="11" y="11" width="392" height="24.5"/>
+                                                    <rect key="frame" x="11" y="11" width="392" height="23"/>
                                                     <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="contact person name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aRd-8a-vag">
-                                                    <rect key="frame" x="11" y="43.5" width="392" height="50"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="google@google.com" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vGz-Hm-nhK">
+                                                    <rect key="frame" x="11" y="42" width="392" height="51.5"/>
                                                     <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="P2Q-hu-1Mq"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" textContentType="email"/>
-                                                </textField>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="laa-w1-GOR" firstAttribute="leading" secondItem="xNf-Jd-MQH" secondAttribute="leading" constant="11" id="2NH-nz-Kfw"/>
-                                                <constraint firstAttribute="bottom" secondItem="aRd-8a-vag" secondAttribute="bottom" constant="11" id="A2X-bE-97r"/>
-                                                <constraint firstItem="aRd-8a-vag" firstAttribute="top" secondItem="laa-w1-GOR" secondAttribute="bottom" constant="8" id="Hda-q0-nSy"/>
+                                                <constraint firstItem="vGz-Hm-nhK" firstAttribute="leading" secondItem="xNf-Jd-MQH" secondAttribute="leading" constant="11" id="JJx-Ki-2Xh"/>
+                                                <constraint firstAttribute="bottom" secondItem="vGz-Hm-nhK" secondAttribute="bottom" constant="11" id="LvK-7M-x20"/>
+                                                <constraint firstItem="vGz-Hm-nhK" firstAttribute="top" secondItem="laa-w1-GOR" secondAttribute="bottom" constant="8" id="X6f-gv-LkQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="laa-w1-GOR" secondAttribute="trailing" constant="11" id="YZd-dr-o2V"/>
-                                                <constraint firstItem="aRd-8a-vag" firstAttribute="leading" secondItem="xNf-Jd-MQH" secondAttribute="leading" constant="11" id="ZPy-Ch-HOn"/>
-                                                <constraint firstAttribute="trailing" secondItem="aRd-8a-vag" secondAttribute="trailing" constant="11" id="iMM-4k-GM2"/>
+                                                <constraint firstAttribute="trailing" secondItem="vGz-Hm-nhK" secondAttribute="trailing" constant="11" id="ewx-2L-1zp"/>
                                                 <constraint firstItem="laa-w1-GOR" firstAttribute="top" secondItem="xNf-Jd-MQH" secondAttribute="top" constant="11" id="x4K-v7-nxI"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -496,12 +487,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lr8-oP-vil">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lr8-oP-vil">
                                                     <rect key="frame" x="8" y="42" width="398" height="138.5"/>
                                                     <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <textInputTraits key="textInputTraits"/>
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                                 </textView>
                                             </subviews>
@@ -516,7 +507,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="Pmv-kz-Pq8" userLabel="delete">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="Pmv-kz-Pq8" userLabel="save">
                                         <rect key="frame" x="0.0" y="1058" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pmv-kz-Pq8" id="IyS-yo-OPc">
@@ -525,12 +516,13 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XsT-EY-8WI">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <state key="normal" title="Delete Job">
+                                                    <state key="normal" title="Save">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="deleteButtonPressed:" destination="RQM-eY-J27" eventType="touchUpInside" id="cDO-Nq-VfT"/>
+                                                        <action selector="saveButtonPressed:" destination="RQM-eY-J27" eventType="touchUpInside" id="pWI-gr-kad"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -540,6 +532,33 @@
                                                 <constraint firstAttribute="trailing" secondItem="XsT-EY-8WI" secondAttribute="trailing" id="2hy-gn-yj4"/>
                                                 <constraint firstItem="XsT-EY-8WI" firstAttribute="top" secondItem="IyS-yo-OPc" secondAttribute="top" id="AWc-e2-sqm"/>
                                                 <constraint firstAttribute="bottom" secondItem="XsT-EY-8WI" secondAttribute="bottom" id="AYX-Sv-Zl6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="nSw-eH-rUB" userLabel="delete">
+                                        <rect key="frame" x="0.0" y="1108" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nSw-eH-rUB" id="rHR-0l-N15">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3BX-GR-tTq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <state key="normal" title="Delete Job">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonPressed:" destination="RQM-eY-J27" eventType="touchUpInside" id="DrO-ZT-KzF"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="3BX-GR-tTq" firstAttribute="top" secondItem="rHR-0l-N15" secondAttribute="top" id="Bnu-C6-KP7"/>
+                                                <constraint firstAttribute="trailing" secondItem="3BX-GR-tTq" secondAttribute="trailing" id="EwH-FY-p7l"/>
+                                                <constraint firstAttribute="bottom" secondItem="3BX-GR-tTq" secondAttribute="bottom" id="YWU-yR-ZFy"/>
+                                                <constraint firstItem="3BX-GR-tTq" firstAttribute="leading" secondItem="rHR-0l-N15" secondAttribute="leading" id="lFU-sv-jbB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -559,17 +578,17 @@
                     <connections>
                         <outlet property="applicationStatusPickerView" destination="r1W-xm-OuN" id="mPn-cG-v81"/>
                         <outlet property="companyTextField" destination="APW-4h-6bh" id="rur-Hg-tr7"/>
-                        <outlet property="contactEmailTextField" destination="aRd-8a-vag" id="vFZ-QM-CJM"/>
+                        <outlet property="contactEmailTextView" destination="vGz-Hm-nhK" id="9Dm-aF-buS"/>
                         <outlet property="contactNameTextField" destination="gco-b7-l85" id="aH3-aI-sKl"/>
-                        <outlet property="contactNumberTextField" destination="Wla-qK-UdN" id="j2s-XT-1eW"/>
-                        <outlet property="jobPostingURLTextField" destination="te9-hB-8WY" id="KlW-S2-c2t"/>
+                        <outlet property="contactNumberTextView" destination="cMg-uf-BHZ" id="zeg-dy-mql"/>
+                        <outlet property="jobPostingURLTextView" destination="25g-q2-Aw8" id="Kok-YW-f8o"/>
                         <outlet property="notesTextView" destination="lr8-oP-vil" id="8WT-GM-d33"/>
                         <outlet property="positionTextField" destination="Zs0-ls-APT" id="Cfc-sm-XMJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="No7-IB-hP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5633" y="-958"/>
+            <point key="canvasLocation" x="5631.884057971015" y="-958.25892857142856"/>
         </scene>
         <!--New Job-->
         <scene sceneID="GnF-c9-h23">
@@ -625,7 +644,7 @@
                                                 <rect key="frame" x="0.0" y="448" width="392" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="URL" textContentType="url"/>
                                             </textField>
                                         </subviews>
                                         <constraints>

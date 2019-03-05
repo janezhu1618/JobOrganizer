@@ -28,12 +28,6 @@ class JobListViewController: UIViewController {
         retrieveJobs()
     }
     
-
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        print("add button pressed")
-        
-    }
-    
     private func checkForEmptyState() {
         jobTableView.backgroundView = jobsArray.isEmpty ? emptyStateView : nil
     }
