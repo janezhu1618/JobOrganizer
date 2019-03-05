@@ -70,8 +70,4 @@ extension MessageBoardListViewController: UITableViewDataSource, UITableViewDele
         cell.detailTextLabel?.text = messageBoard.description
         return cell
     }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //code here to delete
-    }
 }

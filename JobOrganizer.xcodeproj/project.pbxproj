@@ -17,7 +17,6 @@
 		A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A05D2224A8190073A638 /* ViewController+Alert.swift */; };
 		A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A0612224A9D10073A638 /* JobListViewController.swift */; };
 		A530A0682224AE160073A638 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A0672224AE160073A638 /* Job.swift */; };
-		A5550A9A2225C42900D4FB14 /* JobDictionaryKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550A992225C42900D4FB14 /* JobDictionaryKeys.swift */; };
 		A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */; };
 		A5550A9E222604AB00D4FB14 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */; };
 		A5550AC32226D7FD00D4FB14 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AC12226D7FD00D4FB14 /* MessageCell.swift */; };
@@ -53,7 +52,6 @@
 		A530A05D2224A8190073A638 /* ViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
 		A530A0612224A9D10073A638 /* JobListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListViewController.swift; sourceTree = "<group>"; };
 		A530A0672224AE160073A638 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
-		A5550A992225C42900D4FB14 /* JobDictionaryKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDictionaryKeys.swift; sourceTree = "<group>"; };
 		A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
 		A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		A5550AC12226D7FD00D4FB14 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 		A530A0602224A8680073A638 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A5550A992225C42900D4FB14 /* JobDictionaryKeys.swift */,
 				A530A04922249B040073A638 /* AppDelegate.swift */,
 				A530A05022249B050073A638 /* Assets.xcassets */,
 				A530A05222249B050073A638 /* LaunchScreen.storyboard */,
@@ -350,7 +347,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A530A0682224AE160073A638 /* Job.swift in Sources */,
-				A5550A9A2225C42900D4FB14 /* JobDictionaryKeys.swift in Sources */,
 				A5550AF32227225400D4FB14 /* DatabaseManager.swift in Sources */,
 				A5FF1D9C22283EC300CF1DDD /* StorageManager.swift in Sources */,
 				A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */,
