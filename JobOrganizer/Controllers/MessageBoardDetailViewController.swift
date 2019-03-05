@@ -21,6 +21,7 @@ class MessageBoardDetailViewController: UIViewController {
     public var messageBoard: MessageBoard!
     private var messageArray = [Message]()
     private var listener: ListenerRegistration!
+    private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class MessageBoardDetailViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
         messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
+        messageTableView.register(UINib(nibName: "MyMessageCell", bundle: nil), forCellReuseIdentifier: "MyMessageCell")
         configureTableView()
         retrieveMessages()
     }
@@ -71,8 +73,6 @@ class MessageBoardDetailViewController: UIViewController {
         messageTextField.endEditing(true)
         postButton.isEnabled = false
         messageTextField.isEnabled = false
-        
-//        SVProgressHUD.show()
         guard let currentUser = Auth.auth().currentUser else {
             print("no current user logged in")
             return }
@@ -95,23 +95,36 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = messageTableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else {
-            fatalError("Message Cell cannot be dequeued")
-        }
         let message = messageArray[indexPath.row]
-        cell.messageSender.text = message.senderEmail
-        cell.messageBody.text = message.messageBody
-        if let currentUser = Auth.auth().currentUser {
-            if let photoURL = currentUser.photoURL {
-                cell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
+        if message.senderID != Auth.auth().currentUser!.uid {
+            guard let otherPeoplesMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else {
+                    fatalError("otherPeoplesMessageCell cannot be dequeued")
+                }
+            otherPeoplesMessageCell.messageSender.text = message.senderEmail
+            otherPeoplesMessageCell.messageBody.text = message.messageBody
+            //let photoURL = DatabaseManager.getProfileImageURL(userID: message.senderID)
+            DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(message.senderID).getDocument { (snapshot, error) in
+                if let error = error {
+                    print("Error retrieving other user's profile pics - \(error)")
+                } else {
+                    let photo = snapshot!.get("imageURL") as! String
+                    if let photoURL = URL(string: photo) {
+                        otherPeoplesMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
+                    }
+                }
             }
-            if cell.messageSender.text == currentUser.email! {
-                cell.messageBackground.backgroundColor = .yellow
-            } else {
-                cell.messageBackground.backgroundColor = .lightGray
+            return otherPeoplesMessageCell
+        } else {
+            guard let myMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as? MyMessageCell else {
+                fatalError("myMessageCell cannot be dequeued")
+                }
+            myMessageCell.messageSender.text = message.senderEmail
+            myMessageCell.messageBody.text = message.messageBody
+            if let photoURL = Auth.auth().currentUser!.photoURL {
+                myMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
             }
+            return myMessageCell
         }
-        return cell
     }
     
     private func configureTableView() {

@@ -35,6 +35,8 @@
 		A5FF1DA02228815A00CF1DDD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9F2228815A00CF1DDD /* UserSession.swift */; };
 		A5FF1DA82229C1CB00CF1DDD /* JobTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */; };
 		A5FF1DAC222DA37A00CF1DDD /* ViewController+Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */; };
+		A5FF1DAF222EB8D400CF1DDD /* MyMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */; };
+		A5FF1DB0222EB8D400CF1DDD /* MyMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		A5FF1D9F2228815A00CF1DDD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewController.swift; sourceTree = "<group>"; };
 		A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Dates.swift"; sourceTree = "<group>"; };
+		A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
+		A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageCell.xib; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +181,8 @@
 			children = (
 				A5550AC12226D7FD00D4FB14 /* MessageCell.swift */,
 				A5550AC22226D7FD00D4FB14 /* MessageCell.xib */,
+				A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */,
+				A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FF1DB0222EB8D400CF1DDD /* MyMessageCell.xib in Resources */,
 				A5550AC42226D7FD00D4FB14 /* MessageCell.xib in Resources */,
 				A530A05422249B050073A638 /* LaunchScreen.storyboard in Resources */,
 				A530A05C22249B3B0073A638 /* GoogleService-Info.plist in Resources */,
@@ -348,6 +355,7 @@
 				A5FF1D9C22283EC300CF1DDD /* StorageManager.swift in Sources */,
 				A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */,
 				A5550AED2227028000D4FB14 /* MessageBoardListViewController.swift in Sources */,
+				A5FF1DAF222EB8D400CF1DDD /* MyMessageCell.swift in Sources */,
 				A5550AEB2227024F00D4FB14 /* MessageBoardDetailViewController.swift in Sources */,
 				A5FF1D9E222840BF00CF1DDD /* StorageKeys.swift in Sources */,
 				A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */,

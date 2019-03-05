@@ -1,16 +1,16 @@
 //
-//  MessageCell.swift
+//  MessageCell2.swift
 //  JobOrganizer
 //
-//  Created by Jane Zhu on 2/27/19.
+//  Created by Jane Zhu on 3/5/19.
 //  Copyright © 2019 JaneZhu. All rights reserved.
 //
 
 import UIKit
 
-class MessageCell: UITableViewCell {
+class MyMessageCell: UITableViewCell {
 
-    
+
     @IBOutlet weak var messageBackground: UIView!
     @IBOutlet weak var messageBody: UILabel!
     @IBOutlet weak var messageSender: UILabel!
@@ -21,6 +21,12 @@ class MessageCell: UITableViewCell {
         messageUserProfilePicture.layer.borderColor = UIColor.lightGray.cgColor
         messageUserProfilePicture.layer.borderWidth = 0.5
         messageUserProfilePicture.clipsToBounds = true
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
     
 }

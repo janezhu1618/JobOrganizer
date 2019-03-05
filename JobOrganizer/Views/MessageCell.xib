@@ -20,23 +20,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gj9-Tf-dVW" userLabel="Profile Image">
-                        <rect key="frame" x="0.0" y="10" width="53" height="53"/>
+                        <rect key="frame" x="6" y="10" width="53" height="53"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="53" id="DeZ-tp-ZJH"/>
                             <constraint firstAttribute="height" constant="53" id="pUz-Ic-HRc"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZ3-lr-m6X" userLabel="Message Background">
-                        <rect key="frame" x="59" y="10" width="251" height="61.5"/>
+                        <rect key="frame" x="65" y="10" width="245" height="61.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLE-J4-glX">
-                                <rect key="frame" x="9" y="0.0" width="244" height="14"/>
+                                <rect key="frame" x="9" y="0.0" width="238" height="14"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
                                 <color key="textColor" red="0.96620899439999997" green="0.39946689740000002" blue="0.66080673109999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhH-Hp-6aE">
-                                <rect key="frame" x="9" y="12" width="244" height="29.5"/>
+                                <rect key="frame" x="9" y="12" width="238" height="29.5"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -59,7 +59,7 @@
                     <constraint firstAttribute="bottom" secondItem="MZ3-lr-m6X" secondAttribute="bottom" constant="10" id="VPK-zY-Hg1"/>
                     <constraint firstAttribute="trailing" secondItem="MZ3-lr-m6X" secondAttribute="trailing" constant="10" id="cWE-vb-vjZ"/>
                     <constraint firstItem="MZ3-lr-m6X" firstAttribute="leading" secondItem="gj9-Tf-dVW" secondAttribute="trailing" constant="6" id="kfa-BN-kcQ"/>
-                    <constraint firstItem="gj9-Tf-dVW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mk4-FO-2Ej"/>
+                    <constraint firstItem="gj9-Tf-dVW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="mk4-FO-2Ej"/>
                     <constraint firstItem="gj9-Tf-dVW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="n5L-wR-8i0"/>
                 </constraints>
             </tableViewCellContentView>

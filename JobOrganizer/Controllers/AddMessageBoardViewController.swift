@@ -12,14 +12,13 @@ class AddMessageBoardViewController: UIViewController {
 
     @IBOutlet weak var messageBoardTitleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
-    private var usersession: UserSession!
+    private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     
     override func viewDidLoad() {
         super.viewDidLoad()
         messageBoardTitleTextField.delegate = self
         descriptionTextView.delegate = self
         setupKeyboardToolbar()
-        usersession = (UIApplication.shared.delegate as! AppDelegate).usersession
     }
     
 
