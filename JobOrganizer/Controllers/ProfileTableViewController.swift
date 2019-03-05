@@ -25,6 +25,7 @@ class ProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerViewController = UIImagePickerController()
+        imagePickerViewController.allowsEditing = true
         imagePickerViewController.delegate = self
         setupProfileImageButton()
         profileImageActivityIndicator.hidesWhenStopped = true
@@ -86,7 +87,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImageButton.setImage(image, for: .normal)
             guard let data = image.jpegData(compressionQuality: 1) else { print("unable to convert image to image data")
                 return

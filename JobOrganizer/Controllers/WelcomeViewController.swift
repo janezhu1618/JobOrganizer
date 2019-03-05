@@ -25,7 +25,13 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func viewTapped() {
+        emailTextField.endEditing(true)
+        passwordTextField.endEditing(true)
     }
 
     @IBAction func signInOrRegisterSegmentedControl(_ sender: UISegmentedControl) {

@@ -23,6 +23,16 @@ final class DatabaseManager {
         return db
     }()
     
+    static func updateMessageBoardInfo(messageBoard: MessageBoard, newInfo: String, editKey: String) {
+ firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).updateData([editKey : newInfo]) { (error) in
+            if let error = error {
+                print("error updating messageboard for \(editKey): \(error)")
+            } else {
+                print("field updated for \(editKey)")
+            }
+        }
+    }
+    
     static func addMessageBoard(messageBoard: MessageBoard) {
         var ref: DocumentReference? = nil
         let messageBoard: [String : String] = [MessageBoardKeys.title : messageBoard.title,
@@ -55,6 +65,7 @@ final class DatabaseManager {
             if let error = error {
                 SVProgressHUD.showError(withStatus: error.localizedDescription)
             } else {
+
                 SVProgressHUD.showSuccess(withStatus: "Message Posted")
                 DatabaseManager.firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(messageBoard.dbReferenceDocumentId).collection(DatabaseKeys.MessagesCollectionKey).document(ref!.documentID).updateData([DatabaseKeys.dbReferenceDocumentID : ref!.documentID], completion: { (error) in
                     if let error = error {

@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseFirestore
-import SVProgressHUD
 
 class MessageBoardDetailViewController: UIViewController {
     
@@ -73,7 +71,7 @@ class MessageBoardDetailViewController: UIViewController {
         messageTextField.endEditing(true)
         postButton.isEnabled = false
         messageTextField.isEnabled = false
-        guard let currentUser = Auth.auth().currentUser else {
+        guard let currentUser = usersession.getCurrentUser() else {
             print("no current user logged in")
             return }
         let message = Message(messageBody: messageBodyText,
@@ -89,7 +87,34 @@ class MessageBoardDetailViewController: UIViewController {
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIBarButtonItem) {
-        print("moreOptionsButtonPressed")
+        let alert = UIAlertController(title: "Options for message board", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { (action) in
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(withIdentifier: "AddMessageBoardViewController") as? AddMessageBoardViewController else { return }
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.messageBoard = self.messageBoard
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+            if self.checkForAuthorization() {
+                self.showDestructionAlert(title: "Confirm Deletion", message: "Are you sure you want to delete the message board", style: .alert, handler: { (action) in
+                    DatabaseManager.firebaseDB.collection(DatabaseKeys.MessagesCollectionKey).document(self.messageBoard.dbReferenceDocumentId).delete()
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+            } else {
+                self.showAlert(title: "Unauthorized", message: "Only the original creator can delete message board.")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func checkForAuthorization() -> Bool {
+        var isAuthorized = false
+        if usersession.getCurrentUser()!.uid == messageBoard?.creatorID {
+            isAuthorized = true
+        }
+        return isAuthorized
     }
 }
 
@@ -100,7 +125,7 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messageArray[indexPath.row]
-        if message.senderID != Auth.auth().currentUser!.uid {
+        if message.senderID != usersession.getCurrentUser()!.uid {
             guard let otherPeoplesMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else {
                     fatalError("otherPeoplesMessageCell cannot be dequeued")
                 }
@@ -123,7 +148,7 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                 }
                 myMessageCell.messageSender.text = message.senderEmail
                 myMessageCell.messageBody.text = message.messageBody
-                if let photoURL = Auth.auth().currentUser!.photoURL {
+                if let photoURL = usersession.getCurrentUser()!.photoURL {
                     myMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
                 }
             return myMessageCell

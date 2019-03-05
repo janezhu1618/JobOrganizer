@@ -13,13 +13,13 @@
         <!--WelcomeViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="WelcomeViewController" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" title="WelcomeViewController" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="📎 Job Organizer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXa-AW-35d">
-                                <rect key="frame" x="11" y="260" width="392" height="55.5"/>
+                                <rect key="frame" x="11" y="215" width="392" height="55.5"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="46"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -27,7 +27,7 @@
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1qQ-uF-HOK">
-                                <rect key="frame" x="142.5" y="348.5" width="129" height="29"/>
+                                <rect key="frame" x="142.5" y="303.5" width="129" height="29"/>
                                 <segments>
                                     <segment title="Sign In"/>
                                     <segment title="Register"/>
@@ -38,7 +38,7 @@
                                 </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="8zF-UW-7QK" userLabel="Info">
-                                <rect key="frame" x="11" y="409.5" width="392" height="82"/>
+                                <rect key="frame" x="11" y="364.5" width="392" height="82"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="49" translatesAutoresizingMaskIntoConstraints="NO" id="JgR-dm-J6M" userLabel="Email">
                                         <rect key="frame" x="0.0" y="0.0" width="392" height="30"/>
@@ -53,7 +53,7 @@
                                                 <rect key="frame" x="106" y="0.0" width="286" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -77,7 +77,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAn-LY-6M0">
-                                <rect key="frame" x="162" y="524.5" width="90" height="36"/>
+                                <rect key="frame" x="162" y="479.5" width="90" height="36"/>
                                 <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="Sfr-ut-1zA"/>
@@ -100,7 +100,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UXa-AW-35d" secondAttribute="trailing" constant="11" id="JS5-hC-OLS"/>
                             <constraint firstItem="UXa-AW-35d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="11" id="STd-nw-roo"/>
                             <constraint firstItem="8zF-UW-7QK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ZeV-BC-q4h"/>
-                            <constraint firstItem="8zF-UW-7QK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="e6I-PH-SHj"/>
+                            <constraint firstItem="8zF-UW-7QK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.9" id="e6I-PH-SHj"/>
                             <constraint firstItem="1qQ-uF-HOK" firstAttribute="top" secondItem="UXa-AW-35d" secondAttribute="bottom" constant="33" id="sp5-sC-Gp4"/>
                             <constraint firstItem="VAn-LY-6M0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vFU-o5-Kg7"/>
                             <constraint firstItem="VAn-LY-6M0" firstAttribute="top" secondItem="8zF-UW-7QK" secondAttribute="bottom" constant="33" id="ynP-DX-vKH"/>
@@ -573,7 +573,7 @@
         <!--New Job-->
         <scene sceneID="GnF-c9-h23">
             <objects>
-                <viewController title="New Job" id="7Ro-DC-Ifp" customClass="AddJobViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddJobViewController" title="New Job" id="7Ro-DC-Ifp" customClass="AddJobViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q9C-4C-5a0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -689,7 +689,6 @@
                     </view>
                     <connections>
                         <outlet property="applicationStatusPickerView" destination="QGb-7l-TIA" id="Wst-Om-qjk"/>
-                        <outlet property="basicQuestionsView" destination="pcH-Pb-ffk" id="2pQ-1j-eRp"/>
                         <outlet property="companyNameTextField" destination="Is7-JZ-VeU" id="IQK-dV-dam"/>
                         <outlet property="continueButton" destination="wbh-JI-JAp" id="bPw-ec-B2z"/>
                         <outlet property="jobPostingURLTextField" destination="ACx-gT-Udc" id="QLV-bu-tJ6"/>
@@ -703,7 +702,7 @@
         <!--Add Message Board-->
         <scene sceneID="cV4-UN-blk">
             <objects>
-                <viewController title="Add Message Board" id="8sp-6a-h1F" customClass="AddMessageBoardViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddMessageBoardViewController" title="Add Message Board" id="8sp-6a-h1F" customClass="AddMessageBoardViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="ZCP-EL-75b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -721,13 +720,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ehz-iN-Q08">
                                 <rect key="frame" x="41.5" y="330.5" width="331" height="245"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Message Board" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zv2-Jc-hNZ">
-                                        <rect key="frame" x="19.5" y="0.0" width="292" height="27"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" New Message Board" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zv2-Jc-hNZ">
+                                        <rect key="frame" x="43.5" y="0.0" width="244" height="27"/>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="23"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbr-8N-l7E">
-                                        <rect key="frame" x="145" y="32" width="41" height="25.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbr-8N-l7E">
+                                        <rect key="frame" x="141.5" y="32" width="48" height="25.5"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="22"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -792,6 +791,8 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="addOrEditButton" destination="l6b-jb-Dhe" id="MpJ-ms-eYd"/>
+                        <outlet property="addOrEditMessageBoardLabel" destination="Zv2-Jc-hNZ" id="Rg7-7A-URV"/>
                         <outlet property="descriptionTextView" destination="0OM-Vm-LJf" id="yvv-57-dWt"/>
                         <outlet property="messageBoardTitleTextField" destination="NPK-vM-j2K" id="hAn-4v-KhQ"/>
                     </connections>
