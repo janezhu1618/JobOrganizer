@@ -100,29 +100,28 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
             guard let otherPeoplesMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else {
                     fatalError("otherPeoplesMessageCell cannot be dequeued")
                 }
-            otherPeoplesMessageCell.messageSender.text = message.senderEmail
-            otherPeoplesMessageCell.messageBody.text = message.messageBody
-            //let photoURL = DatabaseManager.getProfileImageURL(userID: message.senderID)
-            DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(message.senderID).getDocument { (snapshot, error) in
-                if let error = error {
-                    print("Error retrieving other user's profile pics - \(error)")
-                } else {
-                    let photo = snapshot!.get("imageURL") as! String
-                    if let photoURL = URL(string: photo) {
-                        otherPeoplesMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
+                otherPeoplesMessageCell.messageSender.text = message.senderEmail
+                otherPeoplesMessageCell.messageBody.text = message.messageBody
+                DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(message.senderID).getDocument { (snapshot, error) in
+                    if let error = error {
+                        print("Error retrieving other user's profile pics - \(error)")
+                    } else {
+                        let photo = snapshot!.get("imageURL") as! String
+                        if let photoURL = URL(string: photo) {
+                            otherPeoplesMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
+                        }
                     }
                 }
-            }
             return otherPeoplesMessageCell
         } else {
             guard let myMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as? MyMessageCell else {
                 fatalError("myMessageCell cannot be dequeued")
                 }
-            myMessageCell.messageSender.text = message.senderEmail
-            myMessageCell.messageBody.text = message.messageBody
-            if let photoURL = Auth.auth().currentUser!.photoURL {
-                myMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
-            }
+                myMessageCell.messageSender.text = message.senderEmail
+                myMessageCell.messageBody.text = message.messageBody
+                if let photoURL = Auth.auth().currentUser!.photoURL {
+                    myMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
+                }
             return myMessageCell
         }
     }

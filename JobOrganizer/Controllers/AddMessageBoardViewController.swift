@@ -28,7 +28,7 @@ class AddMessageBoardViewController: UIViewController {
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
         guard let title = messageBoardTitleTextField.text,
-            let description = messageBoardTitleTextField.text,
+            let description = descriptionTextView.text,
         let currentUser = usersession.getCurrentUser() else {
                 showAlert(title: "Missing Info", message: "Message board title and description cannot be empty.")
                 
