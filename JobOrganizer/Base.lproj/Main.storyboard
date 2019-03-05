@@ -196,6 +196,11 @@
                         <viewLayoutGuide key="safeArea" id="xrM-WB-5lm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Job List" id="azM-ES-YI4">
+                        <barButtonItem key="leftBarButtonItem" image="sort" id="Dbq-C6-Dr1">
+                            <connections>
+                                <action selector="filterButtonPressed:" destination="vBv-s5-deI" id="igM-Q2-Dtf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7St-w6-wTd">
                             <connections>
                                 <segue destination="7Ro-DC-Ifp" kind="presentation" id="aSR-t2-onx"/>
@@ -937,18 +942,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6H-CR-3LF" userLabel="Compose View">
                                 <rect key="frame" x="0.0" y="763" width="414" height="50"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cic-MR-7OU" userLabel="Message Text Field">
-                                        <rect key="frame" x="9" y="10" width="343" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cic-MR-7OU" userLabel="Message Text Field">
+                                        <rect key="frame" x="9" y="10" width="354" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8T-24-0qi" userLabel="Send Button">
-                                        <rect key="frame" x="361" y="10" width="45" height="30"/>
+                                        <rect key="frame" x="372" y="10" width="34" height="30"/>
                                         <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="XZQ-cE-eNe"/>
-                                            <constraint firstAttribute="width" constant="45" id="yLZ-Dp-wMk"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="15"/>
                                         <state key="normal" title="Post">
@@ -1191,5 +1195,6 @@
         <image name="message" width="24" height="24"/>
         <image name="placeholderProfile" width="720" height="720"/>
         <image name="profile" width="24" height="24"/>
+        <image name="sort" width="22.5" height="22.5"/>
     </resources>
 </document>

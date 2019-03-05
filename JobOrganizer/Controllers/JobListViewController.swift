@@ -55,6 +55,9 @@ class JobListViewController: UIViewController {
         }
 
     }
+    @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
+        print("filter button pressed")
+    }
 }
 
 extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -63,12 +66,30 @@ extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
         let job = jobsArray[indexPath.row]
         cell.textLabel?.text = job.company
         cell.detailTextLabel?.text = job.applicationPhase
-        cell.imageView?.image = UIImage(named: "jobImage")
+//        cell.imageView?.image = UIImage(named: "jobImage")
+        switch job.applicationPhase {
+        case ApplicationPhase.interested.rawValue:
+            cell.imageView?.image = UIImage(named: "interested")
+        case ApplicationPhase.applicationSent.rawValue:
+            cell.imageView?.image = UIImage(named: "resume")
+        case ApplicationPhase.phoneInterview.rawValue:
+            cell.imageView?.image = UIImage(named: "phone")
+        case ApplicationPhase.inPersonInterview.rawValue:
+            cell.imageView?.image = UIImage(named: "interview")
+        case ApplicationPhase.jobOffer.rawValue:
+            cell.imageView?.image = UIImage(named: "handshake")
+        case ApplicationPhase.whiteboarding.rawValue:
+            cell.imageView?.image = UIImage(named: "whiteboard")
+        default:
+            cell.imageView?.image = UIImage(named: "itsComplicated")
+        }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobsArray.count
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destination = storyboard.instantiateViewController(withIdentifier: "JobTableViewController") as! JobTableViewController
