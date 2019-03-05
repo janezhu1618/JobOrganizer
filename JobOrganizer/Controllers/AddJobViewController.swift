@@ -15,7 +15,7 @@ class AddJobViewController: UIViewController {
     @IBOutlet weak var companyNameTextField: UITextField!
     @IBOutlet weak var positionNameTextField: UITextField!
     @IBOutlet weak var continueButton: UIButton!
-    @IBOutlet weak var basicQuestionsView: UIView!
+    @IBOutlet weak var jobPostingURLTextField: UITextField!
     
     private var tapGesture: UITapGestureRecognizer!
     private let pickerData: [String] = ApplicationPhase.applicationPhasePickerData
@@ -54,7 +54,7 @@ class AddJobViewController: UIViewController {
             return }
         let job = Job(company: companyName,
                         position: position,
-                        jobPostingURL: "",
+                        jobPostingURL: jobPostingURLTextField.text ?? "",
                         notes: "",
                         applicationPhase: applicationStatus,
                         dateCreated: getTimestamp(),

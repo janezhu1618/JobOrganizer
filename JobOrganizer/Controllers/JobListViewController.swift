@@ -18,7 +18,7 @@ class JobListViewController: UIViewController {
     
     private var listener: ListenerRegistration!
     private var jobsArray = [Job]()
-    private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
+    private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,11 +61,6 @@ class JobListViewController: UIViewController {
         }
 
     }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let destination = segue.destination as? JobTableViewController, let indexPath = jobTableView.indexPathForSelectedRow else { return }
-//        destination.job = jobsArray[indexPath.row]
-//    }
 }
 
 extension JobListViewController: UITableViewDataSource, UITableViewDelegate {

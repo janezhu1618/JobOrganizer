@@ -21,7 +21,7 @@ class MessageBoardDetailViewController: UIViewController {
     public var messageBoard: MessageBoard!
     private var messageArray = [Message]()
     private var listener: ListenerRegistration!
-    private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
+    private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +86,10 @@ class MessageBoardDetailViewController: UIViewController {
         postButton.isEnabled = true
         messageTextField.isEnabled = true
         messageTextField.text = ""
+    }
+    
+    @IBAction func moreOptionsButtonPressed(_ sender: UIBarButtonItem) {
+        print("moreOptionsButtonPressed")
     }
 }
 

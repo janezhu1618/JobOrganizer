@@ -21,6 +21,7 @@ class MessageBoardListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         messageBoardListTableView.dataSource = self
+        messageBoardListTableView.delegate = self
         retrieveMessageBoards()
     }
     
@@ -57,7 +58,7 @@ class MessageBoardListViewController: UIViewController {
 
 }
 
-extension MessageBoardListViewController: UITableViewDataSource {
+extension MessageBoardListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageBoardListArray.count
     }
@@ -68,5 +69,9 @@ extension MessageBoardListViewController: UITableViewDataSource {
         cell.textLabel?.text = messageBoard.title
         cell.detailTextLabel?.text = messageBoard.description
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //code here to delete
     }
 }

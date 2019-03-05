@@ -79,14 +79,18 @@ class JobTableViewController: UITableViewController {
 
     @IBAction func editOrSaveButtonPressed(_ sender: UIBarButtonItem) {
         if navigationItem.rightBarButtonItem!.title == "Edit" {
-            title = "Edit Mode"
-           enableAllFields()
-            navigationItem.rightBarButtonItem! = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveInformation))
+            editMode()
         }
     }
     
-    @objc private func saveInformation() {
-        disableAllFields()
+    @objc private func editMode() {
+        title = "Edit Mode"
+        enableAllFields()
+        navigationItem.rightBarButtonItem! = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveMode))
+    }
+    
+    @objc private func saveMode() {
+        SVProgressHUD.show()
         if companyTextField.text != job.company {
             guard let companyText = companyTextField.text else {
                 print("company name cannot be blank")
@@ -104,7 +108,7 @@ class JobTableViewController: UITableViewController {
             newPickerSelection = false
         }
         if jobPostingURLTextField.text != job.jobPostingURL {
-            DatabaseManager.updateJob(newInfo: jobPostingURLTextField.text ?? "", jobKey: JobDictionaryKeys.position, jobID: job.dbReferenceDocumentId)
+            DatabaseManager.updateJob(newInfo: jobPostingURLTextField.text ?? "", jobKey: JobDictionaryKeys.jobPostingURL, jobID: job.dbReferenceDocumentId)
         }
         if contactNameTextField.text != job.contactPersonName {
             DatabaseManager.updateJob(newInfo: contactNameTextField.text ?? "", jobKey: JobDictionaryKeys.contactPersonName, jobID: job.dbReferenceDocumentId)
@@ -119,8 +123,8 @@ class JobTableViewController: UITableViewController {
             DatabaseManager.updateJob(newInfo: notesTextView.text ?? "", jobKey: JobDictionaryKeys.notes, jobID: job.dbReferenceDocumentId)
         }
         DatabaseManager.updateJob(newInfo: getTimestamp(), jobKey: JobDictionaryKeys.lastUpdated, jobID: job.dbReferenceDocumentId)
-        SVProgressHUD.showSuccess(withStatus: "Information Updated")
-        navigationItem.rightBarButtonItem?.title = "Edit"
+        SVProgressHUD.dismiss()
+        navigationItem.rightBarButtonItem! = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editMode))
         title = "Job Details"
     }
 

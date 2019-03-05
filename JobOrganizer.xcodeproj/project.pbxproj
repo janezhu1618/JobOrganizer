@@ -145,9 +145,9 @@
 				A530A0612224A9D10073A638 /* JobListViewController.swift */,
 				A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */,
 				A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */,
+				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
 				A5550AEA2227024F00D4FB14 /* MessageBoardDetailViewController.swift */,
 				A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */,
-				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
 				A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */,
 				A530A04B22249B040073A638 /* WelcomeViewController.swift */,
 			);

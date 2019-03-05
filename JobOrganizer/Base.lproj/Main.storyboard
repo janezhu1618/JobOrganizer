@@ -434,7 +434,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -469,7 +469,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="email"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -692,6 +692,7 @@
                         <outlet property="basicQuestionsView" destination="pcH-Pb-ffk" id="2pQ-1j-eRp"/>
                         <outlet property="companyNameTextField" destination="Is7-JZ-VeU" id="IQK-dV-dam"/>
                         <outlet property="continueButton" destination="wbh-JI-JAp" id="bPw-ec-B2z"/>
+                        <outlet property="jobPostingURLTextField" destination="ACx-gT-Udc" id="QLV-bu-tJ6"/>
                         <outlet property="positionNameTextField" destination="nEG-R8-Am8" id="gAo-D2-Yai"/>
                     </connections>
                 </viewController>
@@ -974,6 +975,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="v1o-oV-OCf"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="mJE-Nq-Dw4">
+                        <barButtonItem key="rightBarButtonItem" title="∙∙∙" id="xvI-oz-xZ3">
+                            <connections>
+                                <action selector="moreOptionsButtonPressed:" destination="Nhk-dR-gwS" id="LM5-Fp-Wlo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="composeViewHeight" destination="wzb-xE-in5" id="dSI-Eh-OMy"/>
                         <outlet property="emptyStateView" destination="Kfe-C9-az4" id="kjh-dO-BJz"/>
