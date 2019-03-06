@@ -47,7 +47,7 @@ class JobListViewController: UIViewController {
                     let jobToAdd = Job(dict: document.data() as! [String : String])
                     jobs.append(jobToAdd)
                 }
-                
+    
                 switch UserDefaults.standard.object(forKey: "SortMethod") as? String {
                 case "applicationPhase":
                     jobs.sort{ $0.applicationPhase < $1.applicationPhase }

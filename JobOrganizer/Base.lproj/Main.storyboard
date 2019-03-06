@@ -1066,10 +1066,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
-                            <tableViewSection id="xye-hX-r7g" userLabel="User Info">
+                            <tableViewSection headerTitle="User Info" id="xye-hX-r7g" userLabel="User Info">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="O04-uF-Qbh" userLabel="Profile Image">
-                                        <rect key="frame" x="0.0" y="35" width="414" height="150"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O04-uF-Qbh" id="NlE-Tp-6Xf">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="149.5"/>
@@ -1101,7 +1101,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DqS-Sb-dpe" userLabel="User Email">
-                                        <rect key="frame" x="0.0" y="185" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="205.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DqS-Sb-dpe" id="6Nd-5v-lFt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1123,7 +1123,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qny-oZ-70i">
-                                        <rect key="frame" x="0.0" y="229" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="249.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qny-oZ-70i" id="otc-0D-llw">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1145,7 +1145,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xKm-le-v5W">
-                                        <rect key="frame" x="0.0" y="273" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="293.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xKm-le-v5W" id="3og-Nj-LcE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1169,6 +1169,41 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Settings" id="p4q-LY-Kzz" userLabel="User Settings">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NxC-MJ-2I8" userLabel="Profile Image">
+                                        <rect key="frame" x="0.0" y="393.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NxC-MJ-2I8" id="mnY-fB-IUd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="uUa-hh-ptw">
+                                                    <rect key="frame" x="46" y="6.5" width="322.5" height="31"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save image from camera to library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNC-aI-T3K">
+                                                            <rect key="frame" x="0.0" y="0.0" width="261.5" height="31"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jDg-wf-f2R">
+                                                            <rect key="frame" x="273.5" y="0.0" width="51" height="31"/>
+                                                            <connections>
+                                                                <action selector="saveCameraPhotoSwitchChanged:" destination="7PY-EJ-bFC" eventType="valueChanged" id="ruw-5d-reW"/>
+                                                            </connections>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uUa-hh-ptw" firstAttribute="centerY" secondItem="mnY-fB-IUd" secondAttribute="centerY" id="PFC-1w-UQm"/>
+                                                <constraint firstItem="uUa-hh-ptw" firstAttribute="centerX" secondItem="mnY-fB-IUd" secondAttribute="centerX" id="gUr-BN-ck3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="7PY-EJ-bFC" id="8V0-O2-BKD"/>
@@ -1182,6 +1217,7 @@
                         <outlet property="profileImageButton" destination="zPf-DZ-jgR" id="fvu-vG-mcY"/>
                         <outlet property="profileUserEmail" destination="Uxe-aZ-ijS" id="ttg-gy-bCk"/>
                         <outlet property="profileUserStatistics" destination="1d8-yU-c9n" id="Nb4-KP-eDr"/>
+                        <outlet property="saveCameraImageButton" destination="jDg-wf-f2R" id="Rs9-6C-EdO"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignInPage" id="Tdc-g1-Cc4"/>
                     </connections>
                 </tableViewController>

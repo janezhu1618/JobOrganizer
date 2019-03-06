@@ -13,6 +13,7 @@ import Kingfisher
 
 class ProfileTableViewController: UITableViewController {
     
+    @IBOutlet weak var saveCameraImageButton: UISwitch!
     @IBOutlet weak var profileImageActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var profileUserStatistics: UILabel!
     @IBOutlet weak var profileUserEmail: UILabel!
@@ -21,6 +22,7 @@ class ProfileTableViewController: UITableViewController {
     private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     private var imagePickerViewController: UIImagePickerController!
     private var isImageFromCamera: Bool = false
+    private var saveImageFromCameraUserDefaultsSetting = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,19 @@ class ProfileTableViewController: UITableViewController {
                 profileImageButton.kf.setImage(with: photoURL, for: .normal)
                 profileImageActivityIndicator.stopAnimating()
             }
-            
+        }
+        
+        if let saveImageSettingOn = UserDefaults.standard.object(forKey: "SaveCameraImage") as? Bool {
+            if saveImageSettingOn {
+                saveImageFromCameraUserDefaultsSetting = true
+                saveCameraImageButton.setOn(true, animated: false)
+            } else {
+                saveImageFromCameraUserDefaultsSetting = false
+                saveCameraImageButton.setOn(false, animated: false)
+            }
+        } else {
+            saveImageFromCameraUserDefaultsSetting = false
+            saveCameraImageButton.setOn(false, animated: false)
         }
     }
     
@@ -79,6 +93,15 @@ class ProfileTableViewController: UITableViewController {
     }
     //help source with saving photo from camera https://stackoverflow.com/questions/40854886/swift-take-a-photo-and-save-to-photo-library
 
+    @IBAction func saveCameraPhotoSwitchChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            UserDefaults.standard.set(true, forKey: "SaveCameraImage")
+            saveImageFromCameraUserDefaultsSetting = true
+        } else {
+            UserDefaults.standard.set(false, forKey: "SaveCameraImage")
+            saveImageFromCameraUserDefaultsSetting = false
+        }
+    }
 }
 
 extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -93,7 +116,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
                 return
             }
             StorageManager.uploadProfileImage(data)
-            if isImageFromCamera {
+            if isImageFromCamera && saveImageFromCameraUserDefaultsSetting {
                 UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
         } else {
