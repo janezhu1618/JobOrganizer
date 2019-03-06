@@ -40,7 +40,6 @@ class JobListViewController: UIViewController {
         listener = DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(currentUser.uid).collection(DatabaseKeys.JobsCollectionKey).addSnapshotListener(includeMetadataChanges: true) { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
-                //self.showAlert(title: "Network Error", message: error.localizedDescription)
             } else if let snapshot = snapshot {
                 var jobs = [Job]()
                 for document in snapshot.documents {
@@ -48,7 +47,7 @@ class JobListViewController: UIViewController {
                     jobs.append(jobToAdd)
                 }
     
-                switch UserDefaults.standard.object(forKey: "SortMethod") as? String {
+                switch UserDefaults.standard.object(forKey: UserDefaultsKeys.sortMethod) as? String {
                 case "applicationPhase":
                     jobs.sort{ $0.applicationPhase < $1.applicationPhase }
                 case "company":
@@ -71,22 +70,22 @@ class JobListViewController: UIViewController {
         let alert = UIAlertController(title: "Sort", message: "Choose how to sort jobs results", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Application Status", style: .default, handler: { (action) in
-            UserDefaults.standard.set("applicationPhase", forKey: "SortMethod")
+            UserDefaults.standard.set("applicationPhase", forKey: UserDefaultsKeys.sortMethod)
             self.jobsArray.sort{ $0.applicationPhase < $1.applicationPhase}
             self.jobTableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "Company Name", style: .default, handler: { (action) in
-            UserDefaults.standard.set("company", forKey: "SortMethod")
+            UserDefaults.standard.set("company", forKey: UserDefaultsKeys.sortMethod)
             self.jobsArray.sort{ $0.company < $1.company }
             self.jobTableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "Created Date", style: .default, handler: { (action) in
-            UserDefaults.standard.set("dateCreated", forKey: "SortMethod")
+            UserDefaults.standard.set("dateCreated", forKey: UserDefaultsKeys.sortMethod)
             self.jobsArray.sort{ $0.dateCreated < $1.dateCreated }
             self.jobTableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "Last Updated Date", style: .default, handler: { (action) in
-            UserDefaults.standard.set("lastUpdated", forKey: "SortMethod")
+            UserDefaults.standard.set("lastUpdated", forKey: UserDefaultsKeys.sortMethod)
             self.jobsArray.sort{ $0.lastUpdated > $1.lastUpdated }
             self.jobTableView.reloadData()
         }))

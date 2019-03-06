@@ -22,15 +22,19 @@ class ProfileTableViewController: UITableViewController {
     private var usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     private var imagePickerViewController: UIImagePickerController!
     private var isImageFromCamera: Bool = false
-    private var saveImageFromCameraUserDefaultsSetting = false
+    private var saveImageFromCamera = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerViewController = UIImagePickerController()
         imagePickerViewController.allowsEditing = true
         imagePickerViewController.delegate = self
-        setupProfileImageButton()
+        setupRoundProfileImage()
         profileImageActivityIndicator.hidesWhenStopped = true
+        setupSaveImageSetting()
+    }
+    
+    private func getProfileImage() {
         if let currentUser = usersession.getCurrentUser() {
             profileUserEmail.text = currentUser.email
             if let photoURL = currentUser.photoURL {
@@ -39,22 +43,25 @@ class ProfileTableViewController: UITableViewController {
                 profileImageActivityIndicator.stopAnimating()
             }
         }
-        
-        if let saveImageSettingOn = UserDefaults.standard.object(forKey: "SaveCameraImage") as? Bool {
+    }
+    
+    private func setupSaveImageSetting() {
+        if let saveImageSettingOn = UserDefaults.standard.object(forKey: UserDefaultsKeys.saveCameraImage) as? Bool {
             if saveImageSettingOn {
-                saveImageFromCameraUserDefaultsSetting = true
+                saveImageFromCamera = true
                 saveCameraImageButton.setOn(true, animated: false)
             } else {
-                saveImageFromCameraUserDefaultsSetting = false
+                saveImageFromCamera = false
                 saveCameraImageButton.setOn(false, animated: false)
             }
         } else {
-            saveImageFromCameraUserDefaultsSetting = false
+            saveImageFromCamera = false
             saveCameraImageButton.setOn(false, animated: false)
         }
     }
     
-    fileprivate func setupProfileImageButton() {
+    
+    fileprivate func setupRoundProfileImage() {
         profileImageButton.layer.cornerRadius = profileImageButton.bounds.width / 2.0
         profileImageButton.layer.borderColor = UIColor.lightGray.cgColor
         profileImageButton.layer.borderWidth = 0.5
@@ -63,11 +70,11 @@ class ProfileTableViewController: UITableViewController {
     
     @IBAction func profileImageTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Profile Image", message: "What would like like to do?", preferredStyle: .actionSheet)
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
-                self.imagePickerViewController.sourceType = .camera
-                self.isImageFromCamera = true
-                self.showImagePickerViewController()
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+                    self.imagePickerViewController.sourceType = .camera
+                    self.isImageFromCamera = true
+                    self.showImagePickerViewController()
             }))
         }
         alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
@@ -95,11 +102,11 @@ class ProfileTableViewController: UITableViewController {
 
     @IBAction func saveCameraPhotoSwitchChanged(_ sender: UISwitch) {
         if sender.isOn {
-            UserDefaults.standard.set(true, forKey: "SaveCameraImage")
-            saveImageFromCameraUserDefaultsSetting = true
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.saveCameraImage)
+            saveImageFromCamera = true
         } else {
-            UserDefaults.standard.set(false, forKey: "SaveCameraImage")
-            saveImageFromCameraUserDefaultsSetting = false
+            UserDefaults.standard.set(false, forKey: UserDefaultsKeys.saveCameraImage)
+            saveImageFromCamera = false
         }
     }
 }
@@ -116,11 +123,11 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
                 return
             }
             StorageManager.uploadProfileImage(data)
-            if isImageFromCamera && saveImageFromCameraUserDefaultsSetting {
+            if isImageFromCamera && saveImageFromCamera {
                 UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
         } else {
-            print("original image is nil")
+            print("cropped image is nil")
         }
         dismiss(animated: true, completion: nil)
     }
