@@ -47,7 +47,18 @@ class JobListViewController: UIViewController {
                     let jobToAdd = Job(dict: document.data() as! [String : String])
                     jobs.append(jobToAdd)
                 }
-                jobs.sort{ $0.lastUpdated > $1.lastUpdated }
+                
+                switch UserDefaults.standard.object(forKey: "SortMethod") as? String {
+                case "applicationPhase":
+                    jobs.sort{ $0.applicationPhase < $1.applicationPhase }
+                case "company":
+                    jobs.sort{ $0.company > $1.company }
+                case "dateCreated":
+                    jobs.sort{ $0.dateCreated < $1.dateCreated }
+                default:
+                    jobs.sort{ $0.lastUpdated > $1.lastUpdated }
+                }
+                
                 self.jobsArray = jobs
                 self.checkForEmptyState()
                 self.jobTableView.reloadData()
@@ -55,8 +66,32 @@ class JobListViewController: UIViewController {
         }
 
     }
+    
     @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
-        print("filter button pressed")
+        let alert = UIAlertController(title: "Sort By", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Application Status", style: .default, handler: { (action) in
+            UserDefaults.standard.set("applicationPhase", forKey: "SortMethod")
+            self.jobsArray.sort{ $0.applicationPhase < $1.applicationPhase}
+            self.jobTableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Company Name", style: .default, handler: { (action) in
+            UserDefaults.standard.set("company", forKey: "SortMethod")
+            self.jobsArray.sort{ $0.company < $1.company }
+            self.jobTableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Created Date", style: .default, handler: { (action) in
+            UserDefaults.standard.set("dateCreated", forKey: "SortMethod")
+            self.jobsArray.sort{ $0.dateCreated < $1.dateCreated }
+            self.jobTableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Last Updated Date", style: .default, handler: { (action) in
+            UserDefaults.standard.set("lastUpdated", forKey: "SortMethod")
+            self.jobsArray.sort{ $0.lastUpdated > $1.lastUpdated }
+            self.jobTableView.reloadData()
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
