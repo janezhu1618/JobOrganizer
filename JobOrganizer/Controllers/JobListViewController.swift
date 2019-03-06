@@ -19,6 +19,11 @@ class JobListViewController: UIViewController {
     private var listener: ListenerRegistration!
     private var jobsArray = [Job]()
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
+    private var applicationSent = 0
+    private var phoneInterview = 0
+    private var inPersonInterview = 0
+    private var whiteboarding = 0
+    private var jobOffer = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,11 @@ class JobListViewController: UIViewController {
     }
     
     private func retrieveJobs() {
+        applicationSent = 0
+        phoneInterview = 0
+        inPersonInterview = 0
+        whiteboarding = 0
+        jobOffer = 0
         jobsArray.removeAll()
         guard let currentUser = usersession.getCurrentUser() else {
             print("no logged user")
@@ -41,10 +51,12 @@ class JobListViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
             } else if let snapshot = snapshot {
+                dump(snapshot)
                 var jobs = [Job]()
                 for document in snapshot.documents {
                     let jobToAdd = Job(dict: document.data() as! [String : String])
                     jobs.append(jobToAdd)
+                    self.calculateStatistics(jobToAdd)
                 }
     
                 switch UserDefaults.standard.object(forKey: UserDefaultsKeys.sortMethod) as? String {
@@ -57,13 +69,46 @@ class JobListViewController: UIViewController {
                 default:
                     jobs.sort{ $0.lastUpdated > $1.lastUpdated }
                 }
-                
                 self.jobsArray = jobs
                 self.checkForEmptyState()
                 self.jobTableView.reloadData()
+                let statistics = [self.applicationSent, self.phoneInterview, self.inPersonInterview, self.whiteboarding, self.jobOffer]
+                Statistics.setStatistics(statistics: statistics)
             }
         }
-
+    }
+    
+    private func calculateStatistics(_ job: Job) {
+        switch job.applicationPhase {
+        case ApplicationPhase.applicationSent.rawValue:
+            applicationSent += 1
+            break
+        case ApplicationPhase.phoneInterview.rawValue:
+            applicationSent += 1
+            phoneInterview += 1
+            break
+        case ApplicationPhase.inPersonInterview.rawValue:
+            applicationSent += 1
+            phoneInterview += 1
+            inPersonInterview += 1
+            break
+        case ApplicationPhase.whiteboarding.rawValue:
+            applicationSent += 1
+            phoneInterview += 1
+            inPersonInterview += 1
+            whiteboarding += 1
+            break
+        case ApplicationPhase.jobOffer.rawValue:
+            applicationSent += 1
+            phoneInterview += 1
+            inPersonInterview += 1
+            whiteboarding += 1
+            jobOffer += 1
+            break
+        default:
+            break
+        }
+        
     }
     
     @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {

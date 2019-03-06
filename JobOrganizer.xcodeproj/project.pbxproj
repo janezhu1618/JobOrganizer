@@ -37,6 +37,7 @@
 		A5FF1DAF222EB8D400CF1DDD /* MyMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */; };
 		A5FF1DB0222EB8D400CF1DDD /* MyMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */; };
 		A5FF81BB22305D4C006A21F6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */; };
+		A5FF81BD22306B8E006A21F6 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF81BC22306B8E006A21F6 /* Statistics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
 		A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageCell.xib; sourceTree = "<group>"; };
 		A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsKeys.swift; path = "JobOrganizer/Supporting Files/UserDefaultsKeys.swift"; sourceTree = SOURCE_ROOT; };
+		A5FF81BC22306B8E006A21F6 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 				A5550AEE222705FB00D4FB14 /* MessageBoard.swift */,
 				A5550AE52226F7A700D4FB14 /* Message.swift */,
 				A530A0672224AE160073A638 /* Job.swift */,
+				A5FF81BC22306B8E006A21F6 /* Statistics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				A5550A9E222604AB00D4FB14 /* ProfileTableViewController.swift in Sources */,
 				A530A04A22249B040073A638 /* AppDelegate.swift in Sources */,
 				A5550AF6222722FF00D4FB14 /* DatabaseKeys.swift in Sources */,
+				A5FF81BD22306B8E006A21F6 /* Statistics.swift in Sources */,
 				A5550AC32226D7FD00D4FB14 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

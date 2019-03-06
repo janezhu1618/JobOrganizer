@@ -32,9 +32,16 @@ class ProfileTableViewController: UITableViewController {
         setupRoundProfileImage()
         profileImageActivityIndicator.hidesWhenStopped = true
         setupSaveImageSetting()
+        getUserInfoAndProfileImage()
+        setStatistics()
     }
     
-    private func getProfileImage() {
+    private func setStatistics() {
+        let statisticsArr = Statistics.getStatistics()
+        profileUserStatistics.text = "Statistics \nApplication Sent: \(statisticsArr[0]) \nPhone Interview: \(statisticsArr[1]) \nIn-Person Interview: \(statisticsArr[2]) \nWhiteboarding: \(statisticsArr[3]) \nJob Offer: \(statisticsArr[4])"
+    }
+    
+    private func getUserInfoAndProfileImage() {
         if let currentUser = usersession.getCurrentUser() {
             profileUserEmail.text = currentUser.email
             if let photoURL = currentUser.photoURL {
