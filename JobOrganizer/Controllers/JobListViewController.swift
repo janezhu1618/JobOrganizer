@@ -68,7 +68,7 @@ class JobListViewController: UIViewController {
     }
     
     @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Sort By", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Sort", message: "Choose how to sort jobs results", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Application Status", style: .default, handler: { (action) in
             UserDefaults.standard.set("applicationPhase", forKey: "SortMethod")
@@ -101,7 +101,6 @@ extension JobListViewController: UITableViewDataSource, UITableViewDelegate {
         let job = jobsArray[indexPath.row]
         cell.textLabel?.text = job.company
         cell.detailTextLabel?.text = job.applicationPhase
-//        cell.imageView?.image = UIImage(named: "jobImage")
         switch job.applicationPhase {
         case ApplicationPhase.interested.rawValue:
             cell.imageView?.image = UIImage(named: "interested")
