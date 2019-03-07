@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
 
 class MessageBoardDetailViewController: UIViewController {
     
@@ -16,23 +17,33 @@ class MessageBoardDetailViewController: UIViewController {
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var composeViewHeight: NSLayoutConstraint!
+  
     public var messageBoard: MessageBoard!
     private var messageArray = [Message]()
     private var listener: ListenerRegistration!
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
+    private var imagePickerViewController: UIImagePickerController!
+    //private var isImageFromCamera: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = messageBoard.title
+        messageTextField.delegate = self
+        setUpTableView()
+        configureTableView()
+        retrieveMessages()
+        imagePickerViewController = UIImagePickerController()
+        imagePickerViewController.allowsEditing = true
+        imagePickerViewController.delegate = self
+    }
+    
+    private func setUpTableView() {
         messageTableView.delegate = self
         messageTableView.dataSource = self
-        messageTextField.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
         messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
         messageTableView.register(UINib(nibName: "MyMessageCell", bundle: nil), forCellReuseIdentifier: "MyMessageCell")
-        configureTableView()
-        retrieveMessages()
     }
     
     private func checkForEmptyState() {
@@ -87,7 +98,7 @@ class MessageBoardDetailViewController: UIViewController {
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Options for message board", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: "What would you like to do with this message board?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { (action) in
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: "AddMessageBoardViewController") as? AddMessageBoardViewController else { return }
@@ -116,6 +127,15 @@ class MessageBoardDetailViewController: UIViewController {
         }
         return isAuthorized
     }
+    
+    @IBAction func imageButtonPressed(_ sender: UIButton) {
+        print("image button pressed")
+    }
+    
+    private func showImagePickerViewController() {
+        present(imagePickerViewController, animated: true, completion: nil)
+    }
+    
 }
 
 extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -129,9 +149,11 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
             guard let otherPeoplesMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else {
                     fatalError("otherPeoplesMessageCell cannot be dequeued")
                 }
+                otherPeoplesMessageCell.messageBackground.layer.cornerRadius = 10.0
+                otherPeoplesMessageCell.messageBackground.layer.masksToBounds = true
                 otherPeoplesMessageCell.messageSender.text = message.senderEmail
                 otherPeoplesMessageCell.messageBody.text = message.messageBody
-                DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(message.senderID).getDocument { (snapshot, error) in
+            DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(message.senderID).getDocument { (snapshot, error) in
                     if let error = error {
                         print("Error retrieving other user's profile pics - \(error)")
                     } else {
@@ -146,6 +168,8 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
             guard let myMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as? MyMessageCell else {
                 fatalError("myMessageCell cannot be dequeued")
                 }
+                myMessageCell.messageBackground.layer.cornerRadius = 10.0
+                myMessageCell.messageBackground.layer.masksToBounds = true
                 myMessageCell.messageSender.text = message.senderEmail
                 myMessageCell.messageBody.text = message.messageBody
                 if let photoURL = usersession.getCurrentUser()!.photoURL {
@@ -175,5 +199,38 @@ extension MessageBoardDetailViewController: UITextFieldDelegate {
             self.composeViewHeight.constant = 50
             self.view.layoutIfNeeded()
         }
+    }
+}
+
+extension MessageBoardDetailViewController: UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            selectedImageFromPicker = originalImage
+            
+        }
+        if let selectedImage = selectedImageFromPicker {
+//            profileImageButton.setImage(selectedImage, for: .normal)
+//            guard let data = selectedImage.jpegData(compressionQuality: 1) else { print("unable to convert selected image to image data")
+//                return
+//            }
+//            StorageManager.uploadProfileImage(data)
+//            if isImageFromCamera && saveImageFromCamera {
+//                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+//            }
+        }
+        dismiss(animated: true, completion: nil)
+            //TODO: post message with image URL
+            //TODO: storagemanager upload image
+        } else {
+            print("edited image is nil")
+        }
+        dismiss(animated: true, completion: nil)
     }
 }

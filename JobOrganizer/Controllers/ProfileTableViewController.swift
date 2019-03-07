@@ -38,7 +38,7 @@ class ProfileTableViewController: UITableViewController {
     
     private func setStatistics() {
         let statisticsArr = Statistics.getStatistics()
-        profileUserStatistics.text = "Statistics \nApplication Sent: \(statisticsArr[0]) \nPhone Interview: \(statisticsArr[1]) \nIn-Person Interview: \(statisticsArr[2]) \nWhiteboarding: \(statisticsArr[3]) \nJob Offer: \(statisticsArr[4])"
+        profileUserStatistics.text = "Statistics\nApplication Sent: \(statisticsArr[0]) \nPhone Interview: \(statisticsArr[1]) \nIn-Person Interview: \(statisticsArr[2]) \nWhiteboarding: \(statisticsArr[3]) \nJob Offer: \(statisticsArr[4])"
     }
     
     private func getUserInfoAndProfileImage() {
@@ -124,17 +124,22 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            profileImageButton.setImage(image, for: .normal)
-            guard let data = image.jpegData(compressionQuality: 1) else { print("unable to convert image to image data")
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            selectedImageFromPicker = originalImage
+            
+        }
+        if let selectedImage = selectedImageFromPicker {
+            profileImageButton.setImage(selectedImage, for: .normal)
+            guard let data = selectedImage.jpegData(compressionQuality: 1) else { print("unable to convert selected image to image data")
                 return
             }
             StorageManager.uploadProfileImage(data)
             if isImageFromCamera && saveImageFromCamera {
-                UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
-        } else {
-            print("cropped image is nil")
         }
         dismiss(animated: true, completion: nil)
     }
