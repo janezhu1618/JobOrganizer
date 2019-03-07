@@ -13,7 +13,8 @@ import FirebaseStorage
 class MessageBoardDetailViewController: UIViewController {
     
     @IBOutlet var emptyStateView: UIView!
-    @IBOutlet weak var messageTextField: UITextField!
+    
+    @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var composeViewHeight: NSLayoutConstraint!
@@ -31,6 +32,7 @@ class MessageBoardDetailViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
+        imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFit
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomTap)))
         return imageView
@@ -39,7 +41,7 @@ class MessageBoardDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = messageBoard.title
-        messageTextField.delegate = self
+        messageTextView.delegate = self
         setUpTableView()
         configureTableView()
         retrieveMessages()
@@ -90,6 +92,7 @@ class MessageBoardDetailViewController: UIViewController {
     }
     
     private func scrollToBottom(){
+        guard messageArray.count > 0 else { return }
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.messageArray.count-1, section: 0)
             self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
@@ -97,17 +100,17 @@ class MessageBoardDetailViewController: UIViewController {
     }
     
     @objc func tableViewTapped() {
-        messageTextField.endEditing(true)
+        messageTextView.endEditing(true)
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
-        guard let messageBodyText = messageTextField.text else {
+        guard let messageBodyText = messageTextView.text else {
             showAlert(title: "Message Empty", message: "Message body text cannot be empty")
             return
         }
-        messageTextField.endEditing(true)
+        messageTextView.endEditing(true)
         postButton.isEnabled = false
-        messageTextField.isEnabled = false
+        messageTextView.isEditable = false
         guard let currentUser = usersession.getCurrentUser() else {
             print("no current user logged in")
             return }
@@ -119,8 +122,8 @@ class MessageBoardDetailViewController: UIViewController {
                               dbReferenceDocumentId: "")
         DatabaseManager.postMessage(message: message, messageBoard: messageBoard)
         postButton.isEnabled = true
-        messageTextField.isEnabled = true
-        messageTextField.text = ""
+        messageTextView.isEditable = true
+        messageTextView.text = ""
     }
     
     @IBAction func moreOptionsButtonPressed(_ sender: UIBarButtonItem) {
@@ -214,11 +217,10 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                  messageImageView.bottomAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.bottomAnchor)
                     ].forEach{ $0.isActive = true }
                 otherPeoplesMessageCell.messageBody.isHidden = true
+                myMessageCell.messageBackground.backgroundColor = nil
                 if let photoURL = URL(string: message.imageURL) {
                     print(photoURL)
                     messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
-                    messageImageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
-                    
 //                    tutorial from: https://www.youtube.com/watch?v=FqDVKW9Rn_M helped me with this part...
                 }
             } else {
@@ -249,6 +251,7 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                     messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
                 }
                 myMessageCell.messageBody.isHidden = true
+                myMessageCell.messageBackground.backgroundColor = nil
             } else {
                 myMessageCell.messageBody.isHidden = false
                 myMessageCell.messageSender.text = message.senderEmail
@@ -258,6 +261,13 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
             }
         }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if messageArray[indexPath.row].imageURL != "" {
+            return 300
+        }
+        return UITableView.automaticDimension
+    }
+    
     private func configureTableView() {
         messageTableView.rowHeight = UITableView.automaticDimension
         messageTableView.estimatedRowHeight = 120
@@ -265,15 +275,15 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
     
 }
 
-extension MessageBoardDetailViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+extension MessageBoardDetailViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         UIView.animate(withDuration: 0.5) {
+            self.scrollToBottom()
             self.composeViewHeight.constant = 300
             self.view.layoutIfNeeded()
         }
     }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         UIView.animate(withDuration: 0.5) {
             self.composeViewHeight.constant = 50
             self.view.layoutIfNeeded()
@@ -322,8 +332,6 @@ extension MessageBoardDetailViewController: UIImagePickerControllerDelegate, UIN
                     }
                 })
             }
-        
-            
             if isImageFromCamera && saveImageFromCamera {
                 UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
             }

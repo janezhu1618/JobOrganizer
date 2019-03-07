@@ -942,12 +942,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6H-CR-3LF" userLabel="Compose View">
                                 <rect key="frame" x="0.0" y="637" width="414" height="50"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cic-MR-7OU" userLabel="Message Text Field">
-                                        <rect key="frame" x="38" y="10" width="325" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8T-24-0qi" userLabel="Send Button">
                                         <rect key="frame" x="372" y="10" width="34" height="30"/>
                                         <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -969,15 +963,22 @@
                                             <action selector="imageButtonPressed:" destination="Nhk-dR-gwS" eventType="touchUpInside" id="3j1-cj-wGy"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SoP-FG-tTe">
+                                        <rect key="frame" x="38" y="10" width="326" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="V8T-24-0qi" firstAttribute="leading" secondItem="Cic-MR-7OU" secondAttribute="trailing" constant="9" id="1bc-Ts-TXG"/>
-                                    <constraint firstItem="6me-QY-Ax3" firstAttribute="centerY" secondItem="Cic-MR-7OU" secondAttribute="centerY" id="5VY-z8-k20"/>
-                                    <constraint firstItem="Cic-MR-7OU" firstAttribute="leading" secondItem="6me-QY-Ax3" secondAttribute="trailing" constant="8" id="9Nq-WN-s88"/>
+                                    <constraint firstItem="6me-QY-Ax3" firstAttribute="centerY" secondItem="SoP-FG-tTe" secondAttribute="centerY" id="M2C-R6-7bQ"/>
                                     <constraint firstItem="6me-QY-Ax3" firstAttribute="leading" secondItem="N6H-CR-3LF" secondAttribute="leading" constant="8" id="NBA-2c-RfY"/>
                                     <constraint firstAttribute="trailing" secondItem="V8T-24-0qi" secondAttribute="trailing" constant="8" id="YHD-UJ-MMs"/>
-                                    <constraint firstItem="Cic-MR-7OU" firstAttribute="top" secondItem="N6H-CR-3LF" secondAttribute="top" constant="10" id="cUG-7Q-KOh"/>
+                                    <constraint firstItem="SoP-FG-tTe" firstAttribute="top" secondItem="N6H-CR-3LF" secondAttribute="top" constant="10" id="bVM-xz-GXh"/>
+                                    <constraint firstItem="V8T-24-0qi" firstAttribute="leading" secondItem="SoP-FG-tTe" secondAttribute="trailing" constant="8" id="gl8-P2-XQh"/>
+                                    <constraint firstItem="6me-QY-Ax3" firstAttribute="centerY" secondItem="V8T-24-0qi" secondAttribute="centerY" id="jqo-sx-uaK"/>
+                                    <constraint firstItem="SoP-FG-tTe" firstAttribute="leading" secondItem="6me-QY-Ax3" secondAttribute="trailing" constant="8" id="wgu-oE-679"/>
                                     <constraint firstAttribute="height" constant="50" id="wzb-xE-in5"/>
                                     <constraint firstItem="V8T-24-0qi" firstAttribute="top" secondItem="N6H-CR-3LF" secondAttribute="top" constant="10" id="zNy-dm-y2i"/>
                                 </constraints>
@@ -1020,7 +1021,7 @@
                         <outlet property="composeViewHeight" destination="wzb-xE-in5" id="dSI-Eh-OMy"/>
                         <outlet property="emptyStateView" destination="Kfe-C9-az4" id="kjh-dO-BJz"/>
                         <outlet property="messageTableView" destination="bf0-r7-RDM" id="aFt-H5-2ws"/>
-                        <outlet property="messageTextField" destination="Cic-MR-7OU" id="bjm-QE-a9g"/>
+                        <outlet property="messageTextView" destination="SoP-FG-tTe" id="8Zt-xe-bBb"/>
                         <outlet property="postButton" destination="V8T-24-0qi" id="kXM-Yg-NzE"/>
                     </connections>
                 </viewController>
