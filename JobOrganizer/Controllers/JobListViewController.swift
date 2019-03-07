@@ -24,6 +24,7 @@ class JobListViewController: UIViewController {
     private var inPersonInterview = 0
     private var whiteboarding = 0
     private var jobOffer = 0
+    private var statistics: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +39,11 @@ class JobListViewController: UIViewController {
     }
     
     private func retrieveJobs() {
-        applicationSent = 0
-        phoneInterview = 0
-        inPersonInterview = 0
-        whiteboarding = 0
-        jobOffer = 0
+//        applicationSent = 0
+//        phoneInterview = 0
+//        inPersonInterview = 0
+//        whiteboarding = 0
+//        jobOffer = 0
         jobsArray.removeAll()
         guard let currentUser = usersession.getCurrentUser() else {
             print("no logged user")
@@ -51,7 +52,6 @@ class JobListViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
             } else if let snapshot = snapshot {
-                dump(snapshot)
                 var jobs = [Job]()
                 for document in snapshot.documents {
                     let jobToAdd = Job(dict: document.data() as! [String : String])
@@ -72,9 +72,9 @@ class JobListViewController: UIViewController {
                 self.jobsArray = jobs
                 self.checkForEmptyState()
                 self.jobTableView.reloadData()
-                let statistics = [self.applicationSent, self.phoneInterview, self.inPersonInterview, self.whiteboarding, self.jobOffer]
-                Statistics.setStatistics(statistics: statistics)
             }
+            self.statistics = [self.applicationSent, self.phoneInterview, self.inPersonInterview, self.whiteboarding, self.jobOffer]
+            Statistics.setStatistics(statistics: self.statistics)
         }
     }
     
