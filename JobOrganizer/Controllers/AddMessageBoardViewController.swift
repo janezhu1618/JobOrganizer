@@ -50,7 +50,9 @@ class AddMessageBoardViewController: UIViewController {
             if checkForAuthorization() {
                 if title != messageBoard!.title {
                     DatabaseManager.updateMessageBoardInfo(messageBoard: messageBoard!, newInfo: title, editKey: MessageBoardKeys.title)
-                } else if description != messageBoard!.description {
+                    self.title = title
+                }
+                if description != messageBoard!.description {
                     DatabaseManager.updateMessageBoardInfo(messageBoard: messageBoard!, newInfo: description, editKey: MessageBoardKeys.description)
                 }
             } else {

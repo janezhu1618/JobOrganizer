@@ -39,11 +39,11 @@ class JobListViewController: UIViewController {
     }
     
     private func retrieveJobs() {
-//        applicationSent = 0
-//        phoneInterview = 0
-//        inPersonInterview = 0
-//        whiteboarding = 0
-//        jobOffer = 0
+        applicationSent = 0
+        phoneInterview = 0
+        inPersonInterview = 0
+        whiteboarding = 0
+        jobOffer = 0
         jobsArray.removeAll()
         guard let currentUser = usersession.getCurrentUser() else {
             print("no logged user")

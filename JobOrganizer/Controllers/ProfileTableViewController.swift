@@ -61,10 +61,7 @@ class ProfileTableViewController: UITableViewController {
                 saveImageFromCamera = false
                 saveCameraImageButton.setOn(false, animated: false)
             }
-        } else {
-            saveImageFromCamera = false
-            saveCameraImageButton.setOn(false, animated: false)
-        }
+        } 
     }
     
     

@@ -23,7 +23,18 @@ class MessageBoardDetailViewController: UIViewController {
     private var listener: ListenerRegistration!
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
     private var imagePickerViewController: UIImagePickerController!
-    //private var isImageFromCamera: Bool = false
+    private var isImageFromCamera: Bool = false
+    private var saveImageFromCamera: Bool = false
+    
+    lazy var messageImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .brown
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +46,9 @@ class MessageBoardDetailViewController: UIViewController {
         imagePickerViewController = UIImagePickerController()
         imagePickerViewController.allowsEditing = true
         imagePickerViewController.delegate = self
+        if let saveImageSetting = UserDefaults.standard.object(forKey: UserDefaultsKeys.saveCameraImage) as? Bool {
+            saveImageFromCamera = saveImageSetting
+        }
     }
     
     private func setUpTableView() {
@@ -129,7 +143,24 @@ class MessageBoardDetailViewController: UIViewController {
     }
     
     @IBAction func imageButtonPressed(_ sender: UIButton) {
-        print("image button pressed")
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePickerViewController.sourceType = .photoLibrary
+            showImagePickerViewController()
+        } else {
+            let alert = UIAlertController(title: "", message: "Upload image from?", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+                self.imagePickerViewController.sourceType = .camera
+                self.isImageFromCamera = true
+                self.showImagePickerViewController()
+            }))
+            alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+                self.imagePickerViewController.sourceType = .photoLibrary
+                self.isImageFromCamera = false
+                self.showImagePickerViewController()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     private func showImagePickerViewController() {
@@ -144,6 +175,8 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let message = messageArray[indexPath.row]
         if message.senderID != usersession.getCurrentUser()!.uid {
             guard let otherPeoplesMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else {
@@ -151,9 +184,7 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                 }
                 otherPeoplesMessageCell.messageBackground.layer.cornerRadius = 10.0
                 otherPeoplesMessageCell.messageBackground.layer.masksToBounds = true
-                otherPeoplesMessageCell.messageSender.text = message.senderEmail
-                otherPeoplesMessageCell.messageBody.text = message.messageBody
-            DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(message.senderID).getDocument { (snapshot, error) in
+                DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(message.senderID).getDocument { (snapshot, error) in
                     if let error = error {
                         print("Error retrieving other user's profile pics - \(error)")
                     } else {
@@ -163,6 +194,23 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                         }
                     }
                 }
+            if message.messageBody == "" {
+                otherPeoplesMessageCell.addSubview(messageImageView)
+                [messageImageView.leftAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.leftAnchor),
+                 messageImageView.rightAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.rightAnchor),
+                 messageImageView.topAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.topAnchor),
+                 messageImageView.bottomAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.bottomAnchor)
+                    ].forEach{ $0.isActive = true }
+                
+                otherPeoplesMessageCell.messageBody.text = ""
+                if let photoURL = URL(string: message.imageURL) {
+                    print(photoURL)
+                    messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
+                }
+            } else {
+                otherPeoplesMessageCell.messageSender.text = message.senderEmail
+                otherPeoplesMessageCell.messageBody.text = message.messageBody
+            }
             return otherPeoplesMessageCell
         } else {
             guard let myMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as? MyMessageCell else {
@@ -170,14 +218,30 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                 }
                 myMessageCell.messageBackground.layer.cornerRadius = 10.0
                 myMessageCell.messageBackground.layer.masksToBounds = true
-                myMessageCell.messageSender.text = message.senderEmail
-                myMessageCell.messageBody.text = message.messageBody
                 if let photoURL = usersession.getCurrentUser()!.photoURL {
                     myMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
                 }
-            return myMessageCell
+            myMessageCell.messageSender.text = message.senderEmail
+            if message.messageBody == "" {
+                myMessageCell.addSubview(messageImageView)
+                [messageImageView.leftAnchor.constraint(equalTo: myMessageCell.messageBackground.leftAnchor),
+                 messageImageView.rightAnchor.constraint(equalTo: myMessageCell.messageBackground.rightAnchor),
+                 messageImageView.topAnchor.constraint(equalTo: myMessageCell.messageBackground.topAnchor),
+                 messageImageView.bottomAnchor.constraint(equalTo: myMessageCell.messageBackground.bottomAnchor)
+                    ].forEach{ $0.isActive = true }
+                
+                myMessageCell.messageBody.text = ""
+                if let photoURL = URL(string: message.imageURL) {
+                    print(photoURL)
+                    messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
+                }
+            } else {
+                myMessageCell.messageSender.text = message.senderEmail
+                myMessageCell.messageBody.text = message.messageBody
+            }
+                return myMessageCell
+            }
         }
-    }
     
     private func configureTableView() {
         messageTableView.rowHeight = UITableView.automaticDimension
@@ -202,7 +266,7 @@ extension MessageBoardDetailViewController: UITextFieldDelegate {
     }
 }
 
-extension MessageBoardDetailViewController: UIImagePickerControllerDelegate {
+extension MessageBoardDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -216,21 +280,45 @@ extension MessageBoardDetailViewController: UIImagePickerControllerDelegate {
             
         }
         if let selectedImage = selectedImageFromPicker {
-//            profileImageButton.setImage(selectedImage, for: .normal)
-//            guard let data = selectedImage.jpegData(compressionQuality: 1) else { print("unable to convert selected image to image data")
-//                return
-//            }
-//            StorageManager.uploadProfileImage(data)
-//            if isImageFromCamera && saveImageFromCamera {
-//                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-//            }
+            guard let currentUser = usersession.getCurrentUser() else {
+                print("no current user logged in")
+                return }
+            guard let data = selectedImage.jpegData(compressionQuality: 1) else {
+                print("unable to convert selected message image to image data")
+                return
+            }
+            let imageName = NSUUID().uuidString
+            let imageReference = Storage.storage().reference().child(StorageKeys.MessageImages).child("\(imageName).jpg")
+            StorageMetadata().contentType = "image/jpeg"
+            imageReference.putData(data, metadata: StorageMetadata()) { (metadata, error) in
+                guard let _ = metadata else {
+                    print("error uploading data")
+                    return
+                }
+                imageReference.downloadURL(completion: { (url, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        let returnURL = url!.absoluteString
+                        let newMessage = Message(messageBody: "", imageURL: returnURL, senderID: currentUser.uid, senderEmail: currentUser.email!, timeStamp: self.getTimestamp(), dbReferenceDocumentId: "")
+                        DatabaseManager.postMessage(message: newMessage, messageBoard: self.messageBoard)
+                    }
+                })
+            }
+        
+            
+            if isImageFromCamera && saveImageFromCamera {
+                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
         }
         dismiss(animated: true, completion: nil)
-            //TODO: post message with image URL
-            //TODO: storagemanager upload image
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            showAlert(title: "Save error", message: error.localizedDescription)
         } else {
-            print("edited image is nil")
+            showAlert(title: "Saved!", message: "Your image has been saved to your photos.")
         }
-        dismiss(animated: true, completion: nil)
     }
 }
