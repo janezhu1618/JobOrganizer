@@ -31,8 +31,8 @@ class MessageBoardDetailViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .brown
+        imageView.contentMode = .scaleAspectFit
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomTap)))
         return imageView
     }()
     
@@ -49,6 +49,10 @@ class MessageBoardDetailViewController: UIViewController {
         if let saveImageSetting = UserDefaults.standard.object(forKey: UserDefaultsKeys.saveCameraImage) as? Bool {
             saveImageFromCamera = saveImageSetting
         }
+    }
+    
+    @objc private func zoomTap() {
+        print("handling zoom tap")
     }
     
     private func setUpTableView() {
@@ -80,7 +84,15 @@ class MessageBoardDetailViewController: UIViewController {
                 self.configureTableView()
                 self.checkForEmptyState()
                 self.messageTableView.reloadData()
+                self.scrollToBottom()
             }
+        }
+    }
+    
+    private func scrollToBottom(){
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.messageArray.count-1, section: 0)
+            self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
     
@@ -195,19 +207,22 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                     }
                 }
             if message.messageBody == "" {
-                otherPeoplesMessageCell.addSubview(messageImageView)
+                otherPeoplesMessageCell.messageBackground.addSubview(messageImageView)
                 [messageImageView.leftAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.leftAnchor),
                  messageImageView.rightAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.rightAnchor),
                  messageImageView.topAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.topAnchor),
                  messageImageView.bottomAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.bottomAnchor)
                     ].forEach{ $0.isActive = true }
-                
-                otherPeoplesMessageCell.messageBody.text = ""
+                otherPeoplesMessageCell.messageBody.isHidden = true
                 if let photoURL = URL(string: message.imageURL) {
                     print(photoURL)
                     messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
+                    messageImageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
+                    
+//                    tutorial from: https://www.youtube.com/watch?v=FqDVKW9Rn_M helped me with this part...
                 }
             } else {
+                otherPeoplesMessageCell.messageBody.isHidden = false
                 otherPeoplesMessageCell.messageSender.text = message.senderEmail
                 otherPeoplesMessageCell.messageBody.text = message.messageBody
             }
@@ -223,19 +238,19 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                 }
             myMessageCell.messageSender.text = message.senderEmail
             if message.messageBody == "" {
-                myMessageCell.addSubview(messageImageView)
+                myMessageCell.messageBackground.addSubview(messageImageView)
                 [messageImageView.leftAnchor.constraint(equalTo: myMessageCell.messageBackground.leftAnchor),
                  messageImageView.rightAnchor.constraint(equalTo: myMessageCell.messageBackground.rightAnchor),
                  messageImageView.topAnchor.constraint(equalTo: myMessageCell.messageBackground.topAnchor),
                  messageImageView.bottomAnchor.constraint(equalTo: myMessageCell.messageBackground.bottomAnchor)
                     ].forEach{ $0.isActive = true }
-                
-                myMessageCell.messageBody.text = ""
+
                 if let photoURL = URL(string: message.imageURL) {
-                    print(photoURL)
                     messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
                 }
+                myMessageCell.messageBody.isHidden = true
             } else {
+                myMessageCell.messageBody.isHidden = false
                 myMessageCell.messageSender.text = message.senderEmail
                 myMessageCell.messageBody.text = message.messageBody
             }
@@ -300,7 +315,9 @@ extension MessageBoardDetailViewController: UIImagePickerControllerDelegate, UIN
                         print(error!)
                     } else {
                         let returnURL = url!.absoluteString
-                        let newMessage = Message(messageBody: "", imageURL: returnURL, senderID: currentUser.uid, senderEmail: currentUser.email!, timeStamp: self.getTimestamp(), dbReferenceDocumentId: "")
+                        var newMessage = Message(messageBody: "", imageURL: returnURL, senderID: currentUser.uid, senderEmail: currentUser.email!, timeStamp: self.getTimestamp(), dbReferenceDocumentId: "")
+                        newMessage.imageWidth = selectedImage.size.width.description
+                        newMessage.imageHeight = selectedImage.size.height.description
                         DatabaseManager.postMessage(message: newMessage, messageBoard: self.messageBoard)
                     }
                 })

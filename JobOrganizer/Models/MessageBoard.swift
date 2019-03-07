@@ -41,4 +41,5 @@ struct MessageBoardKeys {
     static let creatorID = "Creator ID"
     static let lastUpdated = "Last Updated"
     static let dbReferenceDocumentId = "dbReferenceDocumentId"
+
 }

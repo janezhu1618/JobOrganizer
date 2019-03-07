@@ -11,6 +11,8 @@ import Foundation
 struct Message {
     var messageBody: String
     var imageURL: String
+    var imageWidth: String?
+    var imageHeight: String?
     var senderID: String
     var senderEmail: String
     var timeStamp: String
@@ -31,6 +33,9 @@ struct Message {
         self.senderID = dict[MessageDictionaryKeys.senderID] ?? "no sender ID"
         self.senderEmail = dict[MessageDictionaryKeys.senderEmail] ?? "no email"
         self.timeStamp = dict[MessageDictionaryKeys.timeStamp] ?? "no timestamp"
+        self.imageWidth = dict[MessageDictionaryKeys.imageWidth] ?? "no image width"
+        self.imageHeight = dict[MessageDictionaryKeys.imageHeight] ?? "no image height"
+        
         self.dbReferenceDocumentId = dict["dbReferenceDocumentId"] ?? "no dbRefrence"
     }
 }
@@ -41,5 +46,7 @@ struct MessageDictionaryKeys {
     static let senderEmail = "Sender Email"
     static let messageBody = "Message Body"
     static let imageURL = "Image URL"
+    static let imageWidth = "Image Width"
+    static let imageHeight = "Image Height"
     static let timeStamp = "Timestamp"
 }

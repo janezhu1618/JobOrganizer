@@ -53,7 +53,7 @@ final class StorageManager {
         let imageReference = Storage.storage().reference().child(StorageKeys.ProfileImages).child("\(currentUser.uid).jpg")
         metadata.contentType = "image/jpeg"
         imageReference.putData(data, metadata: metadata) { (metadata, error) in
-            guard let metadata = metadata else {
+            guard let _ = metadata else {
                 print("error uploading data")
                 return
             }
