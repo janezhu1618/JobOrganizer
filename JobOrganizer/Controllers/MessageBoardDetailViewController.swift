@@ -26,6 +26,8 @@ class MessageBoardDetailViewController: UIViewController {
     private var imagePickerViewController: UIImagePickerController!
     private var isImageFromCamera: Bool = false
     private var saveImageFromCamera: Bool = false
+    private var startingFrame: CGRect?
+    private var blackBackgroundView: UIView?
     
     lazy var messageImageView: UIImageView = {
         let imageView = UIImageView()
@@ -53,8 +55,46 @@ class MessageBoardDetailViewController: UIViewController {
         }
     }
     
-    @objc private func zoomTap() {
-        print("handling zoom tap")
+    @objc private func zoomTap(tapGesture: UITapGestureRecognizer) {
+        guard let startingImageView = tapGesture.view as? UIImageView else { return }
+        startingFrame = startingImageView.superview!.convert((startingImageView.frame), to: nil)
+        
+        let zoomingImageView = UIImageView(frame: startingFrame!)
+        zoomingImageView.backgroundColor = .red
+        zoomingImageView.image = startingImageView.image
+    
+       zoomingImageView.isUserInteractionEnabled = true
+        zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
+        
+        if let keyWindow = UIApplication.shared.keyWindow {
+            blackBackgroundView = UIView(frame: keyWindow.frame)
+            blackBackgroundView?.backgroundColor = .black
+            blackBackgroundView?.alpha = 0
+            keyWindow.addSubview(blackBackgroundView!)
+            
+            keyWindow.addSubview(zoomingImageView)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .layoutSubviews, animations: {
+                self.blackBackgroundView?.alpha = 1
+                self.inputAccessoryView?.alpha = 0
+                let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width
+                
+                
+                zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
+                zoomingImageView.center = keyWindow.center
+            }, completion: nil)
+        }
+       // tutorial https://www.youtube.com/watch?v=fo3nSRBWfRA&list=PL0dzCUj1L5JEfHqwjBV0XFb9qx9cGXwkq&index=19
+    }
+    
+    @objc private func zoomOut(tapGesture: UITapGestureRecognizer) {
+        if let zoomOutImageView = tapGesture.view {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .layoutSubviews, animations: {
+                zoomOutImageView.frame = self.startingFrame!
+                self.blackBackgroundView?.alpha = 0
+            }) { (completed: Bool) in
+                zoomOutImageView.removeFromSuperview()
+            }
+        }
     }
     
     private func setUpTableView() {
@@ -217,7 +257,7 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                  messageImageView.bottomAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.bottomAnchor)
                     ].forEach{ $0.isActive = true }
                 otherPeoplesMessageCell.messageBody.isHidden = true
-                myMessageCell.messageBackground.backgroundColor = nil
+                otherPeoplesMessageCell.messageBackground.backgroundColor = nil
                 if let photoURL = URL(string: message.imageURL) {
                     print(photoURL)
                     messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)

@@ -198,4 +198,13 @@ extension JobListViewController: UISearchBarDelegate {
         checkForEmptyState()
         jobTableView.reloadData()
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            retrieveJobs()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
 }
