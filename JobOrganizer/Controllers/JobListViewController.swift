@@ -19,11 +19,6 @@ class JobListViewController: UIViewController {
     private var listener: ListenerRegistration!
     private var jobsArray = [Job]()
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
-    private var applicationSent = 0
-    private var phoneInterview = 0
-    private var inPersonInterview = 0
-    private var whiteboarding = 0
-    private var jobOffer = 0
     private var statistics: [Int] = []
     
     override func viewDidLoad() {
@@ -39,11 +34,6 @@ class JobListViewController: UIViewController {
     }
     
     private func retrieveJobs() {
-        applicationSent = 0
-        phoneInterview = 0
-        inPersonInterview = 0
-        whiteboarding = 0
-        jobOffer = 0
         jobsArray.removeAll()
         guard let currentUser = usersession.getCurrentUser() else {
             print("no logged user")
@@ -56,9 +46,7 @@ class JobListViewController: UIViewController {
                 for document in snapshot.documents {
                     let jobToAdd = Job(dict: document.data() as! [String : String])
                     jobs.append(jobToAdd)
-                    self.calculateStatistics(jobToAdd)
                 }
-    
                 switch UserDefaults.standard.object(forKey: UserDefaultsKeys.sortMethod) as? String {
                 case "applicationPhase":
                     jobs.sort{ $0.applicationPhase < $1.applicationPhase }
@@ -71,44 +59,51 @@ class JobListViewController: UIViewController {
                 }
                 self.jobsArray = jobs
                 self.checkForEmptyState()
+                self.updateStatistics(self.jobsArray)
                 self.jobTableView.reloadData()
-                self.statistics = [self.applicationSent, self.phoneInterview, self.inPersonInterview, self.whiteboarding, self.jobOffer]
-                Statistics.setStatistics(statistics: self.statistics)
             }
         }
     }
     
-    private func calculateStatistics(_ job: Job) {
-        switch job.applicationPhase {
-        case ApplicationPhase.applicationSent.rawValue:
-            applicationSent += 1
-            break
-        case ApplicationPhase.phoneInterview.rawValue:
-            applicationSent += 1
-            phoneInterview += 1
-            break
-        case ApplicationPhase.inPersonInterview.rawValue:
-            applicationSent += 1
-            phoneInterview += 1
-            inPersonInterview += 1
-            break
-        case ApplicationPhase.whiteboarding.rawValue:
-            applicationSent += 1
-            phoneInterview += 1
-            inPersonInterview += 1
-            whiteboarding += 1
-            break
-        case ApplicationPhase.jobOffer.rawValue:
-            applicationSent += 1
-            phoneInterview += 1
-            inPersonInterview += 1
-            whiteboarding += 1
-            jobOffer += 1
-            break
-        default:
-            break
+    private func updateStatistics(_ jobArray: [Job]) {
+        var applicationSent = 0
+        var phoneInterview = 0
+        var inPersonInterview = 0
+        var whiteboarding = 0
+        var jobOffer = 0
+        for job in jobArray {
+            switch job.applicationPhase {
+            case ApplicationPhase.applicationSent.rawValue:
+                applicationSent += 1
+                break
+            case ApplicationPhase.phoneInterview.rawValue:
+                applicationSent += 1
+                phoneInterview += 1
+                break
+            case ApplicationPhase.inPersonInterview.rawValue:
+                applicationSent += 1
+                phoneInterview += 1
+                inPersonInterview += 1
+                break
+            case ApplicationPhase.whiteboarding.rawValue:
+                applicationSent += 1
+                phoneInterview += 1
+                inPersonInterview += 1
+                whiteboarding += 1
+                break
+            case ApplicationPhase.jobOffer.rawValue:
+                applicationSent += 1
+                phoneInterview += 1
+                inPersonInterview += 1
+                whiteboarding += 1
+                jobOffer += 1
+                break
+            default:
+                break
+            }
         }
-        
+        let statistics = [applicationSent, phoneInterview, inPersonInterview, whiteboarding, jobOffer]
+        Statistics.setStatistics(statistics: statistics)
     }
     
     @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {

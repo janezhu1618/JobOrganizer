@@ -45,11 +45,12 @@ class AddJobViewController: UIViewController {
     }
     
     private func addJob() {
-        guard let companyName = companyNameTextField.text, let position = positionNameTextField.text
-            else {
-                showAlert(title: "Error", message: "Fields cannot be empty")
-                return
+        if companyNameTextField.text == "" || positionNameTextField.text == "" {
+            showAlert(title: "Error", message: "Company name and position cannot be empty")
+            return
         }
+        let companyName = companyNameTextField.text!
+        let position = positionNameTextField.text!
         guard let currentUser = Auth.auth().currentUser else {
             print("no current user logged in")
             return }
