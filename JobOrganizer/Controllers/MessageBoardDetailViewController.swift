@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
-//import Toucan
 
 class MessageBoardDetailViewController: UIViewController {
     
@@ -23,23 +22,7 @@ class MessageBoardDetailViewController: UIViewController {
     private var messageArray = [Message]()
     private var listener: ListenerRegistration!
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
-    private var imagePickerViewController: UIImagePickerController!
-    private var isImageFromCamera: Bool = false
-    private var saveImageFromCamera: Bool = false
-    private var startingFrame: CGRect?
-    private var blackBackgroundView: UIView?
-    
-    lazy var messageImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
-        imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .scaleAspectFit
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomTap)))
-        return imageView
-    }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = messageBoard.title
@@ -47,54 +30,6 @@ class MessageBoardDetailViewController: UIViewController {
         setUpTableView()
         configureTableView()
         retrieveMessages()
-        imagePickerViewController = UIImagePickerController()
-        imagePickerViewController.allowsEditing = true
-        imagePickerViewController.delegate = self
-        if let saveImageSetting = UserDefaults.standard.object(forKey: UserDefaultsKeys.saveCameraImage) as? Bool {
-            saveImageFromCamera = saveImageSetting
-        }
-    }
-    
-    @objc private func zoomTap(tapGesture: UITapGestureRecognizer) {
-        guard let startingImageView = tapGesture.view as? UIImageView else { return }
-        startingFrame = startingImageView.superview!.convert((startingImageView.frame), to: nil)
-        
-        let zoomingImageView = UIImageView(frame: startingFrame!)
-        zoomingImageView.backgroundColor = .red
-        zoomingImageView.image = startingImageView.image
-    
-       zoomingImageView.isUserInteractionEnabled = true
-        zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
-        
-        if let keyWindow = UIApplication.shared.keyWindow {
-            blackBackgroundView = UIView(frame: keyWindow.frame)
-            blackBackgroundView?.backgroundColor = .black
-            blackBackgroundView?.alpha = 0
-            keyWindow.addSubview(blackBackgroundView!)
-            
-            keyWindow.addSubview(zoomingImageView)
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .layoutSubviews, animations: {
-                self.blackBackgroundView?.alpha = 1
-                self.inputAccessoryView?.alpha = 0
-                let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width
-                
-                
-                zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
-                zoomingImageView.center = keyWindow.center
-            }, completion: nil)
-        }
-       // tutorial https://www.youtube.com/watch?v=fo3nSRBWfRA&list=PL0dzCUj1L5JEfHqwjBV0XFb9qx9cGXwkq&index=19
-    }
-    
-    @objc private func zoomOut(tapGesture: UITapGestureRecognizer) {
-        if let zoomOutImageView = tapGesture.view {
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .layoutSubviews, animations: {
-                zoomOutImageView.frame = self.startingFrame!
-                self.blackBackgroundView?.alpha = 0
-            }) { (completed: Bool) in
-                zoomOutImageView.removeFromSuperview()
-            }
-        }
     }
     
     private func setUpTableView() {
@@ -196,32 +131,6 @@ class MessageBoardDetailViewController: UIViewController {
         }
         return isAuthorized
     }
-    
-    @IBAction func imageButtonPressed(_ sender: UIButton) {
-        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePickerViewController.sourceType = .photoLibrary
-            showImagePickerViewController()
-        } else {
-            let alert = UIAlertController(title: "", message: "Upload image from?", preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
-                self.imagePickerViewController.sourceType = .camera
-                self.isImageFromCamera = true
-                self.showImagePickerViewController()
-            }))
-            alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
-                self.imagePickerViewController.sourceType = .photoLibrary
-                self.isImageFromCamera = false
-                self.showImagePickerViewController()
-            }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    private func showImagePickerViewController() {
-        present(imagePickerViewController, animated: true, completion: nil)
-    }
-    
 }
 
 extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -230,8 +139,6 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
         let message = messageArray[indexPath.row]
         if message.senderID != usersession.getCurrentUser()!.uid {
             guard let otherPeoplesMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else {
@@ -249,25 +156,8 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                         }
                     }
                 }
-            if message.messageBody == "" {
-                otherPeoplesMessageCell.messageBackground.addSubview(messageImageView)
-                [messageImageView.leftAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.leftAnchor),
-                 messageImageView.rightAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.rightAnchor),
-                 messageImageView.topAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.topAnchor),
-                 messageImageView.bottomAnchor.constraint(equalTo: otherPeoplesMessageCell.messageBackground.bottomAnchor)
-                    ].forEach{ $0.isActive = true }
-                otherPeoplesMessageCell.messageBody.isHidden = true
-                otherPeoplesMessageCell.messageBackground.backgroundColor = nil
-                if let photoURL = URL(string: message.imageURL) {
-                    print(photoURL)
-                    messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
-//                    tutorial from: https://www.youtube.com/watch?v=FqDVKW9Rn_M helped me with this part...
-                }
-            } else {
-                otherPeoplesMessageCell.messageBody.isHidden = false
-                otherPeoplesMessageCell.messageSender.text = message.senderEmail
-                otherPeoplesMessageCell.messageBody.text = message.messageBody
-            }
+            otherPeoplesMessageCell.messageSender.text = message.senderEmail
+            otherPeoplesMessageCell.messageBody.text = message.messageBody
             return otherPeoplesMessageCell
         } else {
             guard let myMessageCell = messageTableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as? MyMessageCell else {
@@ -278,25 +168,8 @@ extension MessageBoardDetailViewController: UITableViewDelegate, UITableViewData
                 if let photoURL = usersession.getCurrentUser()!.photoURL {
                     myMessageCell.messageUserProfilePicture.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
                 }
-            myMessageCell.messageSender.text = message.senderEmail
-            if message.messageBody == "" {
-                myMessageCell.messageBackground.addSubview(messageImageView)
-                [messageImageView.leftAnchor.constraint(equalTo: myMessageCell.messageBackground.leftAnchor),
-                 messageImageView.rightAnchor.constraint(equalTo: myMessageCell.messageBackground.rightAnchor),
-                 messageImageView.topAnchor.constraint(equalTo: myMessageCell.messageBackground.topAnchor),
-                 messageImageView.bottomAnchor.constraint(equalTo: myMessageCell.messageBackground.bottomAnchor)
-                    ].forEach{ $0.isActive = true }
-
-                if let photoURL = URL(string: message.imageURL) {
-                    messageImageView.kf.setImage(with: photoURL, placeholder: UIImage(named: "placeholderProfile")!)
-                }
-                myMessageCell.messageBody.isHidden = true
-                myMessageCell.messageBackground.backgroundColor = nil
-            } else {
-                myMessageCell.messageBody.isHidden = false
                 myMessageCell.messageSender.text = message.senderEmail
                 myMessageCell.messageBody.text = message.messageBody
-            }
                 return myMessageCell
             }
         }
@@ -327,64 +200,6 @@ extension MessageBoardDetailViewController: UITextViewDelegate {
         UIView.animate(withDuration: 0.5) {
             self.composeViewHeight.constant = 50
             self.view.layoutIfNeeded()
-        }
-    }
-}
-
-extension MessageBoardDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        var selectedImageFromPicker: UIImage?
-        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            selectedImageFromPicker = originalImage
-            
-        }
-        if var selectedImage = selectedImageFromPicker {
-            if isImageFromCamera && saveImageFromCamera {
-                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-            }
-//            selectedImage = Toucan.Resize.resizeImage(selectedImage, size: CGSize(width: 500, height: 500))
-            guard let currentUser = usersession.getCurrentUser() else {
-                print("no current user logged in")
-                return }
-            guard let data = selectedImage.jpegData(compressionQuality: 1) else {
-                print("unable to convert selected message image to image data")
-                return
-            }
-            let imageName = NSUUID().uuidString
-            let imageReference = Storage.storage().reference().child(StorageKeys.MessageImages).child("\(imageName).jpg")
-            StorageMetadata().contentType = "image/jpeg"
-            imageReference.putData(data, metadata: StorageMetadata()) { (metadata, error) in
-                guard let _ = metadata else {
-                    print("error uploading data")
-                    return
-                }
-                imageReference.downloadURL(completion: { (url, error) in
-                    if error != nil {
-                        print(error!)
-                    } else {
-                        let returnURL = url!.absoluteString
-                        var newMessage = Message(messageBody: "", imageURL: returnURL, senderID: currentUser.uid, senderEmail: currentUser.email!, timeStamp: self.getTimestamp(), dbReferenceDocumentId: "")
-                        newMessage.imageWidth = selectedImage.size.width.description
-                        newMessage.imageHeight = selectedImage.size.height.description
-                        DatabaseManager.postMessage(message: newMessage, messageBoard: self.messageBoard)
-                    }
-                })
-            }
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            showAlert(title: "Save error", message: error.localizedDescription)
-        } else {
-            showAlert(title: "Saved!", message: "Your image has been saved to your photos.")
         }
     }
 }

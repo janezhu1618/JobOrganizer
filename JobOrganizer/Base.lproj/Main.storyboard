@@ -235,10 +235,10 @@
             </objects>
             <point key="canvasLocation" x="4618.840579710145" y="-413.16964285714283"/>
         </scene>
-        <!--Add a job-->
+        <!--Job Details-->
         <scene sceneID="izg-fg-WJY">
             <objects>
-                <tableViewController storyboardIdentifier="JobTableViewController" title="Add a job" id="RQM-eY-J27" customClass="JobTableViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="JobTableViewController" title="Job Details" id="RQM-eY-J27" customClass="JobTableViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Mq-0M-Cca">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -579,7 +579,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="applicationStatusPickerView" destination="r1W-xm-OuN" id="mPn-cG-v81"/>
                         <outlet property="companyTextField" destination="APW-4h-6bh" id="rur-Hg-tr7"/>
@@ -956,15 +955,8 @@
                                             <action selector="postButtonPressed:" destination="Nhk-dR-gwS" eventType="touchUpInside" id="ph5-GN-wga"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6me-QY-Ax3">
-                                        <rect key="frame" x="8" y="14" width="22" height="22"/>
-                                        <state key="normal" image="addImage"/>
-                                        <connections>
-                                            <action selector="imageButtonPressed:" destination="Nhk-dR-gwS" eventType="touchUpInside" id="3j1-cj-wGy"/>
-                                        </connections>
-                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SoP-FG-tTe">
-                                        <rect key="frame" x="38" y="10" width="326" height="30"/>
+                                        <rect key="frame" x="10" y="10" width="354" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -972,19 +964,17 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="6me-QY-Ax3" firstAttribute="centerY" secondItem="SoP-FG-tTe" secondAttribute="centerY" id="M2C-R6-7bQ"/>
-                                    <constraint firstItem="6me-QY-Ax3" firstAttribute="leading" secondItem="N6H-CR-3LF" secondAttribute="leading" constant="8" id="NBA-2c-RfY"/>
+                                    <constraint firstItem="SoP-FG-tTe" firstAttribute="top" secondItem="V8T-24-0qi" secondAttribute="top" id="Dge-zK-JPD"/>
+                                    <constraint firstItem="SoP-FG-tTe" firstAttribute="leading" secondItem="N6H-CR-3LF" secondAttribute="leading" constant="10" id="IEP-5g-2Wk"/>
                                     <constraint firstAttribute="trailing" secondItem="V8T-24-0qi" secondAttribute="trailing" constant="8" id="YHD-UJ-MMs"/>
-                                    <constraint firstItem="SoP-FG-tTe" firstAttribute="top" secondItem="N6H-CR-3LF" secondAttribute="top" constant="10" id="bVM-xz-GXh"/>
+                                    <constraint firstItem="SoP-FG-tTe" firstAttribute="bottom" secondItem="V8T-24-0qi" secondAttribute="bottom" id="aFJ-Jn-1fZ"/>
                                     <constraint firstItem="V8T-24-0qi" firstAttribute="leading" secondItem="SoP-FG-tTe" secondAttribute="trailing" constant="8" id="gl8-P2-XQh"/>
-                                    <constraint firstItem="6me-QY-Ax3" firstAttribute="centerY" secondItem="V8T-24-0qi" secondAttribute="centerY" id="jqo-sx-uaK"/>
-                                    <constraint firstItem="SoP-FG-tTe" firstAttribute="leading" secondItem="6me-QY-Ax3" secondAttribute="trailing" constant="8" id="wgu-oE-679"/>
                                     <constraint firstAttribute="height" constant="50" id="wzb-xE-in5"/>
                                     <constraint firstItem="V8T-24-0qi" firstAttribute="top" secondItem="N6H-CR-3LF" secondAttribute="top" constant="10" id="zNy-dm-y2i"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bf0-r7-RDM" userLabel="Message Table View">
-                                <rect key="frame" x="0.0" y="116" width="414" height="521"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" id="xNn-P0-3mL" customClass="MessageCell" customModule="JobOrganizer" customModuleProvider="target">
@@ -1010,7 +1000,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="v1o-oV-OCf"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="mJE-Nq-Dw4">
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="mJE-Nq-Dw4">
                         <barButtonItem key="rightBarButtonItem" title="∙∙∙" id="xvI-oz-xZ3">
                             <connections>
                                 <action selector="moreOptionsButtonPressed:" destination="Nhk-dR-gwS" id="LM5-Fp-Wlo"/>
@@ -1238,7 +1228,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="addImage" width="22.5" height="22.5"/>
         <image name="job" width="24" height="24"/>
         <image name="message" width="24" height="24"/>
         <image name="placeholderProfile" width="720" height="720"/>
