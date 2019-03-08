@@ -72,9 +72,9 @@ class JobListViewController: UIViewController {
                 self.jobsArray = jobs
                 self.checkForEmptyState()
                 self.jobTableView.reloadData()
+                self.statistics = [self.applicationSent, self.phoneInterview, self.inPersonInterview, self.whiteboarding, self.jobOffer]
+                Statistics.setStatistics(statistics: self.statistics)
             }
-            self.statistics = [self.applicationSent, self.phoneInterview, self.inPersonInterview, self.whiteboarding, self.jobOffer]
-            Statistics.setStatistics(statistics: self.statistics)
         }
     }
     
