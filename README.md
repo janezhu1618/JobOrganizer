@@ -8,7 +8,7 @@ Programmers and mobile developers may send out hundreds of job applications befo
 - Swift 4
 - Xcode 10.1
 - Google Firebase
-- Cocoapods: Firebase, SVProgressHud, Kingfisher
+- Cocoapods: Firebase, SVProgressHud, Kingfisher, Toucan
 
 # Setup
 To run this project, install it locally using Terminal...

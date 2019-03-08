@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import Kingfisher
+import Toucan
 
 class ProfileTableViewController: UITableViewController {
     
@@ -128,15 +129,18 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
             selectedImageFromPicker = originalImage
             
         }
-        if let selectedImage = selectedImageFromPicker {
+        
+        if var selectedImage = selectedImageFromPicker {
+            if isImageFromCamera && saveImageFromCamera {
+                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
+            
+            selectedImage = Toucan(image: selectedImage).resize(CGSize(width: 150, height: 150)).image!
             profileImageButton.setImage(selectedImage, for: .normal)
             guard let data = selectedImage.jpegData(compressionQuality: 1) else { print("unable to convert selected image to image data")
                 return
             }
             StorageManager.uploadProfileImage(data)
-            if isImageFromCamera && saveImageFromCamera {
-                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-            }
         }
         dismiss(animated: true, completion: nil)
     }

@@ -14,6 +14,7 @@ pod 'Firebase/Storage'
 pod 'Firebase/Firestore'
 pod ‘SVProgressHUD’
 pod ‘Kingfisher’
+pod 'Toucan'
 
 
 end

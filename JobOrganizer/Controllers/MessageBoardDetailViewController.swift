@@ -9,11 +9,11 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+//import Toucan
 
 class MessageBoardDetailViewController: UIViewController {
     
     @IBOutlet var emptyStateView: UIView!
-    
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var messageTableView: UITableView!
@@ -344,7 +344,11 @@ extension MessageBoardDetailViewController: UIImagePickerControllerDelegate, UIN
             selectedImageFromPicker = originalImage
             
         }
-        if let selectedImage = selectedImageFromPicker {
+        if var selectedImage = selectedImageFromPicker {
+            if isImageFromCamera && saveImageFromCamera {
+                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
+//            selectedImage = Toucan.Resize.resizeImage(selectedImage, size: CGSize(width: 500, height: 500))
             guard let currentUser = usersession.getCurrentUser() else {
                 print("no current user logged in")
                 return }
@@ -371,9 +375,6 @@ extension MessageBoardDetailViewController: UIImagePickerControllerDelegate, UIN
                         DatabaseManager.postMessage(message: newMessage, messageBoard: self.messageBoard)
                     }
                 })
-            }
-            if isImageFromCamera && saveImageFromCamera {
-                UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
         }
         dismiss(animated: true, completion: nil)
