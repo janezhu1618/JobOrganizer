@@ -25,9 +25,9 @@ When adding a job, fill out the details and select the application phase for tha
 You can interact with other users in message boards by chatting or responding to their questions.  You can create a new message board with a specific question or discussion topic. 
 
 # GIFs
-![](JobOrganizerGif1.gif)
-![](JobOrganizerGif2.gif)
-![](JobOrganizerGif3.gif)
+![](JobOrganizerGif1a.gif)
+![](JobOrganizerGif2a.gif)
+![](JobOrganizerGif3a.gif)
 ![](JobOrganizerGif4.gif)
 
 # Links
