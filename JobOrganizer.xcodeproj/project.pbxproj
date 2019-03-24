@@ -73,7 +73,7 @@
 		A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Dates.swift"; sourceTree = "<group>"; };
 		A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
 		A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageCell.xib; sourceTree = "<group>"; };
-		A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsKeys.swift; path = "JobOrganizer/Supporting Files/UserDefaultsKeys.swift"; sourceTree = SOURCE_ROOT; };
+		A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsKeys.swift; path = "JobOrganizer/New Group/UserDefaultsKeys.swift"; sourceTree = SOURCE_ROOT; };
 		A5FF81BC22306B8E006A21F6 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +134,7 @@
 				A5550AC02226D7E400D4FB14 /* Views */,
 				A530A05F2224A8530073A638 /* Controllers */,
 				A530A0602224A8680073A638 /* Supporting Files */,
+				A579B9262247CE26003525F9 /* Constants */,
 				A5550AE72226F7F100D4FB14 /* Extensions */,
 				A530A05B22249B3B0073A638 /* GoogleService-Info.plist */,
 				A530A05522249B050073A638 /* Info.plist */,
@@ -144,15 +145,10 @@
 		A530A05F2224A8530073A638 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A530A0612224A9D10073A638 /* JobListViewController.swift */,
-				A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */,
-				A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */,
-				A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */,
-				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
-				A5550AEA2227024F00D4FB14 /* MessageBoardDetailViewController.swift */,
-				A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */,
-				A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */,
-				A530A04B22249B040073A638 /* WelcomeViewController.swift */,
+				A579B9282247CE42003525F9 /* Jobs */,
+				A579B9292247CE50003525F9 /* Message Board */,
+				A579B92A2247CE58003525F9 /* Profile */,
+				A579B9272247CE30003525F9 /* Welcome */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -209,6 +205,50 @@
 				A5FF1D9F2228815A00CF1DDD /* UserSession.swift */,
 			);
 			path = "Firebase Utilities";
+			sourceTree = "<group>";
+		};
+		A579B9262247CE26003525F9 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A579B9272247CE30003525F9 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				A530A04B22249B040073A638 /* WelcomeViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		A579B9282247CE42003525F9 /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				A530A0612224A9D10073A638 /* JobListViewController.swift */,
+				A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */,
+				A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */,
+			);
+			path = Jobs;
+			sourceTree = "<group>";
+		};
+		A579B9292247CE50003525F9 /* Message Board */ = {
+			isa = PBXGroup;
+			children = (
+				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
+				A5550AEA2227024F00D4FB14 /* MessageBoardDetailViewController.swift */,
+				A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */,
+			);
+			path = "Message Board";
+			sourceTree = "<group>";
+		};
+		A579B92A2247CE58003525F9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
