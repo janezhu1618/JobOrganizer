@@ -17,20 +17,17 @@ class AddJobViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var jobPostingURLTextField: UITextField!
     
-    private var tapGesture: UITapGestureRecognizer!
     private let pickerData: [String] = ApplicationPhase.applicationPhasePickerData
     private var applicationStatus = ApplicationPhase.interested.rawValue
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTapGesture()
         applicationStatusPickerView.delegate = self
         applicationStatusPickerView.dataSource = self
     }
     
-    private func addTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboards))
-        view.addGestureRecognizer(tapGesture)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @objc private func resignKeyboards() {

@@ -29,6 +29,7 @@
 		A5550AF32227225400D4FB14 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF22227225400D4FB14 /* DatabaseManager.swift */; };
 		A5550AF6222722FF00D4FB14 /* DatabaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */; };
 		A5550AFA2227532A00D4FB14 /* AddMessageBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */; };
+		A579B92C224A72EA003525F9 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579B92B224A72EA003525F9 /* UserDefaultsKeys.swift */; };
 		A5FF1D9C22283EC300CF1DDD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9B22283EC300CF1DDD /* StorageManager.swift */; };
 		A5FF1D9E222840BF00CF1DDD /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */; };
 		A5FF1DA02228815A00CF1DDD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9F2228815A00CF1DDD /* UserSession.swift */; };
@@ -36,7 +37,6 @@
 		A5FF1DAC222DA37A00CF1DDD /* ViewController+Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */; };
 		A5FF1DAF222EB8D400CF1DDD /* MyMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */; };
 		A5FF1DB0222EB8D400CF1DDD /* MyMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */; };
-		A5FF81BB22305D4C006A21F6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */; };
 		A5FF81BD22306B8E006A21F6 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF81BC22306B8E006A21F6 /* Statistics.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +66,7 @@
 		A5550AF22227225400D4FB14 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseKeys.swift; sourceTree = "<group>"; };
 		A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageBoardViewController.swift; sourceTree = "<group>"; };
+		A579B92B224A72EA003525F9 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		A5FF1D9B22283EC300CF1DDD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		A5FF1D9F2228815A00CF1DDD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Dates.swift"; sourceTree = "<group>"; };
 		A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
 		A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageCell.xib; sourceTree = "<group>"; };
-		A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsKeys.swift; path = "JobOrganizer/New Group/UserDefaultsKeys.swift"; sourceTree = SOURCE_ROOT; };
 		A5FF81BC22306B8E006A21F6 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,7 +210,7 @@
 		A579B9262247CE26003525F9 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				A5FF81BA22305D4C006A21F6 /* UserDefaultsKeys.swift */,
+				A579B92B224A72EA003525F9 /* UserDefaultsKeys.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -406,9 +406,9 @@
 				A5FF1DA82229C1CB00CF1DDD /* JobTableViewController.swift in Sources */,
 				A5550AF122271C0C00D4FB14 /* JobOrganizerUser.swift in Sources */,
 				A5550AFA2227532A00D4FB14 /* AddMessageBoardViewController.swift in Sources */,
+				A579B92C224A72EA003525F9 /* UserDefaultsKeys.swift in Sources */,
 				A5FF1DA02228815A00CF1DDD /* UserSession.swift in Sources */,
 				A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */,
-				A5FF81BB22305D4C006A21F6 /* UserDefaultsKeys.swift in Sources */,
 				A5550AE62226F7A800D4FB14 /* Message.swift in Sources */,
 				A530A04C22249B040073A638 /* WelcomeViewController.swift in Sources */,
 				A5FF1DAC222DA37A00CF1DDD /* ViewController+Dates.swift in Sources */,

@@ -15,9 +15,10 @@ enum ApplicationPhase: String {
     case inPersonInterview = "In-Person Interview"
     case whiteboarding = "Whiteboarding"
     case jobOffer = "Job Offer"
+    case rejected = "Rejected"
     case itsComplicated = "It's Complicated"
     
-    static let applicationPhasePickerData = [ ApplicationPhase.interested.rawValue, ApplicationPhase.applicationSent.rawValue, ApplicationPhase.phoneInterview.rawValue, ApplicationPhase.inPersonInterview.rawValue, ApplicationPhase.whiteboarding.rawValue, ApplicationPhase.jobOffer.rawValue, ApplicationPhase.itsComplicated.rawValue]
+    static let applicationPhasePickerData = [ ApplicationPhase.interested.rawValue, ApplicationPhase.applicationSent.rawValue, ApplicationPhase.phoneInterview.rawValue, ApplicationPhase.inPersonInterview.rawValue, ApplicationPhase.whiteboarding.rawValue, ApplicationPhase.jobOffer.rawValue, ApplicationPhase.rejected.rawValue, ApplicationPhase.itsComplicated.rawValue]
 }
 
 struct Job {
