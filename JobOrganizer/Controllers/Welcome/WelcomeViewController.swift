@@ -25,14 +25,14 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
-        view.addGestureRecognizer(tapGesture)
+        passwordTextField.delegate = self
+        emailTextField.delegate = self
     }
     
-    @objc func viewTapped() {
-        emailTextField.endEditing(true)
-        passwordTextField.endEditing(true)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
+
 
     @IBAction func signInOrRegisterSegmentedControl(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -44,7 +44,7 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-    @IBAction func signInOrRegisterButtonPressed(_ sender: UIButton) {
+    private func signInOrRegister() {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             showAlert(title: "Error", message: "Email and password fields cannot be empty.")
             return
@@ -73,22 +73,33 @@ class WelcomeViewController: UIViewController {
                         return
                     }
                     let userData: [String : Any] = ["userId"      : authDataResult.user.uid,
-                                    "email"       : authDataResult.user.email ?? "",
-                                    "displayName" : authDataResult.user.displayName ?? "",
-                                    "imageURL"    : authDataResult.user.photoURL ?? "",
-                                    "username"    : username
-                        ]
+                                                    "email"       : authDataResult.user.email ?? "",
+                                                    "displayName" : authDataResult.user.displayName ?? "",
+                                                    "imageURL"    : authDataResult.user.photoURL ?? "",
+                                                    "username"    : username
+                    ]
                     DatabaseManager.firebaseDB.collection(DatabaseKeys.UsersCollectionKey).document(authDataResult.user.uid).setData(userData, completion: { (error) in
-                            if let error = error {
-                                print("error creating user profile \(error.localizedDescription)")
-                            }
-                        })
+                        if let error = error {
+                            print("error creating user profile \(error.localizedDescription)")
+                        }
+                    })
                     self.performSegue(withIdentifier: "goToMainTab", sender: self)
                     SVProgressHUD.dismiss()
                 }
             }
         }
-    }
+        }
     
+    @IBAction func signInOrRegisterButtonPressed(_ sender: UIButton) {
+        sender.isEnabled = false
+        signInOrRegister()
+    }
 }
 
+extension WelcomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        signInOrRegister()
+        return true
+    }
+}
