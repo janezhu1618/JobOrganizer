@@ -30,13 +30,6 @@ class AddJobViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @objc private func resignKeyboards() {
-        companyNameTextField.endEditing(true)
-        positionNameTextField.endEditing(true)
-        jobPostingURLTextField.endEditing(true)
-    }
-
-    
     @IBAction func continueButtonPressed(_ sender: UIButton) {
         addJob()
     }

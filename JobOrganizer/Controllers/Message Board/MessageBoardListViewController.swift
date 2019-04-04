@@ -17,7 +17,6 @@ class MessageBoardListViewController: UIViewController {
     private var listener: ListenerRegistration!
     private var messageBoardListArray: [MessageBoard] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         messageBoardListTableView.dataSource = self
