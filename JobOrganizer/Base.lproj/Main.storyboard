@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Csd-Ud-VNc" userLabel="Main Stack View">
-                                <rect key="frame" x="0.0" y="138.66666666666663" width="414" height="252"/>
+                                <rect key="frame" x="0.0" y="164" width="414" height="201"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LCn-2T-R4w">
                                         <rect key="frame" x="142.66666666666666" y="0.0" width="128.99999999999997" height="29"/>
@@ -31,14 +31,8 @@
                                             <action selector="signInSelectorChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="odY-f3-01Y"/>
                                         </connections>
                                     </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLg-el-EGs">
-                                        <rect key="frame" x="167.33333333333334" y="53" width="79.333333333333343" height="26"/>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="E0f-LT-JLa" userLabel="Email Stack">
-                                        <rect key="frame" x="22" y="104" width="370" height="30"/>
+                                        <rect key="frame" x="22" y="53" width="370" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJb-Yh-c4V">
                                                 <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
@@ -55,10 +49,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s6O-jA-diS" userLabel="Password Stack View">
-                                        <rect key="frame" x="22" y="159.00000000000003" width="370" height="30"/>
+                                        <rect key="frame" x="22" y="108" width="370" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTx-3u-QXc">
-                                                <rect key="frame" x="0.0" y="7.666666666666627" width="89.666666666666671" height="22.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="7.6666666666666838" width="89.666666666666671" height="22.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -72,8 +66,12 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Rt-tH-sMd">
-                                        <rect key="frame" x="163.66666666666666" y="214.00000000000003" width="87" height="38"/>
+                                        <rect key="frame" x="157" y="163" width="100" height="38"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="PsU-y2-M5M"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="STJ-pa-aEz"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                         <state key="normal" title=" Sign in "/>
                                         <connections>
@@ -113,7 +111,6 @@
                         <outlet property="emailTextField" destination="MV4-cW-usM" id="xIG-Pf-K9x"/>
                         <outlet property="passwordTextField" destination="OVd-QL-Wf9" id="AAA-nv-yYh"/>
                         <outlet property="signInButton" destination="9Rt-tH-sMd" id="Ym6-6n-dW1"/>
-                        <outlet property="signInLabel" destination="WLg-el-EGs" id="JaF-e7-UvQ"/>
                         <outlet property="signInSelector" destination="LCn-2T-R4w" id="D3q-TZ-mLf"/>
                         <segue destination="QI8-bD-Jxb" kind="show" identifier="goToHome" id="vpc-X4-FmR"/>
                     </connections>
@@ -194,7 +191,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7qj-uf-v7b">
                             <connections>
                                 <action selector="addJob:" destination="hAx-cQ-SFr" id="zm6-DW-Lx1"/>
-                                <segue destination="xnP-Ft-6vs" kind="show" id="D0V-4d-17y"/>
+                                <segue destination="mdv-1L-WrX" kind="presentation" id="Mb3-Uw-SG3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -206,101 +203,194 @@
             </objects>
             <point key="canvasLocation" x="1544.9275362318842" y="98.641304347826093"/>
         </scene>
-        <!--Job Detail Controller-->
-        <scene sceneID="Tti-Gv-Je0">
+        <!--Job Details-->
+        <scene sceneID="fLu-LL-3Al">
             <objects>
-                <viewController title="Job Detail Controller" id="xnP-Ft-6vs" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="spe-qI-q1A">
+                <tableViewController title="Job Details" id="mdv-1L-WrX" customClass="JobDetailsTableViewController" customModule="JobOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dam-7H-3BR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pqV-46-8sq">
-                                <rect key="frame" x="194" y="353" width="25" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EmK-Px-eNM">
-                                <rect key="frame" x="194" y="353" width="25" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7QT-8G-m5J">
-                                <rect key="frame" x="194" y="353" width="25" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" text="Company Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmM-EV-bpa">
-                                <rect key="frame" x="143" y="356" width="127.33333333333331" height="22.333333333333332"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" text="Application Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uk-Ib-b5v">
-                                <rect key="frame" x="137" y="232" width="139.66666666666666" height="22.333333333333329"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" text="Job Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWr-h0-5QD">
-                                <rect key="frame" x="40" y="269" width="139.66666666666666" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rIq-p9-1tM">
-                                <rect key="frame" x="154" y="466" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBZ-Gw-EtO">
-                                <rect key="frame" x="40" y="466" width="139.66666666666666" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AXL-EK-kKa">
-                                <rect key="frame" x="40" y="497" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" text="Last Updated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-HM-Yg8">
-                                <rect key="frame" x="49" y="651" width="139.66666666666666" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" text="Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-tC-STr">
-                                <rect key="frame" x="169" y="136" width="58.666666666666657" height="22.333333333333329"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.80952477329999994" green="0.80952477329999994" blue="0.80952477329999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <viewLayoutGuide key="safeArea" id="2Oo-vP-E3q"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4wU-db-qxq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="Company Name" id="6pn-sB-3YE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5fH-gQ-oOL">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5fH-gQ-oOL" id="hmX-H6-yjJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UbY-LX-bLz">
+                                                    <rect key="frame" x="11" y="0.0" width="392" height="43.666666666666664"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="UbY-LX-bLz" secondAttribute="bottom" id="10Z-KB-Zj4"/>
+                                                <constraint firstItem="UbY-LX-bLz" firstAttribute="top" secondItem="hmX-H6-yjJ" secondAttribute="top" id="1Dn-Sd-2Ah"/>
+                                                <constraint firstAttribute="trailing" secondItem="UbY-LX-bLz" secondAttribute="trailing" constant="11" id="86I-fU-fjs"/>
+                                                <constraint firstItem="UbY-LX-bLz" firstAttribute="leading" secondItem="hmX-H6-yjJ" secondAttribute="leading" constant="11" id="8Hj-Jp-7Tc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Position" id="yKy-WL-2M3">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GMD-gi-CsR">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GMD-gi-CsR" id="HOD-tg-ad2">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAV-fe-TGf">
+                                                    <rect key="frame" x="11" y="0.0" width="392" height="43.666666666666664"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="jAV-fe-TGf" secondAttribute="trailing" constant="11" id="5A2-9l-e32"/>
+                                                <constraint firstItem="jAV-fe-TGf" firstAttribute="leading" secondItem="HOD-tg-ad2" secondAttribute="leading" constant="11" id="KfV-xN-Des"/>
+                                                <constraint firstItem="jAV-fe-TGf" firstAttribute="top" secondItem="HOD-tg-ad2" secondAttribute="top" id="doA-B3-D0h"/>
+                                                <constraint firstAttribute="bottom" secondItem="jAV-fe-TGf" secondAttribute="bottom" id="u0Z-sJ-9pK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Application Status" id="Drm-bk-C2z">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UVU-oM-zpS">
+                                        <rect key="frame" x="0.0" y="172" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UVU-oM-zpS" id="ID1-Mw-4cI">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LvZ-fM-WX9">
+                                                    <rect key="frame" x="11" y="0.0" width="392" height="43.666666666666664"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="LvZ-fM-WX9" secondAttribute="trailing" constant="11" id="1Pp-Mb-eB5"/>
+                                                <constraint firstAttribute="bottom" secondItem="LvZ-fM-WX9" secondAttribute="bottom" id="JLn-cX-VnD"/>
+                                                <constraint firstItem="LvZ-fM-WX9" firstAttribute="leading" secondItem="ID1-Mw-4cI" secondAttribute="leading" constant="11" id="UKB-KC-ScA"/>
+                                                <constraint firstItem="LvZ-fM-WX9" firstAttribute="top" secondItem="ID1-Mw-4cI" secondAttribute="top" id="Vsa-Q3-ha3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Notes" id="j0g-bB-tvU">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="r3T-rj-sp2">
+                                        <rect key="frame" x="0.0" y="244" width="414" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r3T-rj-sp2" id="Iwv-ud-cst">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.66666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-2u-5Kt">
+                                                    <rect key="frame" x="11" y="0.0" width="392" height="149.66666666666666"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qMS-2u-5Kt" firstAttribute="leading" secondItem="Iwv-ud-cst" secondAttribute="leading" constant="11" id="6PZ-YL-Twm"/>
+                                                <constraint firstItem="qMS-2u-5Kt" firstAttribute="top" secondItem="Iwv-ud-cst" secondAttribute="top" id="GhC-3x-Mgp"/>
+                                                <constraint firstAttribute="trailing" secondItem="qMS-2u-5Kt" secondAttribute="trailing" constant="11" id="LwO-H4-ecb"/>
+                                                <constraint firstAttribute="bottom" secondItem="qMS-2u-5Kt" secondAttribute="bottom" id="eqG-Ej-i24"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Job Description" id="oOy-3l-mcT">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="Hlg-xt-XXF">
+                                        <rect key="frame" x="0.0" y="422" width="414" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hlg-xt-XXF" id="kMU-cB-Hac">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.66666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gxw-6z-mHb">
+                                                    <rect key="frame" x="11" y="0.0" width="392" height="149.66666666666666"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gxw-6z-mHb" firstAttribute="top" secondItem="kMU-cB-Hac" secondAttribute="top" id="AiW-xK-ucg"/>
+                                                <constraint firstAttribute="trailing" secondItem="gxw-6z-mHb" secondAttribute="trailing" constant="11" id="DCc-HG-enr"/>
+                                                <constraint firstItem="gxw-6z-mHb" firstAttribute="leading" secondItem="kMU-cB-Hac" secondAttribute="leading" constant="11" id="pdk-Dp-F00"/>
+                                                <constraint firstAttribute="bottom" secondItem="gxw-6z-mHb" secondAttribute="bottom" id="ywL-BI-uLA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Last Updated" id="KyQ-6d-Lg0">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="y4y-O9-PiQ">
+                                        <rect key="frame" x="0.0" y="600" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y4y-O9-PiQ" id="GhP-BU-K7E">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="February 11, 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFQ-4P-URw">
+                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XFQ-4P-URw" secondAttribute="trailing" id="2uS-0a-zAq"/>
+                                                <constraint firstItem="XFQ-4P-URw" firstAttribute="top" secondItem="GhP-BU-K7E" secondAttribute="topMargin" id="HSL-40-7NC"/>
+                                                <constraint firstItem="XFQ-4P-URw" firstAttribute="leading" secondItem="GhP-BU-K7E" secondAttribute="leadingMargin" id="Qdq-ib-Q7L"/>
+                                                <constraint firstItem="XFQ-4P-URw" firstAttribute="bottom" secondItem="GhP-BU-K7E" secondAttribute="bottomMargin" id="YCC-Ow-hNl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="mdv-1L-WrX" id="ZDI-xG-Dyl"/>
+                            <outlet property="delegate" destination="mdv-1L-WrX" id="Xv5-Xo-JFW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Job" id="G4v-Oa-Ncb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="xhL-Z8-pmd"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="applicationStatusTextField" destination="LvZ-fM-WX9" id="YII-re-K6v"/>
+                        <outlet property="companyNameTextField" destination="UbY-LX-bLz" id="4pk-yf-GFR"/>
+                        <outlet property="jobDescriptionTextView" destination="gxw-6z-mHb" id="eO9-XY-m3D"/>
+                        <outlet property="lastUpdatedLabel" destination="XFQ-4P-URw" id="iKH-5W-MnI"/>
+                        <outlet property="notesTextView" destination="qMS-2u-5Kt" id="3TY-Af-HWW"/>
+                        <outlet property="positionTextField" destination="jAV-fe-TGf" id="Vnc-p9-OAy"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pNw-jj-5ay" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286.9565217391305" y="98.641304347826093"/>
+            <point key="canvasLocation" x="2926" y="99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gb4-Te-CO3">

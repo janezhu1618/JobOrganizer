@@ -12,7 +12,6 @@ import Firebase
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var signInSelector: UISegmentedControl!
-    @IBOutlet weak var signInLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
@@ -33,10 +32,8 @@ class LoginViewController: UIViewController {
         isSignIn = !isSignIn
         //check the bool and set the labels
         if isSignIn {
-            signInLabel.text = "Sign In"
             signInButton.setTitle(" Sign In ", for: .normal)
         } else {
-            signInLabel.text = "Register"
             signInButton.setTitle(" Register ", for: .normal)
         }
     }

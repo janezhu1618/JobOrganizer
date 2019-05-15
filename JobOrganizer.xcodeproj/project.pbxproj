@@ -10,6 +10,7 @@
 		7B950A6C434A436455604B82 /* Pods_JobOrganizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8C00D043C242848AF8CAFE /* Pods_JobOrganizer.framework */; };
 		A5584D59220DCEC9001C5763 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5584D58220DCEC9001C5763 /* JobViewController.swift */; };
 		A5584D5B220DCF19001C5763 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5584D5A220DCF19001C5763 /* Job.swift */; };
+		A5584DB822138FBB001C5763 /* JobDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5584DB722138FBA001C5763 /* JobDetailsTableViewController.swift */; };
 		A560489C220B773B007F0BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A560489B220B773B007F0BBE /* AppDelegate.swift */; };
 		A560489E220B773B007F0BBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A560489D220B773B007F0BBE /* LoginViewController.swift */; };
 		A56048A1220B773B007F0BBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A560489F220B773B007F0BBE /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		0D8C00D043C242848AF8CAFE /* Pods_JobOrganizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobOrganizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5584D58220DCEC9001C5763 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
 		A5584D5A220DCF19001C5763 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		A5584DB722138FBA001C5763 /* JobDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsTableViewController.swift; sourceTree = "<group>"; };
 		A5604898220B773B007F0BBE /* JobOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A560489B220B773B007F0BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A560489D220B773B007F0BBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +48,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5584DB92213900D001C5763 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A560489D220B773B007F0BBE /* LoginViewController.swift */,
+				A5584D58220DCEC9001C5763 /* JobViewController.swift */,
+				A5584DB722138FBA001C5763 /* JobDetailsTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A5584DBA22139019001C5763 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5584D5A220DCF19001C5763 /* Job.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A560488F220B773B007F0BBE = {
 			isa = PBXGroup;
 			children = (
@@ -68,10 +88,9 @@
 			isa = PBXGroup;
 			children = (
 				A560489B220B773B007F0BBE /* AppDelegate.swift */,
-				A560489D220B773B007F0BBE /* LoginViewController.swift */,
 				A560489F220B773B007F0BBE /* Main.storyboard */,
-				A5584D58220DCEC9001C5763 /* JobViewController.swift */,
-				A5584D5A220DCF19001C5763 /* Job.swift */,
+				A5584DB92213900D001C5763 /* Controllers */,
+				A5584DBA22139019001C5763 /* Model */,
 				A56048A2220B773C007F0BBE /* Assets.xcassets */,
 				A56048A4220B773C007F0BBE /* LaunchScreen.storyboard */,
 				A5746C42220B7BBD0099CD31 /* GoogleService-Info.plist */,
@@ -251,6 +270,7 @@
 				A560489C220B773B007F0BBE /* AppDelegate.swift in Sources */,
 				A5584D59220DCEC9001C5763 /* JobViewController.swift in Sources */,
 				A5584D5B220DCF19001C5763 /* Job.swift in Sources */,
+				A5584DB822138FBB001C5763 /* JobDetailsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
