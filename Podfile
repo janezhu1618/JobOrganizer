@@ -7,8 +7,20 @@ target 'JobOrganizer' do
 
   # Pods for JobOrganizer
 
+<<<<<<< HEAD
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'FirebaseUI/Auth'
+=======
+pod ‘Firebase’
+pod ‘Firebase/Auth’
+pod ‘Firebase/Database’
+pod 'Firebase/Storage'
+pod 'Firebase/Firestore'
+pod ‘SVProgressHUD’
+pod ‘Kingfisher’
+pod 'Toucan'
+
+>>>>>>> refs/remotes/origin/master
 
 end

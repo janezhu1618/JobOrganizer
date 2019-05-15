@@ -181,6 +181,29 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong, readonly, nullable) NSString *username;
 
+<<<<<<< HEAD
+=======
+/** @property oauthIDToken
+    @brief The ID token for the OpenID OAuth extension.
+ */
+@property(nonatomic, strong, readonly, nullable) NSString *oauthIDToken;
+
+/** @property oauthExpirationDate
+    @brief The approximate expiration date of the oauth access token.
+ */
+@property(nonatomic, copy, readonly, nullable) NSDate *oauthExpirationDate;
+
+/** @property oauthAccessToken
+    @brief The access token for the OpenID OAuth extension.
+ */
+@property(nonatomic, strong, readonly, nullable) NSString *oauthAccessToken;
+
+/** @property pendingToken
+    @brief The pending ID Token string.
+ */
+@property(nonatomic, copy, nullable) NSString *pendingToken;
+
+>>>>>>> refs/remotes/origin/master
 @end
 
 NS_ASSUME_NONNULL_END

@@ -16,6 +16,11 @@
 
 #import "FIREmailLinkSignInRequest.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kEmailLinkSigninEndpoint
     @brief The "EmailLinkSignin" endpoint.
  */
@@ -68,3 +73,8 @@ static NSString *const kPostBodyKey = @"postBody";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

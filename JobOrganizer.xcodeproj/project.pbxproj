@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		7B950A6C434A436455604B82 /* Pods_JobOrganizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8C00D043C242848AF8CAFE /* Pods_JobOrganizer.framework */; };
 		A5584D59220DCEC9001C5763 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5584D58220DCEC9001C5763 /* JobViewController.swift */; };
 		A5584D5B220DCF19001C5763 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5584D5A220DCF19001C5763 /* Job.swift */; };
@@ -42,12 +43,92 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B950A6C434A436455604B82 /* Pods_JobOrganizer.framework in Frameworks */,
+=======
+		9B01A1E6D47D8B37A19239F2 /* Pods_JobOrganizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BFD80D1A78BAAB837F3CF2 /* Pods_JobOrganizer.framework */; };
+		A530A04A22249B040073A638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A04922249B040073A638 /* AppDelegate.swift */; };
+		A530A04C22249B040073A638 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A04B22249B040073A638 /* WelcomeViewController.swift */; };
+		A530A04F22249B040073A638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A530A04D22249B040073A638 /* Main.storyboard */; };
+		A530A05122249B050073A638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A530A05022249B050073A638 /* Assets.xcassets */; };
+		A530A05422249B050073A638 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A530A05222249B050073A638 /* LaunchScreen.storyboard */; };
+		A530A05C22249B3B0073A638 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A530A05B22249B3B0073A638 /* GoogleService-Info.plist */; };
+		A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A05D2224A8190073A638 /* ViewController+Alert.swift */; };
+		A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A0612224A9D10073A638 /* JobListViewController.swift */; };
+		A530A0682224AE160073A638 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530A0672224AE160073A638 /* Job.swift */; };
+		A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */; };
+		A5550A9E222604AB00D4FB14 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */; };
+		A5550AC32226D7FD00D4FB14 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AC12226D7FD00D4FB14 /* MessageCell.swift */; };
+		A5550AC42226D7FD00D4FB14 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5550AC22226D7FD00D4FB14 /* MessageCell.xib */; };
+		A5550AE62226F7A800D4FB14 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AE52226F7A700D4FB14 /* Message.swift */; };
+		A5550AEB2227024F00D4FB14 /* MessageBoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEA2227024F00D4FB14 /* MessageBoardDetailViewController.swift */; };
+		A5550AED2227028000D4FB14 /* MessageBoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */; };
+		A5550AEF222705FB00D4FB14 /* MessageBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AEE222705FB00D4FB14 /* MessageBoard.swift */; };
+		A5550AF122271C0C00D4FB14 /* JobOrganizerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF022271C0C00D4FB14 /* JobOrganizerUser.swift */; };
+		A5550AF32227225400D4FB14 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF22227225400D4FB14 /* DatabaseManager.swift */; };
+		A5550AF6222722FF00D4FB14 /* DatabaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */; };
+		A5550AFA2227532A00D4FB14 /* AddMessageBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */; };
+		A579B92C224A72EA003525F9 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579B92B224A72EA003525F9 /* UserDefaultsKeys.swift */; };
+		A5FF1D9C22283EC300CF1DDD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9B22283EC300CF1DDD /* StorageManager.swift */; };
+		A5FF1D9E222840BF00CF1DDD /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */; };
+		A5FF1DA02228815A00CF1DDD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1D9F2228815A00CF1DDD /* UserSession.swift */; };
+		A5FF1DA82229C1CB00CF1DDD /* JobTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */; };
+		A5FF1DAC222DA37A00CF1DDD /* ViewController+Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */; };
+		A5FF1DAF222EB8D400CF1DDD /* MyMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */; };
+		A5FF1DB0222EB8D400CF1DDD /* MyMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */; };
+		A5FF81BD22306B8E006A21F6 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF81BC22306B8E006A21F6 /* Statistics.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		78573ED1AA65D03AD1622D41 /* Pods-JobOrganizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.debug.xcconfig"; sourceTree = "<group>"; };
+		78BFD80D1A78BAAB837F3CF2 /* Pods_JobOrganizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobOrganizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A530A04622249B040073A638 /* JobOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A530A04922249B040073A638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A530A04B22249B040073A638 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		A530A04E22249B040073A638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A530A05022249B050073A638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A530A05322249B050073A638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A530A05522249B050073A638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A530A05B22249B3B0073A638 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A530A05D2224A8190073A638 /* ViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
+		A530A0612224A9D10073A638 /* JobListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListViewController.swift; sourceTree = "<group>"; };
+		A530A0672224AE160073A638 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
+		A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		A5550AC12226D7FD00D4FB14 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		A5550AC22226D7FD00D4FB14 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		A5550AE52226F7A700D4FB14 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A5550AEA2227024F00D4FB14 /* MessageBoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardDetailViewController.swift; sourceTree = "<group>"; };
+		A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardListViewController.swift; sourceTree = "<group>"; };
+		A5550AEE222705FB00D4FB14 /* MessageBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoard.swift; sourceTree = "<group>"; };
+		A5550AF022271C0C00D4FB14 /* JobOrganizerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOrganizerUser.swift; sourceTree = "<group>"; };
+		A5550AF22227225400D4FB14 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseKeys.swift; sourceTree = "<group>"; };
+		A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageBoardViewController.swift; sourceTree = "<group>"; };
+		A579B92B224A72EA003525F9 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		A5FF1D9B22283EC300CF1DDD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
+		A5FF1D9F2228815A00CF1DDD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewController.swift; sourceTree = "<group>"; };
+		A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Dates.swift"; sourceTree = "<group>"; };
+		A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
+		A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageCell.xib; sourceTree = "<group>"; };
+		A5FF81BC22306B8E006A21F6 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
+		E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A530A04322249B040073A638 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B01A1E6D47D8B37A19239F2 /* Pods_JobOrganizer.framework in Frameworks */,
+>>>>>>> refs/remotes/origin/master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
 		A5584DB92213900D001C5763 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,10 +161,44 @@
 			isa = PBXGroup;
 			children = (
 				A5604898220B773B007F0BBE /* JobOrganizer.app */,
+=======
+		06AE885E15F44F9146E49B85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78BFD80D1A78BAAB837F3CF2 /* Pods_JobOrganizer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		17BA5826616B995422C2FE5D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				78573ED1AA65D03AD1622D41 /* Pods-JobOrganizer.debug.xcconfig */,
+				E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A530A03D22249B040073A638 = {
+			isa = PBXGroup;
+			children = (
+				A530A04822249B040073A638 /* JobOrganizer */,
+				A530A04722249B040073A638 /* Products */,
+				17BA5826616B995422C2FE5D /* Pods */,
+				06AE885E15F44F9146E49B85 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A530A04722249B040073A638 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A530A04622249B040073A638 /* JobOrganizer.app */,
+>>>>>>> refs/remotes/origin/master
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		A560489A220B773B007F0BBE /* JobOrganizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,10 +210,26 @@
 				A56048A4220B773C007F0BBE /* LaunchScreen.storyboard */,
 				A5746C42220B7BBD0099CD31 /* GoogleService-Info.plist */,
 				A56048A7220B773C007F0BBE /* Info.plist */,
+=======
+		A530A04822249B040073A638 /* JobOrganizer */ = {
+			isa = PBXGroup;
+			children = (
+				A530A04D22249B040073A638 /* Main.storyboard */,
+				A5550AF42227225D00D4FB14 /* Firebase Utilities */,
+				A530A0692224AE1B0073A638 /* Models */,
+				A5550AC02226D7E400D4FB14 /* Views */,
+				A530A05F2224A8530073A638 /* Controllers */,
+				A530A0602224A8680073A638 /* Supporting Files */,
+				A579B9262247CE26003525F9 /* Constants */,
+				A5550AE72226F7F100D4FB14 /* Extensions */,
+				A530A05B22249B3B0073A638 /* GoogleService-Info.plist */,
+				A530A05522249B050073A638 /* Info.plist */,
+>>>>>>> refs/remotes/origin/master
 			);
 			path = JobOrganizer;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		DB2E22EA5B594858944B5BE7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,11 +245,121 @@
 				0D8C00D043C242848AF8CAFE /* Pods_JobOrganizer.framework */,
 			);
 			name = Frameworks;
+=======
+		A530A05F2224A8530073A638 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A579B9282247CE42003525F9 /* Jobs */,
+				A579B9292247CE50003525F9 /* Message Board */,
+				A579B92A2247CE58003525F9 /* Profile */,
+				A579B9272247CE30003525F9 /* Welcome */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A530A0602224A8680073A638 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A530A04922249B040073A638 /* AppDelegate.swift */,
+				A530A05022249B050073A638 /* Assets.xcassets */,
+				A530A05222249B050073A638 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A530A0692224AE1B0073A638 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A5550AF022271C0C00D4FB14 /* JobOrganizerUser.swift */,
+				A5550AEE222705FB00D4FB14 /* MessageBoard.swift */,
+				A5550AE52226F7A700D4FB14 /* Message.swift */,
+				A530A0672224AE160073A638 /* Job.swift */,
+				A5FF81BC22306B8E006A21F6 /* Statistics.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A5550AC02226D7E400D4FB14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5550AC12226D7FD00D4FB14 /* MessageCell.swift */,
+				A5550AC22226D7FD00D4FB14 /* MessageCell.xib */,
+				A5FF1DAD222EB8D400CF1DDD /* MyMessageCell.swift */,
+				A5FF1DAE222EB8D400CF1DDD /* MyMessageCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A5550AE72226F7F100D4FB14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5FF1DAB222DA37A00CF1DDD /* ViewController+Dates.swift */,
+				A530A05D2224A8190073A638 /* ViewController+Alert.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A5550AF42227225D00D4FB14 /* Firebase Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A5550AF22227225400D4FB14 /* DatabaseManager.swift */,
+				A5FF1D9B22283EC300CF1DDD /* StorageManager.swift */,
+				A5FF1D9D222840BF00CF1DDD /* StorageKeys.swift */,
+				A5550AF5222722FF00D4FB14 /* DatabaseKeys.swift */,
+				A5FF1D9F2228815A00CF1DDD /* UserSession.swift */,
+			);
+			path = "Firebase Utilities";
+			sourceTree = "<group>";
+		};
+		A579B9262247CE26003525F9 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A579B92B224A72EA003525F9 /* UserDefaultsKeys.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A579B9272247CE30003525F9 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				A530A04B22249B040073A638 /* WelcomeViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		A579B9282247CE42003525F9 /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				A530A0612224A9D10073A638 /* JobListViewController.swift */,
+				A5550A9B2225C94800D4FB14 /* AddJobViewController.swift */,
+				A5FF1DA72229C1CB00CF1DDD /* JobTableViewController.swift */,
+			);
+			path = Jobs;
+			sourceTree = "<group>";
+		};
+		A579B9292247CE50003525F9 /* Message Board */ = {
+			isa = PBXGroup;
+			children = (
+				A5550AEC2227028000D4FB14 /* MessageBoardListViewController.swift */,
+				A5550AEA2227024F00D4FB14 /* MessageBoardDetailViewController.swift */,
+				A5550AF92227532A00D4FB14 /* AddMessageBoardViewController.swift */,
+			);
+			path = "Message Board";
+			sourceTree = "<group>";
+		};
+		A579B92A2247CE58003525F9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A5550A9D222604AB00D4FB14 /* ProfileTableViewController.swift */,
+			);
+			path = Profile;
+>>>>>>> refs/remotes/origin/master
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+<<<<<<< HEAD
 		A5604897220B773B007F0BBE /* JobOrganizer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A56048AA220B773C007F0BBE /* Build configuration list for PBXNativeTarget "JobOrganizer" */;
@@ -129,6 +370,17 @@
 				A5604896220B773B007F0BBE /* Resources */,
 				70EDA87FCF2A43CB73952FB0 /* [CP] Embed Pods Frameworks */,
 				62E8F20CA84468B6946DC2DE /* [CP] Copy Pods Resources */,
+=======
+		A530A04522249B040073A638 /* JobOrganizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A530A05822249B050073A638 /* Build configuration list for PBXNativeTarget "JobOrganizer" */;
+			buildPhases = (
+				0502BF64CE3B7334ADBAF2D7 /* [CP] Check Pods Manifest.lock */,
+				A530A04222249B040073A638 /* Sources */,
+				A530A04322249B040073A638 /* Frameworks */,
+				A530A04422249B040073A638 /* Resources */,
+				215DDD8707DD9F31E1F09FA5 /* [CP] Embed Pods Frameworks */,
+>>>>>>> refs/remotes/origin/master
 			);
 			buildRules = (
 			);
@@ -136,25 +388,41 @@
 			);
 			name = JobOrganizer;
 			productName = JobOrganizer;
+<<<<<<< HEAD
 			productReference = A5604898220B773B007F0BBE /* JobOrganizer.app */;
+=======
+			productReference = A530A04622249B040073A638 /* JobOrganizer.app */;
+>>>>>>> refs/remotes/origin/master
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
+<<<<<<< HEAD
 		A5604890220B773B007F0BBE /* Project object */ = {
+=======
+		A530A03E22249B040073A638 /* Project object */ = {
+>>>>>>> refs/remotes/origin/master
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = JaneZhu;
 				TargetAttributes = {
+<<<<<<< HEAD
 					A5604897220B773B007F0BBE = {
+=======
+					A530A04522249B040073A638 = {
+>>>>>>> refs/remotes/origin/master
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
+<<<<<<< HEAD
 			buildConfigurationList = A5604893220B773B007F0BBE /* Build configuration list for PBXProject "JobOrganizer" */;
+=======
+			buildConfigurationList = A530A04122249B040073A638 /* Build configuration list for PBXProject "JobOrganizer" */;
+>>>>>>> refs/remotes/origin/master
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -162,17 +430,27 @@
 				en,
 				Base,
 			);
+<<<<<<< HEAD
 			mainGroup = A560488F220B773B007F0BBE;
 			productRefGroup = A5604899220B773B007F0BBE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				A5604897220B773B007F0BBE /* JobOrganizer */,
+=======
+			mainGroup = A530A03D22249B040073A638;
+			productRefGroup = A530A04722249B040073A638 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A530A04522249B040073A638 /* JobOrganizer */,
+>>>>>>> refs/remotes/origin/master
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+<<<<<<< HEAD
 		A5604896220B773B007F0BBE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,13 +459,29 @@
 				A5746C43220B7BBD0099CD31 /* GoogleService-Info.plist in Resources */,
 				A56048A3220B773C007F0BBE /* Assets.xcassets in Resources */,
 				A56048A1220B773B007F0BBE /* Main.storyboard in Resources */,
+=======
+		A530A04422249B040073A638 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5FF1DB0222EB8D400CF1DDD /* MyMessageCell.xib in Resources */,
+				A5550AC42226D7FD00D4FB14 /* MessageCell.xib in Resources */,
+				A530A05422249B050073A638 /* LaunchScreen.storyboard in Resources */,
+				A530A05C22249B3B0073A638 /* GoogleService-Info.plist in Resources */,
+				A530A05122249B050073A638 /* Assets.xcassets in Resources */,
+				A530A04F22249B040073A638 /* Main.storyboard in Resources */,
+>>>>>>> refs/remotes/origin/master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+<<<<<<< HEAD
 		62E8F20CA84468B6946DC2DE /* [CP] Copy Pods Resources */ = {
+=======
+		0502BF64CE3B7334ADBAF2D7 /* [CP] Check Pods Manifest.lock */ = {
+>>>>>>> refs/remotes/origin/master
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -195,6 +489,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+<<<<<<< HEAD
 				"${SRCROOT}/Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
 			);
@@ -210,6 +505,23 @@
 			showEnvVarsInLog = 0;
 		};
 		70EDA87FCF2A43CB73952FB0 /* [CP] Embed Pods Frameworks */ = {
+=======
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JobOrganizer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		215DDD8707DD9F31E1F09FA5 /* [CP] Embed Pods Frameworks */ = {
+>>>>>>> refs/remotes/origin/master
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -218,8 +530,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer-frameworks.sh",
+<<<<<<< HEAD
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+=======
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+>>>>>>> refs/remotes/origin/master
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -227,8 +551,20 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+<<<<<<< HEAD
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+=======
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+>>>>>>> refs/remotes/origin/master
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -237,6 +573,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JobOrganizer/Pods-JobOrganizer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+<<<<<<< HEAD
 		FA746580E9E849AC28801A60 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -271,24 +608,71 @@
 				A5584D59220DCEC9001C5763 /* JobViewController.swift in Sources */,
 				A5584D5B220DCF19001C5763 /* Job.swift in Sources */,
 				A5584DB822138FBB001C5763 /* JobDetailsTableViewController.swift in Sources */,
+=======
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A530A04222249B040073A638 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A530A0682224AE160073A638 /* Job.swift in Sources */,
+				A5550AF32227225400D4FB14 /* DatabaseManager.swift in Sources */,
+				A5FF1D9C22283EC300CF1DDD /* StorageManager.swift in Sources */,
+				A530A0622224A9D10073A638 /* JobListViewController.swift in Sources */,
+				A5550AED2227028000D4FB14 /* MessageBoardListViewController.swift in Sources */,
+				A5FF1DAF222EB8D400CF1DDD /* MyMessageCell.swift in Sources */,
+				A5550AEB2227024F00D4FB14 /* MessageBoardDetailViewController.swift in Sources */,
+				A5FF1D9E222840BF00CF1DDD /* StorageKeys.swift in Sources */,
+				A5550A9C2225C94800D4FB14 /* AddJobViewController.swift in Sources */,
+				A5FF1DA82229C1CB00CF1DDD /* JobTableViewController.swift in Sources */,
+				A5550AF122271C0C00D4FB14 /* JobOrganizerUser.swift in Sources */,
+				A5550AFA2227532A00D4FB14 /* AddMessageBoardViewController.swift in Sources */,
+				A579B92C224A72EA003525F9 /* UserDefaultsKeys.swift in Sources */,
+				A5FF1DA02228815A00CF1DDD /* UserSession.swift in Sources */,
+				A530A05E2224A8190073A638 /* ViewController+Alert.swift in Sources */,
+				A5550AE62226F7A800D4FB14 /* Message.swift in Sources */,
+				A530A04C22249B040073A638 /* WelcomeViewController.swift in Sources */,
+				A5FF1DAC222DA37A00CF1DDD /* ViewController+Dates.swift in Sources */,
+				A5550AEF222705FB00D4FB14 /* MessageBoard.swift in Sources */,
+				A5550A9E222604AB00D4FB14 /* ProfileTableViewController.swift in Sources */,
+				A530A04A22249B040073A638 /* AppDelegate.swift in Sources */,
+				A5550AF6222722FF00D4FB14 /* DatabaseKeys.swift in Sources */,
+				A5FF81BD22306B8E006A21F6 /* Statistics.swift in Sources */,
+				A5550AC32226D7FD00D4FB14 /* MessageCell.swift in Sources */,
+>>>>>>> refs/remotes/origin/master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+<<<<<<< HEAD
 		A560489F220B773B007F0BBE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A56048A0220B773B007F0BBE /* Base */,
+=======
+		A530A04D22249B040073A638 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A530A04E22249B040073A638 /* Base */,
+>>>>>>> refs/remotes/origin/master
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		A56048A4220B773C007F0BBE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A56048A5220B773C007F0BBE /* Base */,
+=======
+		A530A05222249B050073A638 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A530A05322249B050073A638 /* Base */,
+>>>>>>> refs/remotes/origin/master
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -296,7 +680,11 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+<<<<<<< HEAD
 		A56048A8220B773C007F0BBE /* Debug */ = {
+=======
+		A530A05622249B050073A638 /* Debug */ = {
+>>>>>>> refs/remotes/origin/master
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -357,7 +745,11 @@
 			};
 			name = Debug;
 		};
+<<<<<<< HEAD
 		A56048A9220B773C007F0BBE /* Release */ = {
+=======
+		A530A05722249B050073A638 /* Release */ = {
+>>>>>>> refs/remotes/origin/master
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -412,9 +804,15 @@
 			};
 			name = Release;
 		};
+<<<<<<< HEAD
 		A56048AB220B773C007F0BBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6A26B27C9A2E5F2B2D87414 /* Pods-JobOrganizer.debug.xcconfig */;
+=======
+		A530A05922249B050073A638 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78573ED1AA65D03AD1622D41 /* Pods-JobOrganizer.debug.xcconfig */;
+>>>>>>> refs/remotes/origin/master
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -431,9 +829,15 @@
 			};
 			name = Debug;
 		};
+<<<<<<< HEAD
 		A56048AC220B773C007F0BBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B77AD0F1455979D953B386ED /* Pods-JobOrganizer.release.xcconfig */;
+=======
+		A530A05A22249B050073A638 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E62D33B64F61310AF3B83FCD /* Pods-JobOrganizer.release.xcconfig */;
+>>>>>>> refs/remotes/origin/master
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -453,25 +857,45 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+<<<<<<< HEAD
 		A5604893220B773B007F0BBE /* Build configuration list for PBXProject "JobOrganizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A56048A8220B773C007F0BBE /* Debug */,
 				A56048A9220B773C007F0BBE /* Release */,
+=======
+		A530A04122249B040073A638 /* Build configuration list for PBXProject "JobOrganizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A530A05622249B050073A638 /* Debug */,
+				A530A05722249B050073A638 /* Release */,
+>>>>>>> refs/remotes/origin/master
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+<<<<<<< HEAD
 		A56048AA220B773C007F0BBE /* Build configuration list for PBXNativeTarget "JobOrganizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A56048AB220B773C007F0BBE /* Debug */,
 				A56048AC220B773C007F0BBE /* Release */,
+=======
+		A530A05822249B050073A638 /* Build configuration list for PBXNativeTarget "JobOrganizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A530A05922249B050073A638 /* Debug */,
+				A530A05A22249B050073A638 /* Release */,
+>>>>>>> refs/remotes/origin/master
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
+<<<<<<< HEAD
 	rootObject = A5604890220B773B007F0BBE /* Project object */;
+=======
+	rootObject = A530A03E22249B040073A638 /* Project object */;
+>>>>>>> refs/remotes/origin/master
 }

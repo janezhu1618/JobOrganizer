@@ -21,6 +21,11 @@
 
 // FIRGitHubAuthProviderID is defined in FIRAuthProvider.m.
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIRGitHubAuthProvider
 
 - (instancetype)init {
@@ -34,3 +39,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

@@ -16,6 +16,11 @@
 
 #import "FIRAuthDataResult.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @interface FIRAuthDataResult () <NSSecureCoding>
 
 /** @fn initWithUser:additionalUserInfo:
@@ -28,3 +33,8 @@
     NS_DESIGNATED_INITIALIZER;
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

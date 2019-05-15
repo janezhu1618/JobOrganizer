@@ -16,6 +16,11 @@
 
 #import "FIRResetPasswordRequest.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kResetPasswordEndpoint
     @brief The "resetPassword" endpoint.
  */
@@ -33,9 +38,15 @@ static NSString *const kCurrentPasswordKey = @"newPassword";
 
 @implementation FIRResetPasswordRequest
 
+<<<<<<< HEAD
 - (instancetype)initWithOobCode:(NSString *)oobCode
                    newPassword:(NSString *)newPassword
           requestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration {
+=======
+- (nullable instancetype)initWithOobCode:(NSString *)oobCode
+                             newPassword:(nullable NSString *)newPassword
+                    requestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration {
+>>>>>>> refs/remotes/origin/master
   self = [super initWithEndpoint:kResetPasswordEndpoint requestConfiguration:requestConfiguration];
   if (self) {
     _oobCode = oobCode;
@@ -54,3 +65,8 @@ static NSString *const kCurrentPasswordKey = @"newPassword";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

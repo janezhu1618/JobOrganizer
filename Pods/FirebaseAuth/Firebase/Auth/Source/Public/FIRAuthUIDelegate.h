@@ -15,7 +15,12 @@
  */
 
 #import <Foundation/Foundation.h>
+<<<<<<< HEAD
 #import <UIKit/UIKit.h>
+=======
+
+@class UIViewController;
+>>>>>>> refs/remotes/origin/master
 
 NS_ASSUME_NONNULL_BEGIN
 

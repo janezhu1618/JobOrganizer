@@ -67,16 +67,28 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
     pod 'Firebase/AdMob'
     pod 'Firebase/Analytics'
     pod 'Firebase/Auth'
+<<<<<<< HEAD
     pod 'Firebase/Crash'
+=======
+>>>>>>> refs/remotes/origin/master
     pod 'Firebase/Database'
     pod 'Firebase/DynamicLinks'
     pod 'Firebase/Firestore'
     pod 'Firebase/Functions'
+<<<<<<< HEAD
     pod 'Firebase/Invites'
+=======
+    pod 'Firebase/InAppMessaging'
+    pod 'Firebase/InAppMessagingDisplay'
+>>>>>>> refs/remotes/origin/master
     pod 'Firebase/Messaging'
     pod 'Firebase/MLCommon'
     pod 'Firebase/MLModelInterpreter'
     pod 'Firebase/MLNLLanguageID'
+<<<<<<< HEAD
+=======
+    pod 'Firebase/MLNLSmartReply'
+>>>>>>> refs/remotes/origin/master
     pod 'Firebase/MLNaturalLanguage'
     pod 'Firebase/MLVision'
     pod 'Firebase/MLVisionBarcodeModel'

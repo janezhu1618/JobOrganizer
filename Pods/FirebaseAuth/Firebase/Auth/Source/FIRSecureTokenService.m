@@ -24,6 +24,11 @@
 #import "FIRSecureTokenRequest.h"
 #import "FIRSecureTokenResponse.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kAPIKeyCodingKey
     @brief The key used to encode the APIKey for NSSecureCoding.
  */
@@ -204,3 +209,8 @@ static const NSTimeInterval kFiveMinutes = 5 * 60;
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

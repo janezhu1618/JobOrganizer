@@ -16,7 +16,11 @@
 
 #import <Foundation/Foundation.h>
 
+<<<<<<< HEAD
 @class FIRPhoneAuthCredential;
+=======
+@class FIRAuthCredential;
+>>>>>>> refs/remotes/origin/master
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -262,6 +266,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSError *)userMismatchError;
 
+<<<<<<< HEAD
 /** @fn credentialAlreadyInUseErrorWithMessage:
     @brief Constructs an @c NSError with the @c FIRAuthErrorCodeCredentialAlreadyInUse code.
     @param message Error message from the backend, if any.
@@ -271,6 +276,18 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSError *)credentialAlreadyInUseErrorWithMessage:(nullable NSString *)message
                                          credential:(nullable FIRPhoneAuthCredential *)credential;
 
+=======
+/** @fn credentialAlreadyInUseErrorWithMessage:email:
+    @brief Constructs an @c NSError with the @c FIRAuthErrorCodeCredentialAlreadyInUse code.
+    @param message Error message from the backend, if any.
+    @param credential Auth credential to be added to the Error User Info dictionary.
+    @param email Email to be added to the Error User Info dictionary.
+    @return The NSError instance associated with the given FIRAuthError.
+ */
++ (NSError *)credentialAlreadyInUseErrorWithMessage:(nullable NSString *)message
+                                         credential:(nullable FIRAuthCredential *)credential
+                                              email:(nullable NSString *)email;
+>>>>>>> refs/remotes/origin/master
 /** @fn operationNotAllowedErrorWithMessage:
     @brief Constructs an @c NSError with the @c FIRAuthErrorCodeOperationNotAllowed code.
     @param message Error message from the backend, if any.
@@ -451,6 +468,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSError *)localPlayerNotAuthenticatedError;
 
+<<<<<<< HEAD
+=======
+/** @fn gameKitNotLinkedError
+   @brief Constructs an @c NSError with the @c FIRAuthErrorCodeGameKitNotLinked code.
+   @return The NSError instance associated with the given FIRAuthError.
+ */
++ (NSError *)gameKitNotLinkedError;
+
+>>>>>>> refs/remotes/origin/master
 /** @fn notificationNotForwardedError
     @brief Constructs an @c NSError with the @c FIRAuthErrorCodeNotificationNotForwarded code.
     @return The NSError instance associated with the given FIRAuthError.
@@ -493,6 +519,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSError *)appVerificationUserInteractionFailureWithReason:(NSString *)reason;
 
+<<<<<<< HEAD
+=======
+/** @fn webSignInUserInteractionFailureWithReason:
+    @brief Constructs an @c NSError with the @c
+        FIRAuthErrorCodeWebSignInUserInteractionFailure code.
+    @param reason Reason for error, returned via URL response.
+    @return The NSError instance associated with the given FIRAuthError.
+ */
++ (NSError *)webSignInUserInteractionFailureWithReason:(nullable NSString *)reason;
+
+>>>>>>> refs/remotes/origin/master
 /** @fn URLResponseErrorWithCode:message:
     @brief Constructs an @c NSError with the code and message provided.
     @param message Error message from the backend, if any.

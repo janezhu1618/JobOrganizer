@@ -32,6 +32,14 @@ NSString *const FIRAuthErrorUserInfoDataKey = @"FIRAuthErrorUserInfoDataKey";
 
 NSString *const FIRAuthErrorUserInfoEmailKey = @"FIRAuthErrorUserInfoEmailKey";
 
+<<<<<<< HEAD
+=======
+NSString *const FIRAuthErrorUserInfoUpdatedCredentialKey =
+    @"FIRAuthErrorUserInfoUpdatedCredentialKey";
+
+NSString *const FIRAuthErrorUserInfoNameKey = @"FIRAuthErrorUserInfoNameKey";
+
+>>>>>>> refs/remotes/origin/master
 NSString *const FIRAuthErrorNameKey = @"error_name";
 
 NSString *const FIRAuthUpdatedCredentialKey = @"FIRAuthUpdatedCredentialKey";
@@ -312,11 +320,24 @@ static NSString *const kFIRAuthErrorMessageInvalidVerificationID =
     @"The verification ID used to create the phone auth credential is invalid.";
 
 /** @var kFIRAuthErrorMessageLocalPlayerNotAuthenticated
+<<<<<<< HEAD
  @brief Message for @c FIRAuthErrorCodeLocalPlayerNotAuthenticated error code.
+=======
+    @brief Message for @c FIRAuthErrorCodeLocalPlayerNotAuthenticated error code.
+>>>>>>> refs/remotes/origin/master
  */
 static NSString *const kFIRAuthErrorMessageLocalPlayerNotAuthenticated =
     @"The local player is not authenticated. Please log the local player in to Game Center.";
 
+<<<<<<< HEAD
+=======
+/** @var kFIRAuthErrorMessageGameKitNotLinked
+    @brief Message for @c kFIRAuthErrorMessageGameKitNotLinked error code.
+ */
+static NSString *const kFIRAuthErrorMessageGameKitNotLinked =
+    @"The GameKit framework is not linked. Please turn on the Game Center capability.";
+
+>>>>>>> refs/remotes/origin/master
 /** @var kFIRAuthErrorMessageSessionExpired
     @brief Message for @c FIRAuthErrorCodeSessionExpired error code.
  */
@@ -552,10 +573,20 @@ static NSString *FIRAuthErrorDescription(FIRAuthErrorCode code) {
       return kFIRAuthErrorMessageInvalidDynamicLinkDomain;
     case FIRAuthErrorCodeWebInternalError:
       return kFIRAuthErrorMessageWebInternalError;
+<<<<<<< HEAD
+=======
+    case FIRAuthErrorCodeWebSignInUserInteractionFailure:
+      return kFIRAuthErrorMessageAppVerificationUserInteractionFailure;
+>>>>>>> refs/remotes/origin/master
     case FIRAuthErrorCodeMalformedJWT:
       return kFIRAuthErrorMessageMalformedJWT;
     case FIRAuthErrorCodeLocalPlayerNotAuthenticated:
       return kFIRAuthErrorMessageLocalPlayerNotAuthenticated;
+<<<<<<< HEAD
+=======
+    case FIRAuthErrorCodeGameKitNotLinked:
+      return kFIRAuthErrorMessageGameKitNotLinked;
+>>>>>>> refs/remotes/origin/master
   }
 }
 
@@ -679,10 +710,20 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
       return @"ERROR_INVALID_DYNAMIC_LINK_DOMAIN";
     case FIRAuthErrorCodeWebInternalError:
       return @"ERROR_WEB_INTERNAL_ERROR";
+<<<<<<< HEAD
+=======
+    case FIRAuthErrorCodeWebSignInUserInteractionFailure:
+      return @"ERROR_WEB_USER_INTERACTION_FAILURE";
+>>>>>>> refs/remotes/origin/master
     case FIRAuthErrorCodeMalformedJWT:
       return @"ERROR_MALFORMED_JWT";
     case FIRAuthErrorCodeLocalPlayerNotAuthenticated:
       return @"ERROR_LOCAL_PLAYER_NOT_AUTHENTICATED";
+<<<<<<< HEAD
+=======
+    case FIRAuthErrorCodeGameKitNotLinked:
+      return @"ERROR_GAME_KIT_NOT_LINKED";
+>>>>>>> refs/remotes/origin/master
   }
 }
 
@@ -705,7 +746,11 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
 
 + (NSError *)errorWithCode:(FIRAuthInternalErrorCode)code
            underlyingError:(nullable NSError *)underlyingError {
+<<<<<<< HEAD
   NSDictionary *errorUserInfo = nil;
+=======
+  NSDictionary *errorUserInfo;
+>>>>>>> refs/remotes/origin/master
   if (underlyingError) {
     errorUserInfo = @{
       NSUnderlyingErrorKey : underlyingError
@@ -724,7 +769,16 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
     if (!errorUserInfo[NSLocalizedDescriptionKey]) {
       errorUserInfo[NSLocalizedDescriptionKey] = FIRAuthErrorDescription(errorCode);
     }
+<<<<<<< HEAD
     errorUserInfo[FIRAuthErrorNameKey] = FIRAuthErrorCodeString(errorCode);
+=======
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    // TODO(wangyue): Remove the deprecated code on next breaking change.
+    errorUserInfo[FIRAuthErrorNameKey] = FIRAuthErrorCodeString(errorCode);
+#pragma clang diagnostic pop
+    errorUserInfo[FIRAuthErrorUserInfoNameKey] = FIRAuthErrorCodeString(errorCode);
+>>>>>>> refs/remotes/origin/master
     return [NSError errorWithDomain:FIRAuthErrorDomain code:errorCode userInfo:errorUserInfo];
   } else {
     // This is an internal error. Wrap it in an internal error.
@@ -755,6 +809,7 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
 
 + (NSError *)unexpectedErrorResponseWithData:(NSData *)data
                              underlyingError:(NSError *)underlyingError {
+<<<<<<< HEAD
   return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedErrorResponse userInfo:@{
     FIRAuthErrorUserInfoDataKey : data,
     NSUnderlyingErrorKey : underlyingError
@@ -765,6 +820,27 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
   return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedErrorResponse userInfo:@{
     FIRAuthErrorUserInfoDeserializedResponseKey : deserializedResponse
   }];
+=======
+  NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+  if (data) {
+    userInfo[FIRAuthErrorUserInfoDataKey] = data;
+  }
+  if (underlyingError) {
+    userInfo[NSUnderlyingErrorKey] = underlyingError;
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedErrorResponse
+                    userInfo:[userInfo copy]];
+}
+
++ (NSError *)unexpectedErrorResponseWithDeserializedResponse:(id)deserializedResponse {
+  NSDictionary *userInfo;
+  if (deserializedResponse) {
+    userInfo = @{
+      FIRAuthErrorUserInfoDeserializedResponseKey : deserializedResponse,
+    };
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedErrorResponse userInfo:userInfo];
+>>>>>>> refs/remotes/origin/master
 }
 
 + (NSError *)malformedJWTErrorWithToken:(NSString *)token
@@ -781,6 +857,7 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
 
 + (NSError *)unexpectedResponseWithData:(NSData *)data
                         underlyingError:(NSError *)underlyingError {
+<<<<<<< HEAD
   return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedResponse userInfo:@{
     FIRAuthErrorUserInfoDataKey : data,
     NSUnderlyingErrorKey : underlyingError
@@ -791,20 +868,52 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
   return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedResponse userInfo:@{
     FIRAuthErrorUserInfoDeserializedResponseKey : deserializedResponse
   }];
+=======
+  NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+  if (data) {
+    userInfo[FIRAuthErrorUserInfoDataKey] = data;
+  }
+  if (underlyingError) {
+    userInfo[NSUnderlyingErrorKey] = underlyingError;
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedResponse userInfo:[userInfo copy]];
+}
+
++ (NSError *)unexpectedResponseWithDeserializedResponse:(id)deserializedResponse {
+  NSDictionary *userInfo;
+  if (deserializedResponse) {
+    userInfo = @{
+      FIRAuthErrorUserInfoDeserializedResponseKey : deserializedResponse,
+    };
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedResponse userInfo:userInfo];
+>>>>>>> refs/remotes/origin/master
 }
 
 + (NSError *)unexpectedResponseWithDeserializedResponse:(nullable id)deserializedResponse
                                         underlyingError:(NSError *)underlyingError {
+<<<<<<< HEAD
   NSMutableDictionary *userInfo =
       [NSMutableDictionary dictionaryWithDictionary:@{ NSUnderlyingErrorKey : underlyingError }];
   if (deserializedResponse) {
     userInfo[FIRAuthErrorUserInfoDeserializedResponseKey] = deserializedResponse;
   }
   return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedResponse userInfo:userInfo];
+=======
+  NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+  if (deserializedResponse) {
+    userInfo[FIRAuthErrorUserInfoDeserializedResponseKey] = deserializedResponse;
+  }
+  if (underlyingError) {
+    userInfo[NSUnderlyingErrorKey] = underlyingError;
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeUnexpectedResponse userInfo:[userInfo copy]];
+>>>>>>> refs/remotes/origin/master
 }
 
 + (NSError *)RPCResponseDecodingErrorWithDeserializedResponse:(id)deserializedResponse
                                               underlyingError:(NSError *)underlyingError {
+<<<<<<< HEAD
   return [self errorWithCode:FIRAuthInternalErrorCodeRPCResponseDecodingError userInfo:@{
     FIRAuthErrorUserInfoDeserializedResponseKey : deserializedResponse,
     NSUnderlyingErrorKey : underlyingError
@@ -815,6 +924,25 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   if (email.length) {
     userInfo[FIRAuthErrorUserInfoEmailKey] = email;
+=======
+  NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+  if (deserializedResponse) {
+    userInfo[FIRAuthErrorUserInfoDeserializedResponseKey] = deserializedResponse;
+  }
+  if (underlyingError) {
+    userInfo[NSUnderlyingErrorKey] = underlyingError;
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeRPCResponseDecodingError
+                    userInfo:[userInfo copy]];
+}
+
++ (NSError *)emailAlreadyInUseErrorWithEmail:(nullable NSString *)email {
+  NSDictionary *userInfo;
+  if (email.length) {
+    userInfo = @{
+      FIRAuthErrorUserInfoEmailKey : email,
+    };
+>>>>>>> refs/remotes/origin/master
   }
   return [self errorWithCode:FIRAuthInternalErrorCodeEmailAlreadyInUse userInfo:userInfo];
 }
@@ -856,8 +984,19 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
 }
 
 + (NSError *)accountExistsWithDifferentCredentialErrorWithEmail:(nullable NSString *)email {
+<<<<<<< HEAD
   return [self errorWithCode:FIRAuthInternalErrorCodeAccountExistsWithDifferentCredential
                     userInfo:@{ FIRAuthErrorUserInfoEmailKey : email }];
+=======
+  NSDictionary *userInfo;
+  if (email.length) {
+    userInfo = @{
+      FIRAuthErrorUserInfoEmailKey : email,
+    };
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeAccountExistsWithDifferentCredential
+                    userInfo:userInfo];
+>>>>>>> refs/remotes/origin/master
 }
 
 + (NSError *)providerAlreadyLinkedError {
@@ -885,10 +1024,30 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
 }
 
 + (NSError *)credentialAlreadyInUseErrorWithMessage:(nullable NSString *)message
+<<<<<<< HEAD
                                          credential:(nullable FIRPhoneAuthCredential *)credential {
   if (credential) {
     return [self errorWithCode:FIRAuthInternalErrorCodeCredentialAlreadyInUse
                     userInfo:@{ FIRAuthUpdatedCredentialKey : credential }];
+=======
+                                         credential:(nullable FIRAuthCredential *)credential
+                                              email:(nullable NSString *)email {
+  NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+  if (credential) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    // TODO(wangyue): Remove the deprecated code on next breaking change.
+    userInfo[FIRAuthUpdatedCredentialKey] = credential;
+#pragma clang diagnostic pop
+    userInfo[FIRAuthErrorUserInfoUpdatedCredentialKey] = credential;
+  }
+  if (email.length) {
+    userInfo[FIRAuthErrorUserInfoEmailKey] = email;
+  }
+  if (userInfo.count) {
+    return [self errorWithCode:FIRAuthInternalErrorCodeCredentialAlreadyInUse
+                      userInfo:userInfo];
+>>>>>>> refs/remotes/origin/master
   }
   return [self errorWithCode:FIRAuthInternalErrorCodeCredentialAlreadyInUse message:message];
 }
@@ -898,9 +1057,19 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
 }
 
 + (NSError *)weakPasswordErrorWithServerResponseReason:(nullable NSString *)reason {
+<<<<<<< HEAD
   return [self errorWithCode:FIRAuthInternalErrorCodeWeakPassword userInfo:@{
     NSLocalizedFailureReasonErrorKey : reason
   }];
+=======
+  NSDictionary *userInfo;
+  if (reason.length) {
+    userInfo = @{
+      NSLocalizedFailureReasonErrorKey : reason,
+    };
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeWeakPassword userInfo:userInfo];
+>>>>>>> refs/remotes/origin/master
 }
 
 + (NSError *)appNotAuthorizedError {
@@ -1000,6 +1169,13 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
   return [self errorWithCode:FIRAuthInternalErrorCodeLocalPlayerNotAuthenticated];
 }
 
+<<<<<<< HEAD
+=======
++ (NSError *)gameKitNotLinkedError {
+  return [self errorWithCode:FIRAuthInternalErrorCodeGameKitNotLinked];
+}
+
+>>>>>>> refs/remotes/origin/master
 + (NSError *)notificationNotForwardedError {
   return [self errorWithCode:FIRAuthInternalErrorCodeNotificationNotForwarded];
 }
@@ -1021,10 +1197,32 @@ static NSString *const FIRAuthErrorCodeString(FIRAuthErrorCode code) {
 }
 
 + (NSError *)appVerificationUserInteractionFailureWithReason:(NSString *)reason {
+<<<<<<< HEAD
   return [self errorWithCode:FIRAuthInternalErrorCodeAppVerificationUserInteractionFailure
                     userInfo:@{
     NSLocalizedFailureReasonErrorKey : reason
   }];
+=======
+  NSDictionary *userInfo;
+  if (reason.length) {
+    userInfo = @{
+      NSLocalizedFailureReasonErrorKey : reason,
+    };
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeAppVerificationUserInteractionFailure
+                    userInfo:userInfo];
+}
+
++ (NSError *)webSignInUserInteractionFailureWithReason:(nullable NSString *)reason {
+  NSDictionary *userInfo;
+  if (reason.length) {
+    userInfo = @{
+      NSLocalizedFailureReasonErrorKey : reason,
+    };
+  }
+  return [self errorWithCode:FIRAuthInternalErrorCodeWebSignInUserInteractionFailure
+                    userInfo:userInfo];
+>>>>>>> refs/remotes/origin/master
 }
 
 + (nullable NSError *)URLResponseErrorWithCode:(NSString *)code message:(nullable NSString *)message {

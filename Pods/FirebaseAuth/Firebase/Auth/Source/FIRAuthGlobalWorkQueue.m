@@ -16,6 +16,11 @@
 
 #import "FIRAuthGlobalWorkQueue.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 dispatch_queue_t FIRAuthGlobalWorkQueue() {
   static dispatch_once_t once;
   static dispatch_queue_t queue;
@@ -24,3 +29,8 @@ dispatch_queue_t FIRAuthGlobalWorkQueue() {
   });
   return queue;
 }
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

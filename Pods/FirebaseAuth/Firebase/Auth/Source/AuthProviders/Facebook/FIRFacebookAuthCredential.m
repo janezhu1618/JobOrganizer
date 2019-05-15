@@ -20,6 +20,11 @@
 #import "FIRAuthExceptionUtils.h"
 #import "FIRVerifyAssertionRequest.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @interface FIRFacebookAuthCredential ()
 
 - (nullable instancetype)initWithProvider:(NSString *)provider NS_UNAVAILABLE;
@@ -65,3 +70,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

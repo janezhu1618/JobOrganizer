@@ -24,9 +24,17 @@
 #import "FirebaseAuthVersion.h"
 #import "FIREmailAuthProvider.h"
 #import "FIRFacebookAuthProvider.h"
+<<<<<<< HEAD
 #import "FIRGameCenterAuthProvider.h"
 #import "FIRGitHubAuthProvider.h"
 #import "FIRGoogleAuthProvider.h"
+=======
+#import "FIRFederatedAuthProvider.h"
+#import "FIRGameCenterAuthProvider.h"
+#import "FIRGitHubAuthProvider.h"
+#import "FIRGoogleAuthProvider.h"
+#import "FIROAuthCredential.h"
+>>>>>>> refs/remotes/origin/master
 #import "FIROAuthProvider.h"
 #import "FIRPhoneAuthCredential.h"
 #import "FIRPhoneAuthProvider.h"

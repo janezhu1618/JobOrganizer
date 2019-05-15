@@ -16,6 +16,11 @@
 
 #import "FIRVerifyCustomTokenRequest.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kVerifyCustomTokenEndpoint
     @brief The "verifyPassword" endpoint.
  */
@@ -55,3 +60,8 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

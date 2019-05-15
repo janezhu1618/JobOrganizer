@@ -18,6 +18,11 @@
 
 #import "FIRAuthErrorUtils.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kExpiresInKey
     @brief The key for the number of seconds till the access token expires.
  */
@@ -68,3 +73,8 @@ static NSString *const kIDTokenKey = @"id_token";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

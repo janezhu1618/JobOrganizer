@@ -18,9 +18,19 @@
 
 #import "FIRAuthRPCResponse.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @class FIRDeleteAccountResponse
     @brief Represents the response from the deleteAccount endpoint.
     @see https://developers.google.com/identity/toolkit/web/reference/relyingparty/deleteAccount
  */
 @interface FIRDeleteAccountResponse : NSObject<FIRAuthRPCResponse>
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

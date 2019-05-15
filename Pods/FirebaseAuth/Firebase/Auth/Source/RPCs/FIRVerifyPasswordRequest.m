@@ -16,6 +16,11 @@
 
 #import "FIRVerifyPasswordRequest.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kVerifyPasswordEndpoint
     @brief The "verifyPassword" endpoint.
  */
@@ -90,3 +95,8 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

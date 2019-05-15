@@ -20,6 +20,11 @@
 
 // FIREmailPasswordAuthProviderID is defined in FIRAuthProvider.m.
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIREmailAuthProvider
 
 - (instancetype)init {
@@ -37,3 +42,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

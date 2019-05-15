@@ -18,6 +18,11 @@
 
 #import "FIRAuthErrorUtils.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kErrorKey
     @brief The key for the "error" value in JSON responses from the server.
  */
@@ -102,3 +107,8 @@ static NSString *const kErrorKey = @"error";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

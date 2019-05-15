@@ -21,6 +21,11 @@
 #import "FIRGameCenterAuthProvider.h"
 #import "FIRVerifyAssertionRequest.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIRGameCenterAuthCredential
 
 - (nullable instancetype)initWithProvider:(NSString *)provider {
@@ -84,3 +89,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

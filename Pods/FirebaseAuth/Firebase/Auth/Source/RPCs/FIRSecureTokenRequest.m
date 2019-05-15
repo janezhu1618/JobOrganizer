@@ -17,6 +17,11 @@
 #import "FIRSecureTokenRequest.h"
 #import "FIRAuthRequestConfiguration.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kFIRSecureTokenServiceGetTokenURLFormat
     @brief The format of the secure token service URLs. Requires string format substitution with
         the client's API Key.
@@ -157,3 +162,8 @@ static NSString *gAPIHost = @"securetoken.googleapis.com";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

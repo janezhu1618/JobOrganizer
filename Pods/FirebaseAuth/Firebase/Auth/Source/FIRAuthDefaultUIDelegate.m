@@ -17,6 +17,10 @@
 #import "FIRAuthDefaultUIDelegate.h"
 
 #import <GoogleUtilities/GULAppEnvironmentUtil.h>
+<<<<<<< HEAD
+=======
+#import <UIKit/UIKit.h>
+>>>>>>> refs/remotes/origin/master
 
 NS_ASSUME_NONNULL_BEGIN
 

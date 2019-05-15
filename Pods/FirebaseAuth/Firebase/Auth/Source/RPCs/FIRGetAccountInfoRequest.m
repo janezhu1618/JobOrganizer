@@ -16,6 +16,11 @@
 
 #import "FIRGetAccountInfoRequest.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kGetAccountInfoEndpoint
     @brief The "getAccountInfo" endpoint.
  */
@@ -46,3 +51,8 @@ static NSString *const kIDTokenKey = @"idToken";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

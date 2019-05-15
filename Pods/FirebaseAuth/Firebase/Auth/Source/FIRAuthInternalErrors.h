@@ -18,6 +18,11 @@
 
 #import "FIRAuthErrors.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var FIRAuthPublicErrorCodeFlag
     @brief Bitmask value indicating the error represents a public error code when this bit is
         zeroed. Error codes which don't contain this flag will be wrapped in an @c NSError whose
@@ -353,6 +358,14 @@ typedef NS_ENUM(NSInteger, FIRAuthInternalErrorCode) {
   FIRAuthInternalErrorCodeWebInternalError =
       FIRAuthPublicErrorCodeFlag | FIRAuthErrorCodeWebInternalError,
 
+<<<<<<< HEAD
+=======
+  /** Indicates that an internal error occured within a SFSafariViewController or UIWebview.
+   */
+  FIRAuthInternalErrorCodeWebSignInUserInteractionFailure =
+      FIRAuthPublicErrorCodeFlag | FIRAuthErrorCodeWebSignInUserInteractionFailure,
+
+>>>>>>> refs/remotes/origin/master
   // The enum values between 17046 and 17051 are reserved and should NOT be used for new error
   // codes.
 
@@ -375,6 +388,14 @@ typedef NS_ENUM(NSInteger, FIRAuthInternalErrorCode) {
   FIRAuthInternalErrorCodeLocalPlayerNotAuthenticated =
       FIRAuthPublicErrorCodeFlag | FIRAuthErrorCodeLocalPlayerNotAuthenticated,
 
+<<<<<<< HEAD
+=======
+  /** Indicates that the Game Center local player was not authenticated.
+   */
+  FIRAuthInternalErrorCodeGameKitNotLinked =
+      FIRAuthPublicErrorCodeFlag | FIRAuthErrorCodeGameKitNotLinked,
+
+>>>>>>> refs/remotes/origin/master
   /** Indicates that a non-null user was expected as an argmument to the operation but a null
         user was provided.
    */
@@ -452,3 +473,8 @@ typedef NS_ENUM(NSInteger, FIRAuthInternalErrorCode) {
    */
   FIRAuthInternalErrorCodeRPCResponseDecodingError = 5,
 };
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

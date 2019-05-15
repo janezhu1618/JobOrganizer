@@ -16,6 +16,11 @@
 
 #import "FIRAuthExceptionUtils.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var FIRMethodNotImplementedException
     @brief The name of the "Method Not Implemented" exception.
  */
@@ -23,7 +28,11 @@ static NSString *const FIRMethodNotImplementedException = @"FIRMethodNotImplemen
 
 @implementation FIRAuthExceptionUtils
 
+<<<<<<< HEAD
 + (void)raiseInvalidParameterExceptionWithReason:(NSString *)reason {
+=======
++ (void)raiseInvalidParameterExceptionWithReason:(nullable NSString *)reason {
+>>>>>>> refs/remotes/origin/master
   [NSException raise:NSInvalidArgumentException format:@"%@", reason];
 }
 
@@ -34,3 +43,8 @@ static NSString *const FIRMethodNotImplementedException = @"FIRMethodNotImplemen
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

@@ -16,6 +16,11 @@
 
 #import "FIRVerifyPasswordResponse.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIRVerifyPasswordResponse
 
 - (BOOL)setWithDictionary:(NSDictionary *)dictionary
@@ -32,3 +37,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

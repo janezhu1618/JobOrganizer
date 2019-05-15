@@ -53,6 +53,10 @@
 #import "FIRGameCenterAuthCredential.h"
 #import "FIRGetOOBConfirmationCodeRequest.h"
 #import "FIRGetOOBConfirmationCodeResponse.h"
+<<<<<<< HEAD
+=======
+#import "FIROAuthCredential_Internal.h"
+>>>>>>> refs/remotes/origin/master
 #import "FIRResetPasswordRequest.h"
 #import "FIRResetPasswordResponse.h"
 #import "FIRSendVerificationCodeRequest.h"
@@ -82,6 +86,11 @@
 #import "FIRAuthURLPresenter.h"
 #endif
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 #pragma mark - Constants
 
 #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -350,7 +359,11 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
   return self;
 }
 
+<<<<<<< HEAD
 - (instancetype)initWithAPIKey:(NSString *)APIKey appName:(NSString *)appName {
+=======
+- (nullable instancetype)initWithAPIKey:(NSString *)APIKey appName:(NSString *)appName {
+>>>>>>> refs/remotes/origin/master
   self = [super init];
   if (self) {
     _listenerHandles = [NSMutableArray array];
@@ -438,7 +451,11 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
 
 #pragma mark - Public API
 
+<<<<<<< HEAD
 - (FIRUser *)currentUser {
+=======
+- (nullable FIRUser *)currentUser {
+>>>>>>> refs/remotes/origin/master
   __block FIRUser *result;
   dispatch_sync(FIRAuthGlobalWorkQueue(), ^{
     result = self->_currentUser;
@@ -447,7 +464,11 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
 }
 
 - (void)fetchProvidersForEmail:(NSString *)email
+<<<<<<< HEAD
                     completion:(FIRProviderQueryCallback)completion {
+=======
+                    completion:(nullable FIRProviderQueryCallback)completion {
+>>>>>>> refs/remotes/origin/master
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
     FIRCreateAuthURIRequest *request =
         [[FIRCreateAuthURIRequest alloc] initWithIdentifier:email
@@ -464,6 +485,32 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
   });
 }
 
+<<<<<<< HEAD
+=======
+
+- (void)signInWithProvider:(id<FIRFederatedAuthProvider>)provider
+                UIDelegate:(nullable id<FIRAuthUIDelegate>)UIDelegate
+                completion:(nullable FIRAuthDataResultCallback)completion {
+#if TARGET_OS_IOS
+  dispatch_async(FIRAuthGlobalWorkQueue(), ^{
+    FIRAuthDataResultCallback decoratedCallback =
+        [self signInFlowAuthDataResultCallbackByDecoratingCallback:completion];
+    [provider getCredentialWithUIDelegate:UIDelegate
+                               completion:^(FIRAuthCredential *_Nullable credential,
+                                            NSError *_Nullable error) {
+      if (error) {
+        decoratedCallback(nil, error);
+        return;
+      }
+      [self internalSignInAndRetrieveDataWithCredential:credential
+                                     isReauthentication:NO
+                                               callback:decoratedCallback];
+    }];
+  });
+#endif  // TARGET_OS_IOS
+}
+
+>>>>>>> refs/remotes/origin/master
 - (void)fetchSignInMethodsForEmail:(nonnull NSString *)email
                         completion:(nullable FIRSignInMethodQueryCallback)completion {
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
@@ -484,7 +531,11 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
 
 - (void)signInWithEmail:(NSString *)email
                password:(NSString *)password
+<<<<<<< HEAD
              completion:(FIRAuthDataResultCallback)completion {
+=======
+             completion:(nullable FIRAuthDataResultCallback)completion {
+>>>>>>> refs/remotes/origin/master
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
     FIRAuthDataResultCallback decoratedCallback =
         [self signInFlowAuthDataResultCallbackByDecoratingCallback:completion];
@@ -499,7 +550,11 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
 
 - (void)signInWithEmail:(NSString *)email
                    link:(NSString *)link
+<<<<<<< HEAD
              completion:(FIRAuthDataResultCallback)completion {
+=======
+             completion:(nullable FIRAuthDataResultCallback)completion {
+>>>>>>> refs/remotes/origin/master
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
     FIRAuthDataResultCallback decoratedCallback =
         [self signInFlowAuthDataResultCallbackByDecoratingCallback:completion];
@@ -553,7 +608,11 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
 
 - (void)signInAndRetrieveDataWithEmail:(NSString *)email
                               password:(NSString *)password
+<<<<<<< HEAD
                             completion:(FIRAuthDataResultCallback)completion {
+=======
+                            completion:(nullable FIRAuthDataResultCallback)completion {
+>>>>>>> refs/remotes/origin/master
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
   FIRAuthDataResultCallback decoratedCallback =
       [self signInFlowAuthDataResultCallbackByDecoratingCallback:completion];
@@ -582,14 +641,23 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
                                            callback:completion];
 }
 
+<<<<<<< HEAD
 /** @fn signInWithGameCenterCredential:callback:
+=======
+/** @fn signInAndRetrieveDataWithGameCenterCredential:callback:
+>>>>>>> refs/remotes/origin/master
     @brief Signs in using a game center credential.
     @param credential The Game Center Auth Credential used to sign in.
     @param callback A block which is invoked when the sign in finished (or is cancelled). Invoked
         asynchronously on the global auth work queue in the future.
  */
+<<<<<<< HEAD
 - (void)signInWithGameCenterCredential:(FIRGameCenterAuthCredential *)credential
                               callback:(FIRAuthResultCallback)callback {
+=======
+- (void)signInAndRetrieveDataWithGameCenterCredential:(FIRGameCenterAuthCredential *)credential
+                                             callback:(FIRAuthDataResultCallback)callback {
+>>>>>>> refs/remotes/origin/master
   FIRSignInWithGameCenterRequest *request =
     [[FIRSignInWithGameCenterRequest alloc] initWithPlayerID:credential.playerID
                                                 publicKeyURL:credential.publicKeyURL
@@ -601,6 +669,7 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
   [FIRAuthBackend signInWithGameCenter:request
                               callback:^(FIRSignInWithGameCenterResponse *_Nullable response,
                                          NSError *_Nullable error) {
+<<<<<<< HEAD
                                 if (error) {
                                   if (callback) {
                                     callback(nil, error);
@@ -617,15 +686,51 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
 }
 
 /** @fn internalSignInWithEmail:link:completion:
+=======
+    if (error) {
+      if (callback) {
+        callback(nil, error);
+      }
+      return;
+    }
+
+    [self completeSignInWithAccessToken:response.IDToken
+              accessTokenExpirationDate:response.approximateExpirationDate
+                           refreshToken:response.refreshToken
+                              anonymous:NO
+                               callback:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+      FIRAdditionalUserInfo *additionalUserInfo =
+      [[FIRAdditionalUserInfo alloc] initWithProviderID:FIRGameCenterAuthProviderID
+                                                profile:nil
+                                               username:nil
+                                              isNewUser:response.isNewUser];
+      FIRAuthDataResult *result = user ?
+      [[FIRAuthDataResult alloc] initWithUser:user
+                           additionalUserInfo:additionalUserInfo] : nil;
+      if (callback) {
+        callback(result, error);
+      }
+    }];
+  }];
+}
+
+/** @fn internalSignInAndRetrieveDataWithEmail:link:completion:
+>>>>>>> refs/remotes/origin/master
     @brief Signs in using an email and email sign-in link.
     @param email The user's email address.
     @param link The email sign-in link.
     @param callback A block which is invoked when the sign in finishes (or is cancelled.) Invoked
         asynchronously on the global auth work queue in the future.
  */
+<<<<<<< HEAD
 - (void)internalSignInWithEmail:(nonnull NSString *)email
                            link:(nonnull NSString *)link
                        callback:(nullable FIRAuthResultCallback)callback {
+=======
+- (void)internalSignInAndRetrieveDataWithEmail:(nonnull NSString *)email
+                                          link:(nonnull NSString *)link
+                                      callback:(nullable FIRAuthDataResultCallback)callback {
+>>>>>>> refs/remotes/origin/master
   if (![self isSignInWithEmailLink:link]) {
     [FIRAuthExceptionUtils raiseInvalidParameterExceptionWithReason:
         kInvalidEmailSignInLinkExceptionMessage];
@@ -647,19 +752,51 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
                          callback:^(FIREmailLinkSignInResponse *_Nullable response,
                                     NSError *_Nullable error) {
     if (error) {
+<<<<<<< HEAD
       callback(nil, error);
+=======
+      if (callback) {
+        callback(nil, error);
+      }
+>>>>>>> refs/remotes/origin/master
       return;
     }
     [self completeSignInWithAccessToken:response.IDToken
               accessTokenExpirationDate:response.approximateExpirationDate
                            refreshToken:response.refreshToken
                               anonymous:NO
+<<<<<<< HEAD
                                callback:callback];
+=======
+                               callback:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+      if (error) {
+        if (callback) {
+          callback(nil, error);
+        }
+        return;
+      }
+      FIRAdditionalUserInfo *additionalUserInfo =
+          [[FIRAdditionalUserInfo alloc] initWithProviderID:FIREmailAuthProviderID
+                                                    profile:nil
+                                                   username:nil
+                                                  isNewUser:response.isNewUser];
+      FIRAuthDataResult *result = user ?
+          [[FIRAuthDataResult alloc] initWithUser:user
+                               additionalUserInfo:additionalUserInfo] : nil;
+      if (callback) {
+        callback(result, error);
+      }
+    }];
+>>>>>>> refs/remotes/origin/master
   }];
 }
 
 - (void)signInWithCredential:(FIRAuthCredential *)credential
+<<<<<<< HEAD
                   completion:(FIRAuthResultCallback)completion {
+=======
+                  completion:(nullable FIRAuthResultCallback)completion {
+>>>>>>> refs/remotes/origin/master
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
     FIRAuthResultCallback callback =
         [self signInFlowAuthResultCallbackByDecoratingCallback:completion];
@@ -695,6 +832,7 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
     // Special case for email/password credentials
     FIREmailPasswordAuthCredential *emailPasswordCredential =
         (FIREmailPasswordAuthCredential *)credential;
+<<<<<<< HEAD
     FIRAuthResultCallback completeEmailSignIn = ^(FIRUser *user, NSError *error) {
       if (callback) {
         if (error) {
@@ -716,6 +854,33 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
                                link:emailPasswordCredential.link
                            callback:completeEmailSignIn];
     } else {
+=======
+
+    if (emailPasswordCredential.link) {
+      // Email link sign in
+      [self internalSignInAndRetrieveDataWithEmail:emailPasswordCredential.email
+                                              link:emailPasswordCredential.link
+                                          callback:callback];
+    } else {
+      // Email password sign in
+      FIRAuthResultCallback completeEmailSignIn = ^(FIRUser *user, NSError *error) {
+        if (callback) {
+          if (error) {
+            callback(nil, error);
+            return;
+          }
+          FIRAdditionalUserInfo *additionalUserInfo =
+              [[FIRAdditionalUserInfo alloc] initWithProviderID:FIREmailAuthProviderID
+                                                        profile:nil
+                                                       username:nil
+                                                      isNewUser:NO];
+          FIRAuthDataResult *result = [[FIRAuthDataResult alloc] initWithUser:user
+                                                           additionalUserInfo:additionalUserInfo];
+          callback(result, error);
+        }
+      };
+
+>>>>>>> refs/remotes/origin/master
       [self signInWithEmail:emailPasswordCredential.email
                    password:emailPasswordCredential.password
                    callback:completeEmailSignIn];
@@ -725,6 +890,7 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
 
   if ([credential isKindOfClass:[FIRGameCenterAuthCredential class]]) {
     // Special case for Game Center credentials.
+<<<<<<< HEAD
     [self signInWithGameCenterCredential:(FIRGameCenterAuthCredential *)credential
                                 callback:^(FIRUser *_Nullable user, NSError *_Nullable error) {
       if (callback) {
@@ -735,6 +901,10 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
         callback(result, error);
       }
     }];
+=======
+    [self signInAndRetrieveDataWithGameCenterCredential:(FIRGameCenterAuthCredential *)credential
+                                               callback:callback];
+>>>>>>> refs/remotes/origin/master
     return;
   }
 
@@ -779,6 +949,15 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
                                        requestConfiguration:_requestConfiguration];
   request.autoCreate = !isReauthentication;
   [credential prepareVerifyAssertionRequest:request];
+<<<<<<< HEAD
+=======
+  if ([credential isKindOfClass:[FIROAuthCredential class]]) {
+    FIROAuthCredential *OAuthCredential = (FIROAuthCredential *)credential;
+    request.requestURI = OAuthCredential.OAuthResponseURLString;
+    request.sessionID = OAuthCredential.sessionID;
+    request.pendingToken = OAuthCredential.pendingToken;
+  }
+>>>>>>> refs/remotes/origin/master
   [FIRAuthBackend verifyAssertion:request
                          callback:^(FIRVerifyAssertionResponse *response, NSError *error) {
     if (error) {
@@ -828,7 +1007,12 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
   }];
 }
 
+<<<<<<< HEAD
 - (void)signInAnonymouslyAndRetrieveDataWithCompletion:(FIRAuthDataResultCallback)completion {
+=======
+- (void)signInAnonymouslyAndRetrieveDataWithCompletion:
+    (nullable FIRAuthDataResultCallback)completion {
+>>>>>>> refs/remotes/origin/master
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
     FIRAuthDataResultCallback decoratedCallback =
         [self signInFlowAuthDataResultCallbackByDecoratingCallback:completion];
@@ -869,7 +1053,11 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
   });
 }
 
+<<<<<<< HEAD
 - (void)signInAnonymouslyWithCompletion:(FIRAuthDataResultCallback)completion {
+=======
+- (void)signInAnonymouslyWithCompletion:(nullable FIRAuthDataResultCallback)completion {
+>>>>>>> refs/remotes/origin/master
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
     FIRAuthDataResultCallback decoratedCallback =
         [self signInFlowAuthDataResultCallbackByDecoratingCallback:completion];
@@ -961,7 +1149,11 @@ static NSMutableDictionary *gKeychainServiceNameForAppName;
 
 - (void)createUserAndRetrieveDataWithEmail:(NSString *)email
                                   password:(NSString *)password
+<<<<<<< HEAD
                                 completion:(FIRAuthDataResultCallback)completion {
+=======
+                                completion:(nullable FIRAuthDataResultCallback)completion {
+>>>>>>> refs/remotes/origin/master
   dispatch_async(FIRAuthGlobalWorkQueue(), ^{
     FIRAuthDataResultCallback decoratedCallback =
         [self signInFlowAuthDataResultCallbackByDecoratingCallback:completion];
@@ -1340,18 +1532,30 @@ static NSDictionary<NSString *, NSString *> *FIRAuthParseURL(NSString *urlString
   });
 }
 
+<<<<<<< HEAD
 - (NSString *)additionalFrameworkMarker {
   return self->_requestConfiguration.additionalFrameworkMarker;
 }
 
 - (void)setAdditionalFrameworkMarker:(NSString *)additionalFrameworkMarker {
+=======
+- (nullable NSString *)additionalFrameworkMarker {
+  return self->_requestConfiguration.additionalFrameworkMarker;
+}
+
+- (void)setAdditionalFrameworkMarker:(nullable NSString *)additionalFrameworkMarker {
+>>>>>>> refs/remotes/origin/master
   dispatch_sync(FIRAuthGlobalWorkQueue(), ^{
     self->_requestConfiguration.additionalFrameworkMarker = [additionalFrameworkMarker copy];
   });
 }
 
 #if TARGET_OS_IOS
+<<<<<<< HEAD
 - (NSData *)APNSToken {
+=======
+- (nullable NSData *)APNSToken {
+>>>>>>> refs/remotes/origin/master
   __block NSData *result = nil;
   dispatch_sync(FIRAuthGlobalWorkQueue(), ^{
     result = self->_tokenManager.token.data;
@@ -1359,7 +1563,11 @@ static NSDictionary<NSString *, NSString *> *FIRAuthParseURL(NSString *urlString
   return result;
 }
 
+<<<<<<< HEAD
 - (void)setAPNSToken:(NSData *)APNSToken {
+=======
+- (void)setAPNSToken:(nullable NSData *)APNSToken {
+>>>>>>> refs/remotes/origin/master
   [self setAPNSToken:APNSToken type:FIRAuthAPNSTokenTypeUnknown];
 }
 
@@ -1762,7 +1970,11 @@ static NSDictionary<NSString *, NSString *> *FIRAuthParseURL(NSString *urlString
 
 #pragma mark - User-Related Methods
 
+<<<<<<< HEAD
 /** @fn updateCurrentUser:savingToDisk:
+=======
+/** @fn updateCurrentUser:byForce:savingToDisk:error:
+>>>>>>> refs/remotes/origin/master
     @brief Update the current user; initializing the user's internal properties correctly, and
         optionally saving the user to disk.
     @remarks This method is called during: sign in and sign out events, as well as during class
@@ -1772,7 +1984,11 @@ static NSDictionary<NSString *, NSString *> *FIRAuthParseURL(NSString *urlString
         time.)
     @param saveToDisk Indicates the method should persist the user data to disk.
  */
+<<<<<<< HEAD
 - (BOOL)updateCurrentUser:(FIRUser *)user
+=======
+- (BOOL)updateCurrentUser:(nullable FIRUser *)user
+>>>>>>> refs/remotes/origin/master
                   byForce:(BOOL)force
              savingToDisk:(BOOL)saveToDisk
                     error:(NSError *_Nullable *_Nullable)error {
@@ -1951,3 +2167,8 @@ static NSDictionary<NSString *, NSString *> *FIRAuthParseURL(NSString *urlString
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

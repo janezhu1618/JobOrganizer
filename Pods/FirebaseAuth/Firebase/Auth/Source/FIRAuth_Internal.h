@@ -21,12 +21,19 @@
 #import <FirebaseAuthInterop/FIRAuthInterop.h>
 
 @class FIRAuthRequestConfiguration;
+<<<<<<< HEAD
+=======
+@class FIRAuthURLPresenter;
+>>>>>>> refs/remotes/origin/master
 
 #if TARGET_OS_IOS
 @class FIRAuthAPNSTokenManager;
 @class FIRAuthAppCredentialManager;
 @class FIRAuthNotificationManager;
+<<<<<<< HEAD
 @class FIRAuthURLPresenter;
+=======
+>>>>>>> refs/remotes/origin/master
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
@@ -56,13 +63,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, strong, readonly) FIRAuthNotificationManager *notificationManager;
 
+<<<<<<< HEAD
+=======
+#endif // TARGET_OS_IOS
+
+>>>>>>> refs/remotes/origin/master
 /** @property authURLPresenter
     @brief An object that takes care of presenting URLs via the auth instance.
  */
 @property(nonatomic, strong, readonly) FIRAuthURLPresenter *authURLPresenter;
 
+<<<<<<< HEAD
 #endif // TARGET_OS_IOS
 
+=======
+>>>>>>> refs/remotes/origin/master
 /** @fn initWithAPIKey:appName:
     @brief Designated initializer.
     @param APIKey The Google Developers Console API key for making requests from your app.

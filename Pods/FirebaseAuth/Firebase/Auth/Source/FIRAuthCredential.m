@@ -16,6 +16,11 @@
 
 #import "FIRAuthCredential_Internal.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIRAuthCredential
 
 - (instancetype)init {
@@ -40,3 +45,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

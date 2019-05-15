@@ -16,6 +16,11 @@
 
 #import <Foundation/Foundation.h>
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @class FIRAuthSettings
     @brief Determines settings related to an auth object.
  */
@@ -28,3 +33,8 @@
     appVerificationDisabledForTesting;
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

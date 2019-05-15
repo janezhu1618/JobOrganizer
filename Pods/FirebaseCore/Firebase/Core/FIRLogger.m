@@ -106,6 +106,7 @@ void FIRSetLoggerLevel(FIRLoggerLevel loggerLevel) {
   GULSetLoggerLevel((GULLoggerLevel)loggerLevel);
 }
 
+<<<<<<< HEAD
 #ifdef DEBUG
 void FIRResetLogger() {
   extern void GULResetLogger(void);
@@ -120,6 +121,8 @@ void FIRSetLoggerUserDefaults(NSUserDefaults *defaults) {
 }
 #endif
 
+=======
+>>>>>>> refs/remotes/origin/master
 /**
  * Check if the level is high enough to be loggable.
  *

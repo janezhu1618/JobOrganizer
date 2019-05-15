@@ -21,6 +21,11 @@
 #import "FIRGetProjectConfigRequest.h"
 #import "FIRGetProjectConfigResponse.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kAuthDomainSuffix
     @brief The suffix of the auth domain pertiaining to a given Firebase project.
  */
@@ -51,6 +56,41 @@ static NSString *const kAuthDomainSuffix = @"firebaseapp.com";
   return NO;
 }
 
+<<<<<<< HEAD
+=======
++ (BOOL)isExpectedCallbackURL:(nullable NSURL *)URL
+                      eventID:(NSString *)eventID
+                     authType:(NSString *)authType
+               callbackScheme:(NSString *)callbackScheme {
+ if (!URL) {
+    return NO;
+  }
+  NSURLComponents *actualURLComponents =
+      [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+  actualURLComponents.query = nil;
+  actualURLComponents.fragment = nil;
+
+  NSURLComponents *expectedURLComponents = [[NSURLComponents alloc] init];
+  expectedURLComponents.scheme = callbackScheme;
+  expectedURLComponents.host = @"firebaseauth";
+  expectedURLComponents.path = @"/link";
+
+  if (![expectedURLComponents.URL isEqual:actualURLComponents.URL]) {
+    return NO;
+  }
+  NSDictionary<NSString *, NSString *> *URLQueryItems =
+      [self dictionaryWithHttpArgumentsString:URL.query];
+  NSURL *deeplinkURL = [NSURL URLWithString:URLQueryItems[@"deep_link_id"]];
+  NSDictionary<NSString *, NSString *> *deeplinkQueryItems =
+      [self dictionaryWithHttpArgumentsString:deeplinkURL.query];
+  if ([deeplinkQueryItems[@"authType"] isEqualToString:authType] &&
+      [deeplinkQueryItems[@"eventId"] isEqualToString:eventID]) {
+    return YES;
+  }
+  return NO;
+}
+
+>>>>>>> refs/remotes/origin/master
 + (void)fetchAuthDomainWithRequestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration
                                      completion:(FIRFetchAuthDomainCallback)completion {
   FIRGetProjectConfigRequest *request =
@@ -87,7 +127,10 @@ static NSString *const kAuthDomainSuffix = @"firebaseapp.com";
  @param queryList The NSURLQueryItem array.
  @return The value for the key.
  */
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 + (nullable NSString *)queryItemValue:(NSString *)name from:(NSArray<NSURLQueryItem *> *)queryList {
   for (NSURLQueryItem *item in queryList) {
     if ([item.name isEqualToString:name]) {
@@ -97,4 +140,48 @@ static NSString *const kAuthDomainSuffix = @"firebaseapp.com";
   return nil;
 }
 
+<<<<<<< HEAD
 @end
+=======
++ (NSDictionary *)dictionaryWithHttpArgumentsString:(NSString *)argString {
+  NSMutableDictionary* ret = [NSMutableDictionary dictionary];
+  NSArray* components = [argString componentsSeparatedByString:@"&"];
+  NSString* component;
+  // Use reverse order so that the first occurrence of a key replaces
+  // those subsequent.
+  for (component in [components reverseObjectEnumerator]) {
+    if (component.length == 0)
+      continue;
+    NSRange pos = [component rangeOfString:@"="];
+    NSString *key;
+    NSString *val;
+    if (pos.location == NSNotFound) {
+      key = [self stringByUnescapingFromURLArgument:component];
+      val = @"";
+    } else {
+      key = [self stringByUnescapingFromURLArgument:[component substringToIndex:pos.location]];
+      val = [self stringByUnescapingFromURLArgument:
+          [component substringFromIndex:pos.location + pos.length]];
+    }
+    // returns nil on invalid UTF8 and NSMutableDictionary raises an exception when passed nil
+    // values.
+    if (!key) key = @"";
+    if (!val) val = @"";
+    [ret setObject:val forKey:key];
+  }
+  return ret;
+}
+
++ (NSString *)stringByUnescapingFromURLArgument:(NSString *)argument {
+  NSMutableString *resultString = [NSMutableString stringWithString:argument];
+  [resultString replaceOccurrencesOfString:@"+"
+                                withString:@" "
+                                   options:NSLiteralSearch
+                                     range:NSMakeRange(0, [resultString length])];
+  return [resultString stringByRemovingPercentEncoding];
+}
+
+@end
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

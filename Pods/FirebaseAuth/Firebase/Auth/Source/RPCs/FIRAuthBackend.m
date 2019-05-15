@@ -59,11 +59,20 @@
 #import "FIRVerifyPhoneNumberRequest.h"
 #import "FIRVerifyPhoneNumberResponse.h"
 
+<<<<<<< HEAD
+=======
+#import "../AuthProviders/OAuth/FIROAuthCredential_Internal.h"
+>>>>>>> refs/remotes/origin/master
 #if TARGET_OS_IOS
 #import "../AuthProviders/Phone/FIRPhoneAuthCredential_Internal.h"
 #import "FIRPhoneAuthProvider.h"
 #endif
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kClientVersionHeader
     @brief HTTP header name for the client version.
  */
@@ -370,6 +379,14 @@ static NSString *const kMissingClientIdentifier = @"MISSING_CLIENT_IDENTIFIER";
  */
 static NSString *const kCaptchaCheckFailedErrorMessage = @"CAPTCHA_CHECK_FAILED";
 
+<<<<<<< HEAD
+=======
+/** @var kInvalidPendingToken
+    @brief Generic IDP error codes.
+ */
+static NSString *const kInvalidPendingToken = @"INVALID_PENDING_TOKEN";
+
+>>>>>>> refs/remotes/origin/master
 /** @var gBackendImplementation
     @brief The singleton FIRAuthBackendImplementation instance to use.
  */
@@ -736,7 +753,12 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
                                                       providerID:FIRPhoneAuthProviderID];
       callback(nil,
                [FIRAuthErrorUtils credentialAlreadyInUseErrorWithMessage:nil
+<<<<<<< HEAD
                                                               credential:credential]);
+=======
+                                                              credential:credential
+                                                                   email:nil]);
+>>>>>>> refs/remotes/origin/master
       return;
     }
     callback(response, nil);
@@ -800,7 +822,11 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
  */
 - (void)postWithRequest:(id<FIRAuthRPCRequest>)request
                response:(id<FIRAuthRPCResponse>)response
+<<<<<<< HEAD
                callback:(void (^)(NSError *error))callback {
+=======
+               callback:(void (^)(NSError * _Nullable error))callback {
+>>>>>>> refs/remotes/origin/master
   NSError *error;
   NSData *bodyData;
   if ([request containsPostBody]) {
@@ -911,7 +937,31 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
                                                                    underlyingError:error]);
       return;
     }
+<<<<<<< HEAD
 
+=======
+    // In case returnIDPCredential of a verifyAssertion request is set to @YES, the server may
+    // return a 200 with a response that may contain a server error.
+    if ([request isKindOfClass:[FIRVerifyAssertionRequest class]]) {
+      FIRVerifyAssertionRequest *verifyAssertionRequest = (FIRVerifyAssertionRequest *)request;
+      if (verifyAssertionRequest.returnIDPCredential) {
+        NSDictionary *errorDictionary = dictionary[kErrorKey];
+        if ([errorDictionary isKindOfClass:[NSDictionary class]]) {
+          id<NSObject> errorMessage = errorDictionary[kErrorMessageKey];
+          if ([errorMessage isKindOfClass:[NSString class]]) {
+            NSString *errorString = (NSString *)errorMessage;
+            NSError *clientError = [[self class] clientErrorWithServerErrorMessage:errorString
+                                                                   errorDictionary:errorDictionary
+                                                                          response:response];
+            if (clientError) {
+              callback(clientError);
+              return;
+            }
+          }
+        }
+      }
+    }
+>>>>>>> refs/remotes/origin/master
     // Success! The response object originally passed in can be used by the caller.
     callback(nil);
   }];
@@ -980,7 +1030,12 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
     return [FIRAuthErrorUtils customTokenMistmatchErrorWithMessage:serverDetailErrorMessage];
   }
 
+<<<<<<< HEAD
   if ([shortErrorMessage isEqualToString:kInvalidCredentialErrorMessage]) {
+=======
+  if ([shortErrorMessage isEqualToString:kInvalidCredentialErrorMessage] ||
+      [shortErrorMessage isEqualToString:kInvalidPendingToken]) {
+>>>>>>> refs/remotes/origin/master
     return [FIRAuthErrorUtils invalidCredentialErrorWithMessage:serverDetailErrorMessage];
   }
 
@@ -1024,8 +1079,25 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
   }
 
   if ([shortErrorMessage isEqualToString:kFederatedUserIDAlreadyLinkedMessage]) {
+<<<<<<< HEAD
     return [FIRAuthErrorUtils credentialAlreadyInUseErrorWithMessage:serverDetailErrorMessage
                                                           credential:nil];
+=======
+    FIROAuthCredential *credential;
+    NSString *email;
+    if ([response isKindOfClass:[FIRVerifyAssertionResponse class]]) {
+      FIRVerifyAssertionResponse *verifyAssertion = (FIRVerifyAssertionResponse *)response;
+      credential =
+          [[FIROAuthCredential alloc] initWithProviderID:verifyAssertion.providerID
+                                                 IDToken:verifyAssertion.oauthIDToken
+                                             accessToken:verifyAssertion.oauthAccessToken
+                                            pendingToken:verifyAssertion.pendingToken];
+      email = verifyAssertion.email;
+    }
+    return [FIRAuthErrorUtils credentialAlreadyInUseErrorWithMessage:serverDetailErrorMessage
+                                                          credential:credential
+                                                               email:email];
+>>>>>>> refs/remotes/origin/master
   }
 
   if ([shortErrorMessage isEqualToString:kWeakPasswordErrorMessagePrefix]) {
@@ -1152,3 +1224,8 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

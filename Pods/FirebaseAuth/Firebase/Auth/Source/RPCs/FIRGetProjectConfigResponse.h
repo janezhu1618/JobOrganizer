@@ -18,6 +18,11 @@
 
 #import "FIRAuthRPCResponse.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @class FIRGetProjectConfigResponse
     @brief Represents the response from the getProjectConfig endpoint.
  */
@@ -34,3 +39,8 @@
 @property(nonatomic, strong, readonly, nullable) NSArray *authorizedDomains;
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

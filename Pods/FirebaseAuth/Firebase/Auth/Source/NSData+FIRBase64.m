@@ -16,6 +16,11 @@
 
 #import "NSData+FIRBase64.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation NSData (FIRBase64)
 
 - (NSString *)fir_base64URLEncodedStringWithOptions:(NSDataBase64EncodingOptions)options {
@@ -27,3 +32,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

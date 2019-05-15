@@ -38,8 +38,13 @@ extern NSString *const _Nonnull FIRPhoneAuthSignInMethod NS_SWIFT_NAME(PhoneAuth
     @param verificationID On success, the verification ID provided, nil otherwise.
     @param error On error, the error that occurred, nil otherwise.
  */
+<<<<<<< HEAD
 typedef void (^FIRVerificationResultCallback)(NSString *_Nullable verificationID,
                                               NSError *_Nullable error)
+=======
+typedef void (^FIRVerificationResultCallback)
+    (NSString *_Nullable verificationID, NSError *_Nullable error)
+>>>>>>> refs/remotes/origin/master
     NS_SWIFT_NAME(VerificationResultCallback);
 
 /** @class FIRPhoneAuthProvider

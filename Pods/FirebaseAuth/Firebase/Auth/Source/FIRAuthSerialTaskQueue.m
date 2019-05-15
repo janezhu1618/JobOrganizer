@@ -18,6 +18,11 @@
 
 #import "FIRAuthGlobalWorkQueue.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIRAuthSerialTaskQueue {
   /** @var _dispatchQueue
       @brief The asyncronous dispatch queue into which tasks are enqueued and processed
@@ -50,3 +55,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

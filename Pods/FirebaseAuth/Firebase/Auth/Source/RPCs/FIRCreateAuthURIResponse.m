@@ -16,6 +16,11 @@
 
 #import "FIRCreateAuthURIResponse.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIRCreateAuthURIResponse
 
 - (BOOL)setWithDictionary:(NSDictionary *)dictionary
@@ -30,3 +35,8 @@
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

@@ -7,6 +7,7 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
+<<<<<<< HEAD
 	<string>432141853173-o657cngg4p2meotilctlt50j2gh3covu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.432141853173-o657cngg4p2meotilctlt50j2gh3covu</string>
@@ -14,14 +15,29 @@
 	<string>AIzaSyDHDgZntF10QMGU50s9jRPhgtcmdBkcwVU</string>
 	<key>GCM_SENDER_ID</key>
 	<string>432141853173</string>
+=======
+	<string>442600631821-d7299v967j1iet1ppv8h9bq5qik2d60i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.442600631821-d7299v967j1iet1ppv8h9bq5qik2d60i</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC85z8yTQPhjPftwafOr7bBiLM-sbl4JDU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>442600631821</string>
+>>>>>>> refs/remotes/origin/master
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.janezhu.www.JobOrganizer</string>
 	<key>PROJECT_ID</key>
+<<<<<<< HEAD
 	<string>joborganizer-7266a</string>
 	<key>STORAGE_BUCKET</key>
 	<string>joborganizer-7266a.appspot.com</string>
+=======
+	<string>joborganizer-55219</string>
+	<key>STORAGE_BUCKET</key>
+	<string>joborganizer-55219.appspot.com</string>
+>>>>>>> refs/remotes/origin/master
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +49,14 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
+<<<<<<< HEAD
 	<string>1:432141853173:ios:a7781fce47c5e220</string>
 	<key>DATABASE_URL</key>
 	<string>https://joborganizer-7266a.firebaseio.com</string>
+=======
+	<string>1:442600631821:ios:a7781fce47c5e220</string>
+	<key>DATABASE_URL</key>
+	<string>https://joborganizer-55219.firebaseio.com</string>
+>>>>>>> refs/remotes/origin/master
 </dict>
 </plist>

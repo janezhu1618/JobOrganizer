@@ -16,6 +16,11 @@
 
 #import "FIRVerifyAssertionRequest.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 /** @var kVerifyAssertionEndpoint
     @brief The "verifyAssertion" endpoint.
  */
@@ -56,10 +61,17 @@ static NSString *const kRequestURIKey = @"requestUri";
  */
 static NSString *const kPostBodyKey = @"postBody";
 
+<<<<<<< HEAD
 /** @var kPendingIDTokenKey
     @brief The key for the "pendingIdToken" value in the request.
  */
 static NSString *const kPendingIDTokenKey = @"pendingIdToken";
+=======
+/** @var kPendingTokenKey
+    @brief The key for the "pendingToken" value in the request.
+ */
+static NSString *const kPendingTokenKey = @"pendingToken";
+>>>>>>> refs/remotes/origin/master
 
 /** @var kAutoCreateKey
     @brief The key for the "autoCreate" value in the request.
@@ -77,6 +89,19 @@ static NSString *const kIDTokenKey = @"idToken";
  */
 static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
 
+<<<<<<< HEAD
+=======
+/** @var kReturnIDPCredentialKey
+    @brief The key for the "returnIdpCredential" value in the request.
+ */
+static NSString *const kReturnIDPCredentialKey = @"returnIdpCredential";
+
+/** @var kSessionIDKey
+    @brief The key for the "sessionID" value in the request.
+ */
+static NSString *const kSessionIDKey = @"sessionId";
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIRVerifyAssertionRequest
 
 - (nullable instancetype)initWithProviderID:(NSString *)providerID
@@ -87,6 +112,10 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
     _providerID = providerID;
     _returnSecureToken = YES;
     _autoCreate = YES;
+<<<<<<< HEAD
+=======
+    _returnIDPCredential = YES;
+>>>>>>> refs/remotes/origin/master
   }
   return self;
 }
@@ -107,7 +136,11 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
                                                       value:_providerAccessToken]];
   }
 
+<<<<<<< HEAD
   if (!_providerIDToken && !_providerAccessToken) {
+=======
+  if (!_providerIDToken && !_providerAccessToken && !_requestURI) {
+>>>>>>> refs/remotes/origin/master
     [NSException raise:NSInvalidArgumentException
                 format:@"Either IDToken or accessToken must be supplied."];
   }
@@ -123,12 +156,21 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
   }
   [components setQueryItems:queryItems];
   NSMutableDictionary *body = [@{
+<<<<<<< HEAD
       kRequestURIKey : @"http://localhost", // Unused by server, but required
       kPostBodyKey : [components query]
       } mutableCopy];
 
   if (_pendingIDToken) {
     body[kPendingIDTokenKey] = _pendingIDToken;
+=======
+      kRequestURIKey : _requestURI ?: @"http://localhost", // Unused by server, but required
+      kPostBodyKey : [components query]
+      } mutableCopy];
+
+  if (_pendingToken) {
+    body[kPendingTokenKey] = _pendingToken;
+>>>>>>> refs/remotes/origin/master
   }
   if (_accessToken) {
     body[kIDTokenKey] = _accessToken;
@@ -137,9 +179,25 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
     body[kReturnSecureTokenKey] = @YES;
   }
 
+<<<<<<< HEAD
+=======
+  if (_returnIDPCredential) {
+    body[kReturnIDPCredentialKey] = @YES;
+  }
+
+  if (_sessionID) {
+    body[kSessionIDKey] = _sessionID;
+  }
+
+>>>>>>> refs/remotes/origin/master
   body[kAutoCreateKey] = @(_autoCreate);
 
   return body;
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

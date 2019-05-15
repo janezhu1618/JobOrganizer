@@ -20,6 +20,11 @@
 #import "FIRAuth_Internal.h"
 #import "FIRGetAccountInfoResponse.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 NSString *const FIRSetAccountInfoUserAttributeEmail = @"EMAIL";
 
 NSString *const FIRSetAccountInfoUserAttributeDisplayName = @"DISPLAY_NAME";
@@ -173,3 +178,9 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+
+>>>>>>> refs/remotes/origin/master

@@ -16,6 +16,11 @@
 
 #import "FIRVerifyAssertionResponse.h"
 
+<<<<<<< HEAD
+=======
+NS_ASSUME_NONNULL_BEGIN
+
+>>>>>>> refs/remotes/origin/master
 @implementation FIRVerifyAssertionResponse
 
 - (BOOL)setWithDictionary:(NSDictionary *)dictionary
@@ -70,7 +75,20 @@
     _verifiedProvider = [[NSArray alloc] initWithArray:verifiedProvider
                                              copyItems:YES];
   }
+<<<<<<< HEAD
+=======
+  _oauthIDToken = [dictionary[@"oauthIdToken"] copy];
+  _oauthExpirationDate =  [dictionary[@"oauthExpireIn"] isKindOfClass:[NSString class]] ?
+      [NSDate dateWithTimeIntervalSinceNow:[dictionary[@"oauthExpireIn"] doubleValue]] : nil;
+  _oauthAccessToken = [dictionary[@"oauthAccessToken"] copy];
+  _pendingToken = [dictionary[@"pendingToken"] copy];
+>>>>>>> refs/remotes/origin/master
   return YES;
 }
 
 @end
+<<<<<<< HEAD
+=======
+
+NS_ASSUME_NONNULL_END
+>>>>>>> refs/remotes/origin/master

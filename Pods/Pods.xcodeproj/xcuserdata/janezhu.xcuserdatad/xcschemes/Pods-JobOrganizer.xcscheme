@@ -14,7 +14,11 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+<<<<<<< HEAD
                BlueprintIdentifier = "11C2A5381A4DF29129132D035438BC10"
+=======
+               BlueprintIdentifier = "8C83E19FFB476FE8B1C8E793B6601E48"
+>>>>>>> refs/remotes/origin/master
                BuildableName = "Pods_JobOrganizer.framework"
                BlueprintName = "Pods-JobOrganizer"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +49,11 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
+<<<<<<< HEAD
             BlueprintIdentifier = "11C2A5381A4DF29129132D035438BC10"
+=======
+            BlueprintIdentifier = "8C83E19FFB476FE8B1C8E793B6601E48"
+>>>>>>> refs/remotes/origin/master
             BuildableName = "Pods_JobOrganizer.framework"
             BlueprintName = "Pods-JobOrganizer"
             ReferencedContainer = "container:Pods.xcodeproj">
